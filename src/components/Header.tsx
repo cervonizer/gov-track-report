@@ -8,8 +8,8 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-primary-foreground">PolitiTracker</h1>
-            <p className="text-primary-foreground/80 hidden md:block">Official Government Data & Accountability</p>
+            <h1 className="text-2xl font-bold text-primary-foreground">Polis</h1>
+            <p className="text-primary-foreground/80 hidden md:block">You run the city</p>
           </div>
           
           <div className="flex items-center space-x-4">
