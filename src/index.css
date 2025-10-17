@@ -18,11 +18,11 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 24% 16%;
 
-    /* Government Blue Primary */
-    --primary: 213 94% 28%;
+    /* Black Primary */
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 213 94% 35%;
-    --primary-dark: 213 94% 22%;
+    --primary-light: 0 0% 20%;
+    --primary-dark: 0 0% 0%;
 
     /* Professional Gray Secondary */
     --secondary: 210 16% 93%;
@@ -45,11 +45,11 @@ All colors MUST be HSL.
 
     --border: 210 16% 90%;
     --input: 210 16% 96%;
-    --ring: 213 94% 28%;
+    --ring: 0 0% 0%;
 
-    /* Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    /* Black & White Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 20%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 10%));
     --gradient-card: linear-gradient(180deg, hsl(var(--card)), hsl(var(--muted)));
 
     /* Elegant Shadows */
