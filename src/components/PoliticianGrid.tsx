@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { PoliticianCard } from "./PoliticianCard";
 import { mockPoliticians } from "@/data/mockData";
 
 export const PoliticianGrid = () => {
+  const navigate = useNavigate();
+  
   const handleViewDetails = (id: string) => {
-    // This will be connected to routing later
-    console.log(`Viewing details for politician ID: ${id}`);
+    navigate(`/politician/${id}`);
   };
 
   return (
