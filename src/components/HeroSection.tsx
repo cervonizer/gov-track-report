@@ -47,6 +47,15 @@ export const HeroSection = () => {
             Browse All
           </Button>
         </div>
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-lg px-8 border-primary-foreground text-black bg-primary-foreground/90 hover:bg-primary-foreground/80 transition-colors h-14"
+            onClick={() => navigate("/politicians")}
+          >
+            Browse All
+          </Button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
