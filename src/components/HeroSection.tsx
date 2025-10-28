@@ -28,7 +28,7 @@ export const HeroSection = () => {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               placeholder="Find your representative..."
-              className="pl-22 h-24 text-lg bg-background sm:w-80"
+              className="pl-12 h-24 text-lg bg-background sm:w-80"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
