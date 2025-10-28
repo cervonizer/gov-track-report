@@ -23,12 +23,12 @@ export const HeroSection = () => {
           All data sourced directly from official government records.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 max-w-2xl mx-auto">
-          <div className="relative flex-1">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 mx-auto">
+          <div className="relative w-full sm:w-[360px]">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               placeholder="Find your representative..."
-              className="pl-12 h-14 text-lg bg-background"
+              className="pl-12 h-14 text-lg bg-background w-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
@@ -38,6 +38,15 @@ export const HeroSection = () => {
               }}
             />
           </div>
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-lg px-8 border-primary-foreground text-black bg-primary-foreground/90 hover:bg-primary-foreground/80 transition-colors h-14"
+            onClick={() => navigate("/politicians")}
+          >
+            Browse All
+          </Button>
+        </div>
           <Button
             size="lg"
             variant="outline"
