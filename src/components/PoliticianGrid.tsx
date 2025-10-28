@@ -36,10 +36,16 @@ export const PoliticianGrid = () => {
             Looking for a specific representative or want to browse more?
           </p>
           <div className="space-x-4">
-            <button className="text-primary hover:text-primary-dark font-medium">
+            <button 
+              onClick={() => navigate("/politicians")}
+              className="text-primary hover:text-primary-dark font-medium"
+            >
               Browse All Representatives →
             </button>
-            <button className="text-primary hover:text-primary-dark font-medium">
+            <button 
+              onClick={() => navigate("/politicians")}
+              className="text-primary hover:text-primary-dark font-medium"
+            >
               Search by Location →
             </button>
           </div>
