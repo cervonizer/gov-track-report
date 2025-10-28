@@ -38,10 +38,10 @@ export const HeroSection = () => {
               }}
             />
           </div>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="text-lg px-8 border-primary-foreground text-black hover:bg-primary-foreground hover:text-primary h-14"
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-lg px-8 border-primary-foreground text-black bg-primary-foreground/90 hover:bg-primary-foreground/80 transition-colors h-14"
             onClick={() => navigate("/politicians")}
           >
             Browse All
