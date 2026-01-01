@@ -14,10 +14,10 @@ export const PoliticianGrid = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Your Representatives
+            Seus Representantes
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Track the performance and accountability of elected officials with comprehensive data from official sources.
+            Acompanhe o desempenho e a prestação de contas dos eleitos com dados abrangentes de fontes oficiais.
           </p>
         </div>
 
@@ -33,20 +33,20 @@ export const PoliticianGrid = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Looking for a specific representative or want to browse more?
+            Procurando um representante específico ou quer ver mais?
           </p>
           <div className="space-x-4">
             <button 
               onClick={() => navigate("/politicians")}
               className="text-primary hover:text-primary-dark font-medium"
             >
-              Browse All Representatives →
+              Ver Todos os Representantes →
             </button>
             <button 
               onClick={() => navigate("/politicians")}
               className="text-primary hover:text-primary-dark font-medium"
             >
-              Search by Location →
+              Buscar por Localização →
             </button>
           </div>
         </div>

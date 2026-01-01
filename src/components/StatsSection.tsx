@@ -7,10 +7,10 @@ export const StatsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Platform Statistics
+            Estatísticas da Plataforma
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real-time data on government transparency and accountability
+            Dados em tempo real sobre transparência e prestação de contas governamental
           </p>
         </div>
 
@@ -21,7 +21,7 @@ export const StatsSection = () => {
                 <Users className="w-8 h-8 text-primary" />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">523</div>
-              <div className="text-muted-foreground">Politicians Tracked</div>
+              <div className="text-muted-foreground">Políticos Monitorados</div>
             </CardContent>
           </Card>
 
@@ -30,8 +30,8 @@ export const StatsSection = () => {
               <div className="bg-success/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <FileCheck className="w-8 h-8 text-success" />
               </div>
-              <div className="text-3xl font-bold text-success mb-2">1,247</div>
-              <div className="text-muted-foreground">Promises Tracked</div>
+              <div className="text-3xl font-bold text-success mb-2">1.247</div>
+              <div className="text-muted-foreground">Promessas Acompanhadas</div>
             </CardContent>
           </Card>
 
@@ -40,8 +40,8 @@ export const StatsSection = () => {
               <div className="bg-warning/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="w-8 h-8 text-warning" />
               </div>
-              <div className="text-3xl font-bold text-warning mb-2">8,932</div>
-              <div className="text-muted-foreground">Votes Recorded</div>
+              <div className="text-3xl font-bold text-warning mb-2">8.932</div>
+              <div className="text-muted-foreground">Votações Registradas</div>
             </CardContent>
           </Card>
 
@@ -51,7 +51,7 @@ export const StatsSection = () => {
                 <Clock className="w-8 h-8 text-primary" />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-muted-foreground">Real-time Updates</div>
+              <div className="text-muted-foreground">Atualizações em Tempo Real</div>
             </CardContent>
           </Card>
         </div>

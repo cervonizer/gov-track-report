@@ -3,508 +3,499 @@ import { Politician } from '@/types/politician';
 export const mockPoliticians: Politician[] = [
   {
     id: '1',
-    name: 'Sarah Johnson',
-    party: 'Democratic',
-    position: 'Senator',
-    state: 'California',
+    name: 'Maria Silva',
+    party: 'PT',
+    position: 'Senadora',
+    state: 'São Paulo',
     district: undefined,
-    termStart: '2019-01-03',
-    termEnd: '2025-01-03',
+    termStart: '2023-02-01',
+    termEnd: '2031-02-01',
     imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b647?w=400&h=400&fit=crop&crop=face',
-    biography: 'Senator Johnson has served California for over 5 years, focusing on healthcare reform and environmental protection.',
-    website: 'https://johnson.senate.gov',
-    email: 'contact@johnson.senate.gov',
-    phone: '(202) 224-3841',
-    committeeMemberships: ['Health, Education, Labor and Pensions', 'Environment and Public Works'],
+    biography: 'Senadora Maria Silva representa São Paulo há mais de 5 anos, com foco em reforma da saúde e proteção ambiental.',
+    website: 'https://mariasilva.senado.leg.br',
+    email: 'contato@mariasilva.senado.leg.br',
+    phone: '(61) 3303-1234',
+    committeeMemberships: ['Comissão de Saúde', 'Comissão de Meio Ambiente'],
     voteRecords: [
       {
         id: 'v1',
-        title: 'Infrastructure Investment Act',
-        description: 'Bipartisan legislation to invest $1.2 trillion in infrastructure improvements.',
+        title: 'Reforma Tributária',
+        description: 'Projeto de reforma do sistema tributário nacional.',
         date: '2023-11-15',
         vote: 'Yes',
-        billNumber: 'H.R. 3684',
-        category: 'Infrastructure'
+        billNumber: 'PEC 45/2019',
+        category: 'Economia'
       },
       {
         id: 'v2',
-        title: 'Climate Change Response Act',
-        description: 'Comprehensive climate legislation to reduce carbon emissions by 50% by 2030.',
+        title: 'Marco Legal do Clima',
+        description: 'Legislação para reduzir emissões de carbono em 50% até 2030.',
         date: '2023-10-28',
         vote: 'Yes',
-        billNumber: 'S. 1298',
-        category: 'Environment'
+        billNumber: 'PL 1298/2023',
+        category: 'Meio Ambiente'
       },
       {
         id: 'v3',
-        title: 'Defense Authorization Act',
-        description: 'Annual defense spending authorization bill.',
+        title: 'Orçamento de Defesa',
+        description: 'Projeto de autorização de gastos de defesa.',
         date: '2023-09-14',
         vote: 'No',
-        billNumber: 'H.R. 2670',
-        category: 'Defense'
+        billNumber: 'PL 2670/2023',
+        category: 'Defesa'
       }
     ],
     promises: [
       {
         id: 'p1',
-        title: 'Expand Healthcare Access',
-        description: 'Work to provide universal healthcare coverage for all Californians.',
-        datePromised: '2018-10-15',
-        deadline: '2024-12-31',
+        title: 'Expandir Acesso à Saúde',
+        description: 'Trabalhar para ampliar o SUS em todo o estado de São Paulo.',
+        datePromised: '2022-10-15',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 65,
-        category: 'Healthcare'
+        category: 'Saúde'
       },
       {
         id: 'p2',
-        title: 'Reduce Carbon Emissions',
-        description: 'Support legislation to achieve carbon neutrality by 2035.',
-        datePromised: '2018-10-15',
-        deadline: '2025-01-01',
+        title: 'Reduzir Emissões de Carbono',
+        description: 'Apoiar legislação para neutralidade de carbono até 2035.',
+        datePromised: '2022-10-15',
+        deadline: '2027-01-01',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Environment'
+        category: 'Meio Ambiente'
       },
       {
         id: 'p3',
-        title: 'Infrastructure Investment',
-        description: 'Secure federal funding for California infrastructure projects.',
-        datePromised: '2019-01-20',
-        deadline: '2023-12-31',
+        title: 'Investimento em Infraestrutura',
+        description: 'Garantir recursos federais para projetos de infraestrutura.',
+        datePromised: '2023-01-20',
+        deadline: '2025-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Infrastructure'
+        category: 'Infraestrutura'
       }
     ],
     proposals: [
       {
         id: 'pr1',
-        title: 'Green Energy Transition Act',
-        description: 'Legislation to accelerate the transition to renewable energy sources.',
+        title: 'Lei de Transição Energética',
+        description: 'Projeto para acelerar a transição para fontes de energia renováveis.',
         dateProposed: '2023-06-15',
         status: 'Active',
-        category: 'Environment',
+        category: 'Meio Ambiente',
         supportLevel: 78
       },
       {
         id: 'pr2',
-        title: 'Rural Healthcare Expansion',
-        description: 'Initiative to improve healthcare access in rural communities.',
+        title: 'Saúde Rural',
+        description: 'Iniciativa para melhorar acesso à saúde em comunidades rurais.',
         dateProposed: '2023-03-22',
         status: 'Passed',
-        category: 'Healthcare',
+        category: 'Saúde',
         supportLevel: 85
       }
     ]
   },
   {
     id: '2',
-    name: 'Michael Chen',
-    party: 'Republican',
-    position: 'Representative',
-    state: 'Texas',
-    district: '15th District',
-    termStart: '2021-01-03',
-    termEnd: '2025-01-03',
+    name: 'Carlos Mendes',
+    party: 'PL',
+    position: 'Deputado Federal',
+    state: 'Minas Gerais',
+    district: undefined,
+    termStart: '2023-02-01',
+    termEnd: '2027-02-01',
     imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-    biography: 'Representative Chen represents Texas\' 15th District, advocating for small business growth and fiscal responsibility.',
-    website: 'https://chen.house.gov',
-    email: 'contact@chen.house.gov',
-    phone: '(202) 225-4236',
-    committeeMemberships: ['Small Business', 'Budget'],
+    biography: 'Deputado Carlos Mendes representa Minas Gerais, defendendo o crescimento de pequenas empresas e responsabilidade fiscal.',
+    website: 'https://carlosmendes.camara.leg.br',
+    email: 'contato@carlosmendes.camara.leg.br',
+    phone: '(61) 3215-4567',
+    committeeMemberships: ['Comissão de Pequenas Empresas', 'Comissão de Orçamento'],
     voteRecords: [
       {
         id: 'v4',
-        title: 'Small Business Support Act',
-        description: 'Legislation to provide tax relief and support for small businesses.',
+        title: 'Apoio às Pequenas Empresas',
+        description: 'Legislação para oferecer benefícios fiscais a pequenas empresas.',
         date: '2023-11-20',
         vote: 'Yes',
-        billNumber: 'H.R. 4521',
-        category: 'Economy'
+        billNumber: 'PL 4521/2023',
+        category: 'Economia'
       },
       {
         id: 'v5',
-        title: 'Infrastructure Investment Act',
-        description: 'Bipartisan legislation to invest $1.2 trillion in infrastructure improvements.',
+        title: 'Reforma Tributária',
+        description: 'Projeto de reforma do sistema tributário nacional.',
         date: '2023-11-15',
         vote: 'Yes',
-        billNumber: 'H.R. 3684',
-        category: 'Infrastructure'
+        billNumber: 'PEC 45/2019',
+        category: 'Economia'
       }
     ],
     promises: [
       {
         id: 'p4',
-        title: 'Support Small Businesses',
-        description: 'Advocate for policies that help small businesses thrive and create jobs.',
-        datePromised: '2020-09-10',
-        deadline: '2024-12-31',
+        title: 'Apoiar Pequenas Empresas',
+        description: 'Defender políticas que ajudem pequenas empresas a prosperar e criar empregos.',
+        datePromised: '2022-09-10',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 72,
-        category: 'Economy'
+        category: 'Economia'
       },
       {
         id: 'p5',
-        title: 'Reduce Government Spending',
-        description: 'Work to eliminate wasteful government spending and reduce the deficit.',
-        datePromised: '2020-09-10',
-        deadline: '2024-12-31',
+        title: 'Reduzir Gastos Públicos',
+        description: 'Trabalhar para eliminar gastos governamentais desnecessários.',
+        datePromised: '2022-09-10',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 45,
-        category: 'Fiscal Policy'
+        category: 'Política Fiscal'
       }
     ],
     proposals: [
       {
         id: 'pr3',
-        title: 'Tax Reform for Small Business',
-        description: 'Comprehensive tax reform to benefit small business owners.',
+        title: 'Reforma Tributária para PMEs',
+        description: 'Reforma tributária abrangente para beneficiar pequenos empresários.',
         dateProposed: '2023-08-10',
         status: 'Active',
-        category: 'Economy',
+        category: 'Economia',
         supportLevel: 62
       }
     ]
   },
   {
     id: '3',
-    name: 'Jennifer Martinez',
-    party: 'Democratic',
-    position: 'Representative',
-    state: 'Florida',
-    district: '7th District',
-    termStart: '2022-01-03',
-    termEnd: '2025-01-03',
+    name: 'Ana Beatriz Costa',
+    party: 'MDB',
+    position: 'Deputada Estadual',
+    state: 'Rio de Janeiro',
+    district: undefined,
+    termStart: '2023-02-01',
+    termEnd: '2027-02-01',
     imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
-    biography: 'Representative Martinez represents Florida\'s 7th District, focusing on education reform and affordable housing initiatives.',
-    website: 'https://martinez.house.gov',
-    email: 'contact@martinez.house.gov',
-    phone: '(202) 225-7891',
-    committeeMemberships: ['Education and Labor', 'Financial Services'],
+    biography: 'Deputada Estadual Ana Beatriz Costa representa o Rio de Janeiro, focando em reforma educacional e habitação acessível.',
+    website: 'https://anabeatriz.alerj.rj.gov.br',
+    email: 'contato@anabeatriz.alerj.rj.gov.br',
+    phone: '(21) 2588-7891',
+    committeeMemberships: ['Comissão de Educação', 'Comissão de Habitação'],
     voteRecords: [
       {
         id: 'v6',
-        title: 'Affordable Housing Act',
-        description: 'Legislation to increase funding for affordable housing programs.',
+        title: 'Lei de Habitação Popular',
+        description: 'Projeto para aumentar financiamento de programas de habitação.',
         date: '2023-12-05',
         vote: 'Yes',
-        billNumber: 'H.R. 5623',
-        category: 'Housing'
+        billNumber: 'PL 5623/2023',
+        category: 'Habitação'
       },
       {
         id: 'v7',
-        title: 'Education Funding Bill',
-        description: 'Bill to increase federal funding for public schools.',
+        title: 'Financiamento da Educação',
+        description: 'Projeto para aumentar recursos para escolas públicas.',
         date: '2023-11-28',
         vote: 'Yes',
-        billNumber: 'H.R. 5201',
-        category: 'Education'
+        billNumber: 'PL 5201/2023',
+        category: 'Educação'
       },
       {
         id: 'v8',
-        title: 'Infrastructure Investment Act',
-        description: 'Bipartisan legislation to invest $1.2 trillion in infrastructure improvements.',
+        title: 'Infraestrutura Estadual',
+        description: 'Investimento em melhorias de infraestrutura estadual.',
         date: '2023-11-15',
         vote: 'Yes',
-        billNumber: 'H.R. 3684',
-        category: 'Infrastructure'
+        billNumber: 'PL 3684/2023',
+        category: 'Infraestrutura'
       }
     ],
     promises: [
       {
         id: 'p6',
-        title: 'Increase Education Funding',
-        description: 'Secure additional federal funding for public schools in the district.',
-        datePromised: '2021-09-15',
-        deadline: '2024-12-31',
+        title: 'Aumentar Investimento em Educação',
+        description: 'Garantir recursos adicionais para escolas públicas do estado.',
+        datePromised: '2022-09-15',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 68,
-        category: 'Education'
+        category: 'Educação'
       },
       {
         id: 'p7',
-        title: 'Affordable Housing Initiative',
-        description: 'Create 5,000 new affordable housing units in the district.',
-        datePromised: '2021-09-15',
-        deadline: '2025-01-01',
+        title: 'Programa de Habitação Popular',
+        description: 'Criar 5.000 novas unidades habitacionais populares.',
+        datePromised: '2022-09-15',
+        deadline: '2027-01-01',
         status: 'In Progress',
         progress: 55,
-        category: 'Housing'
+        category: 'Habitação'
       }
     ],
     proposals: [
       {
         id: 'pr4',
-        title: 'Teacher Salary Enhancement Act',
-        description: 'Legislation to increase teacher salaries and benefits.',
+        title: 'Valorização do Professor',
+        description: 'Projeto para aumentar salários e benefícios dos professores.',
         dateProposed: '2023-09-12',
         status: 'Active',
-        category: 'Education',
+        category: 'Educação',
         supportLevel: 71
       }
     ]
   },
   {
     id: '4',
-    name: 'Robert Williams',
-    party: 'Republican',
-    position: 'Senator',
-    state: 'Georgia',
+    name: 'Roberto Almeida',
+    party: 'PSD',
+    position: 'Governador',
+    state: 'Bahia',
     district: undefined,
-    termStart: '2017-01-03',
-    termEnd: '2025-01-03',
+    termStart: '2023-01-01',
+    termEnd: '2027-01-01',
     imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-    biography: 'Senator Williams has represented Georgia for over 7 years, championing agricultural interests and veterans\' affairs.',
-    website: 'https://williams.senate.gov',
-    email: 'contact@williams.senate.gov',
-    phone: '(202) 224-5628',
-    committeeMemberships: ['Agriculture, Nutrition, and Forestry', 'Veterans\' Affairs', 'Armed Services'],
+    biography: 'Governador Roberto Almeida administra a Bahia, com foco em desenvolvimento agrícola e turismo.',
+    website: 'https://governador.ba.gov.br',
+    email: 'contato@governador.ba.gov.br',
+    phone: '(71) 3115-5628',
+    committeeMemberships: ['Conselho de Governadores do Nordeste'],
     voteRecords: [
       {
         id: 'v9',
-        title: 'Farm Bill Reauthorization',
-        description: 'Five-year reauthorization of federal farm and nutrition programs.',
+        title: 'Plano Safra Estadual',
+        description: 'Programa de apoio à agricultura familiar.',
         date: '2023-12-10',
         vote: 'Yes',
-        billNumber: 'S. 4672',
-        category: 'Agriculture'
+        billNumber: 'Decreto 4672/2023',
+        category: 'Agricultura'
       },
       {
         id: 'v10',
-        title: 'Veterans Healthcare Expansion',
-        description: 'Bill to expand healthcare services for military veterans.',
+        title: 'Programa de Turismo',
+        description: 'Expansão do programa estadual de turismo.',
         date: '2023-11-22',
         vote: 'Yes',
-        billNumber: 'S. 3891',
-        category: 'Veterans Affairs'
-      },
-      {
-        id: 'v11',
-        title: 'Climate Change Response Act',
-        description: 'Comprehensive climate legislation to reduce carbon emissions by 50% by 2030.',
-        date: '2023-10-28',
-        vote: 'No',
-        billNumber: 'S. 1298',
-        category: 'Environment'
+        billNumber: 'Lei 3891/2023',
+        category: 'Turismo'
       }
     ],
     promises: [
       {
         id: 'p8',
-        title: 'Support Georgia Farmers',
-        description: 'Advocate for policies that protect and support Georgia\'s agricultural industry.',
-        datePromised: '2016-10-01',
-        deadline: '2024-12-31',
+        title: 'Apoiar Agricultores Baianos',
+        description: 'Defender políticas que protejam a agricultura do estado.',
+        datePromised: '2022-10-01',
+        deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Agriculture'
+        category: 'Agricultura'
       },
       {
         id: 'p9',
-        title: 'Improve Veterans Services',
-        description: 'Expand access to healthcare and benefits for Georgia veterans.',
-        datePromised: '2016-10-01',
-        deadline: '2024-12-31',
+        title: 'Desenvolver Turismo',
+        description: 'Expandir infraestrutura turística em todo o estado.',
+        datePromised: '2022-10-01',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 82,
-        category: 'Veterans Affairs'
+        category: 'Turismo'
       }
     ],
     proposals: [
       {
         id: 'pr5',
-        title: 'Rural Broadband Expansion',
-        description: 'Initiative to bring high-speed internet to rural Georgia communities.',
+        title: 'Internet Rural',
+        description: 'Levar internet de alta velocidade para comunidades rurais da Bahia.',
         dateProposed: '2023-07-18',
         status: 'Active',
-        category: 'Technology',
+        category: 'Tecnologia',
         supportLevel: 76
       },
       {
         id: 'pr6',
-        title: 'Veterans Mental Health Act',
-        description: 'Comprehensive mental health support for military veterans.',
+        title: 'Rota Turística do Cacau',
+        description: 'Desenvolvimento de rota turística na região cacaueira.',
         dateProposed: '2023-05-30',
         status: 'Passed',
-        category: 'Veterans Affairs',
+        category: 'Turismo',
         supportLevel: 89
       }
     ]
   },
   {
     id: '5',
-    name: 'Elizabeth Thompson',
-    party: 'Democratic',
-    position: 'Presidential Candidate',
-    state: 'United States',
-    district: undefined,
-    termStart: '2024-01-15',
-    termEnd: '2025-11-05',
+    name: 'Luciana Ferreira',
+    party: 'PSOL',
+    position: 'Vereadora',
+    state: 'São Paulo',
+    district: 'São Paulo',
+    termStart: '2021-01-01',
+    termEnd: '2025-01-01',
     imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face',
-    biography: 'Former Governor and Senator, Elizabeth Thompson is running for President on a platform of healthcare reform, climate action, and economic justice.',
-    website: 'https://thompson2024.com',
-    email: 'contact@thompson2024.com',
-    phone: '(555) 024-2024',
-    committeeMemberships: ['Campaign Committee'],
+    biography: 'Vereadora Luciana Ferreira atua na Câmara Municipal de São Paulo, com foco em direitos humanos e mobilidade urbana.',
+    website: 'https://lucianaferreira.saopaulo.sp.leg.br',
+    email: 'contato@lucianaferreira.sp.leg.br',
+    phone: '(11) 3396-2024',
+    committeeMemberships: ['Comissão de Direitos Humanos', 'Comissão de Mobilidade'],
     voteRecords: [
       {
         id: 'v12',
-        title: 'Medicare for All Act',
-        description: 'Legislation to establish universal healthcare coverage.',
+        title: 'Tarifa Zero nos Domingos',
+        description: 'Projeto para isenção de tarifa de transporte aos domingos.',
         date: '2023-08-15',
         vote: 'Yes',
-        billNumber: 'H.R. 1976',
-        category: 'Healthcare'
+        billNumber: 'PL 1976/2023',
+        category: 'Mobilidade'
       },
       {
         id: 'v13',
-        title: 'Green New Deal Resolution',
-        description: 'Resolution calling for comprehensive climate action.',
+        title: 'Moradia Digna',
+        description: 'Projeto para regularização de moradias populares.',
         date: '2023-07-20',
         vote: 'Yes',
-        billNumber: 'H.Res. 109',
-        category: 'Environment'
+        billNumber: 'PL 109/2023',
+        category: 'Habitação'
       }
     ],
     promises: [
       {
         id: 'p10',
-        title: 'Universal Healthcare',
-        description: 'Implement Medicare for All within the first term.',
-        datePromised: '2024-01-15',
-        deadline: '2029-01-20',
+        title: 'Transporte Público Acessível',
+        description: 'Reduzir tarifas de transporte público para a população.',
+        datePromised: '2020-10-15',
+        deadline: '2024-12-31',
         status: 'In Progress',
-        progress: 25,
-        category: 'Healthcare'
+        progress: 55,
+        category: 'Mobilidade'
       },
       {
         id: 'p11',
-        title: 'Climate Action Plan',
-        description: 'Achieve net-zero emissions by 2040.',
-        datePromised: '2024-01-15',
-        deadline: '2040-12-31',
+        title: 'Direitos das Mulheres',
+        description: 'Ampliar políticas de proteção às mulheres.',
+        datePromised: '2020-10-15',
+        deadline: '2024-12-31',
         status: 'In Progress',
-        progress: 15,
-        category: 'Environment'
+        progress: 70,
+        category: 'Direitos Humanos'
       },
       {
         id: 'p12',
-        title: 'Economic Justice',
-        description: 'Raise federal minimum wage to $20/hour.',
-        datePromised: '2024-01-15',
-        deadline: '2026-12-31',
-        status: 'In Progress',
-        progress: 10,
-        category: 'Economy'
+        title: 'Ciclovias na Cidade',
+        description: 'Expandir malha cicloviária em 50km.',
+        datePromised: '2020-10-15',
+        deadline: '2024-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Mobilidade'
       }
     ],
     proposals: [
       {
         id: 'pr7',
-        title: 'National Healthcare Plan',
-        description: 'Comprehensive universal healthcare system for all Americans.',
+        title: 'Passe Livre Estudantil',
+        description: 'Gratuidade no transporte para estudantes da rede pública.',
         dateProposed: '2024-02-01',
         status: 'Active',
-        category: 'Healthcare',
-        supportLevel: 58
+        category: 'Mobilidade',
+        supportLevel: 68
       },
       {
         id: 'pr8',
-        title: 'Clean Energy Investment',
-        description: '$2 trillion investment in renewable energy infrastructure.',
+        title: 'Casa da Mulher Paulistana',
+        description: 'Criação de centros de apoio às mulheres em situação de violência.',
         dateProposed: '2024-03-15',
         status: 'Active',
-        category: 'Environment',
-        supportLevel: 62
+        category: 'Direitos Humanos',
+        supportLevel: 72
       }
     ]
   },
   {
     id: '6',
-    name: 'James Anderson',
-    party: 'Republican',
-    position: 'Presidential Candidate',
-    state: 'United States',
-    district: undefined,
-    termStart: '2024-02-01',
-    termEnd: '2025-11-05',
+    name: 'Fernando Santos',
+    party: 'NOVO',
+    position: 'Prefeito',
+    state: 'Santa Catarina',
+    district: 'Florianópolis',
+    termStart: '2021-01-01',
+    termEnd: '2025-01-01',
     imageUrl: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop&crop=face',
-    biography: 'Former CEO and Governor, James Anderson is running for President with a focus on economic growth, national security, and conservative values.',
-    website: 'https://anderson2024.com',
-    email: 'contact@anderson2024.com',
-    phone: '(555) 024-2025',
-    committeeMemberships: ['Campaign Committee'],
+    biography: 'Prefeito Fernando Santos administra Florianópolis com foco em inovação, gestão eficiente e desenvolvimento sustentável.',
+    website: 'https://prefeito.florianopolis.sc.gov.br',
+    email: 'contato@prefeito.florianopolis.sc.gov.br',
+    phone: '(48) 3251-2025',
+    committeeMemberships: ['Conselho de Prefeitos de Capitais'],
     voteRecords: [
       {
         id: 'v14',
-        title: 'Tax Cuts and Jobs Act',
-        description: 'Major tax reform legislation to reduce corporate and individual taxes.',
+        title: 'Reforma Administrativa',
+        description: 'Projeto de modernização da gestão municipal.',
         date: '2023-09-10',
         vote: 'Yes',
-        billNumber: 'H.R. 4820',
-        category: 'Economy'
+        billNumber: 'PL 4820/2023',
+        category: 'Gestão'
       },
       {
         id: 'v15',
-        title: 'Border Security Enhancement Act',
-        description: 'Legislation to strengthen border security and immigration enforcement.',
+        title: 'Startup City',
+        description: 'Programa de incentivo a startups e empresas de tecnologia.',
         date: '2023-08-25',
         vote: 'Yes',
-        billNumber: 'S. 3245',
-        category: 'Immigration'
+        billNumber: 'Lei 3245/2023',
+        category: 'Economia'
       }
     ],
     promises: [
       {
         id: 'p13',
-        title: 'Economic Growth',
-        description: 'Create 5 million new jobs through tax cuts and deregulation.',
-        datePromised: '2024-02-01',
-        deadline: '2028-12-31',
-        status: 'In Progress',
-        progress: 20,
-        category: 'Economy'
+        title: 'Desburocratização',
+        description: 'Simplificar processos na prefeitura e reduzir tempo de atendimento.',
+        datePromised: '2020-10-01',
+        deadline: '2024-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Gestão'
       },
       {
         id: 'p14',
-        title: 'Secure Borders',
-        description: 'Complete border security infrastructure and reform immigration system.',
-        datePromised: '2024-02-01',
-        deadline: '2027-12-31',
+        title: 'Cidade Inteligente',
+        description: 'Implementar tecnologias de cidade inteligente em Florianópolis.',
+        datePromised: '2020-10-01',
+        deadline: '2024-12-31',
         status: 'In Progress',
-        progress: 18,
-        category: 'Immigration'
+        progress: 78,
+        category: 'Tecnologia'
       },
       {
         id: 'p15',
-        title: 'Energy Independence',
-        description: 'Achieve complete energy independence through domestic production.',
-        datePromised: '2024-02-01',
-        deadline: '2028-12-31',
+        title: 'Sustentabilidade Urbana',
+        description: 'Transformar Florianópolis em referência de sustentabilidade.',
+        datePromised: '2020-10-01',
+        deadline: '2024-12-31',
         status: 'In Progress',
-        progress: 12,
-        category: 'Energy'
+        progress: 62,
+        category: 'Meio Ambiente'
       }
     ],
     proposals: [
       {
         id: 'pr9',
-        title: 'American Jobs Act',
-        description: 'Tax incentives for businesses to create jobs and invest in America.',
+        title: 'Floripa Digital',
+        description: 'Digitalização completa dos serviços públicos municipais.',
         dateProposed: '2024-02-15',
         status: 'Active',
-        category: 'Economy',
-        supportLevel: 54
+        category: 'Tecnologia',
+        supportLevel: 84
       },
       {
         id: 'pr10',
-        title: 'National Security Enhancement',
-        description: 'Increased defense spending and border security measures.',
-        dateProposed: '2024-03-01',
+        title: 'PPP Saneamento',
+        description: 'Parceria público-privada para universalizar saneamento básico.',
+        dateProposed: '2024-01-20',
         status: 'Active',
-        category: 'National Security',
-        supportLevel: 61
+        category: 'Infraestrutura',
+        supportLevel: 71
       }
     ]
   }
