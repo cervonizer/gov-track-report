@@ -16,14 +16,14 @@ export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4 cursor-pointer" onClick={() => navigate("/")}>
             <h1 className="text-2xl font-bold text-primary-foreground">λ Polis</h1>
-            <p className="text-primary-foreground/80 hidden md:block">You run the city</p>
+            <p className="text-primary-foreground/80 hidden md:block">Você administra a cidade</p>
           </div>
           
           <div className="flex items-center space-x-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input 
-                placeholder="Search politicians..." 
+                placeholder="Buscar políticos..." 
                 className="pl-10 w-64 bg-background"
                 value={searchQuery}
                 onChange={(e) => {
@@ -45,7 +45,7 @@ export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
               size="sm"
               onClick={() => navigate("/politicians")}
             >
-              Browse All
+              Ver Todos
             </Button>
           </div>
         </div>

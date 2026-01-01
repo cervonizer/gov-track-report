@@ -54,10 +54,10 @@ const AllPoliticians = () => {
       <main className="container mx-auto px-4 py-12">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-2">
-            All Representatives
+            Todos os Representantes
           </h1>
           <p className="text-lg text-muted-foreground">
-            Browse and search through all elected officials
+            Navegue e busque entre todos os eleitos
           </p>
         </div>
 
@@ -65,7 +65,7 @@ const AllPoliticians = () => {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
-              placeholder="Search by name, position, or location..."
+              placeholder="Buscar por nome, cargo ou localização..."
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
               className="pl-10"
@@ -74,10 +74,10 @@ const AllPoliticians = () => {
           
           <Select value={partyFilter} onValueChange={setPartyFilter}>
             <SelectTrigger className="w-full md:w-48">
-              <SelectValue placeholder="Filter by party" />
+              <SelectValue placeholder="Filtrar por partido" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Parties</SelectItem>
+              <SelectItem value="all">Todos os Partidos</SelectItem>
               {uniqueParties.map((party) => (
                 <SelectItem key={party} value={party}>
                   {party}
@@ -88,10 +88,10 @@ const AllPoliticians = () => {
 
           <Select value={stateFilter} onValueChange={setStateFilter}>
             <SelectTrigger className="w-full md:w-48">
-              <SelectValue placeholder="Filter by state" />
+              <SelectValue placeholder="Filtrar por estado" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All States</SelectItem>
+              <SelectItem value="all">Todos os Estados</SelectItem>
               {uniqueStates.map((state) => (
                 <SelectItem key={state} value={state}>
                   {state}
@@ -103,7 +103,7 @@ const AllPoliticians = () => {
 
         <div className="mb-4">
           <p className="text-muted-foreground">
-            Showing {filteredPoliticians.length} of {mockPoliticians.length} representatives
+            Exibindo {filteredPoliticians.length} de {mockPoliticians.length} representantes
           </p>
         </div>
 
@@ -120,7 +120,7 @@ const AllPoliticians = () => {
         ) : (
           <div className="text-center py-12">
             <p className="text-lg text-muted-foreground">
-              No representatives found matching your search criteria.
+              Nenhum representante encontrado com os critérios de busca.
             </p>
           </div>
         )}
