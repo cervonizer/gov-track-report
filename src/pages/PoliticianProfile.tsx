@@ -321,6 +321,9 @@ export default function PoliticianProfile() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Legacy Section - only for Roberto Almeida */}
+        {politician.id === '4' && <LegacySection />}
       </main>
 
       <Footer />
