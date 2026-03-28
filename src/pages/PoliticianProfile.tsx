@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowLeft, Mail, Phone, Globe, Calendar, MapPin } from "lucide-react";
+import { LegacySection } from "@/components/LegacySection";
 
 export default function PoliticianProfile() {
   const { id } = useParams();
