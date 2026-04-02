@@ -31,10 +31,9 @@ export const HeroSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 mx-auto">
             <div className="relative w-full sm:w-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 placeholder="Busque por nome, cidade ou cargo…"
-                className="pl-12 h-14 text-black bg-background sm:w-96"
+                className="pl-4 h-14 text-black bg-background sm:w-96"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => {
