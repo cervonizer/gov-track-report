@@ -4,6 +4,7 @@ import { Search, Wallet, Vote, Scale } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import heroImage from "@/assets/hero-government.jpg";
+import searchIcon from "@/assets/search-icon.png";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
