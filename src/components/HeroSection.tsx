@@ -49,7 +49,7 @@ export const HeroSection = () => {
               className="border-primary-foreground text-black bg-primary-foreground/90 hover:bg-primary-foreground/80 transition-colors h-14 text-lg border-0 border-none rounded-3xl px-[20px]"
               onClick={() => navigate("/politicians")}
             >
-              ​🔍︎
+              ​
             </Button>
           </div>
         </div>
