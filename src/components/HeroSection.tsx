@@ -4,6 +4,7 @@ import { Search, Wallet, Vote, Scale } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import heroImage from "@/assets/hero-government.jpg";
+import searchIcon from "@/assets/search-icon.png";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export const HeroSection = () => {
               className="border-primary-foreground text-black bg-primary-foreground/90 hover:bg-primary-foreground/80 transition-colors h-14 text-lg border-0 border-none rounded-3xl px-[20px]"
               onClick={() => navigate("/politicians")}
             >
-              ​
+              <img src={searchIcon} alt="Buscar" className="w-6 h-6" />
             </Button>
           </div>
         </div>
