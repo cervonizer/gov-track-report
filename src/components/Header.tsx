@@ -43,6 +43,7 @@ export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
             <Button 
               variant="secondary" 
               size="sm"
+              className="rounded-3xl border-muted bg-muted text-secondary-foreground hover:bg-muted/80"
               onClick={() => navigate("/politicians")}
             >
               Ver Todos

@@ -65,7 +65,7 @@ export const HeroSection = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-background rounded-xl p-6 shadow-sm border">
+            <div className="bg-background p-6 shadow-sm border rounded-3xl">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Wallet className="w-8 h-8 text-primary" />
               </div>
@@ -75,7 +75,7 @@ export const HeroSection = () => {
               </p>
             </div>
             
-            <div className="bg-background rounded-xl p-6 shadow-sm border">
+            <div className="bg-background p-6 shadow-sm border rounded-3xl">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Vote className="w-8 h-8 text-primary" />
               </div>
@@ -85,7 +85,7 @@ export const HeroSection = () => {
               </p>
             </div>
             
-            <div className="bg-background rounded-xl p-6 shadow-sm border">
+            <div className="bg-background p-6 shadow-sm border rounded-3xl">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Scale className="w-8 h-8 text-primary" />
               </div>
