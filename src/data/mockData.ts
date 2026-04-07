@@ -3,98 +3,126 @@ import { Politician } from '@/types/politician';
 export const mockPoliticians: Politician[] = [
   {
     id: '1',
-    name: 'Maria Silva',
+    name: 'Luiz Inácio Lula da Silva',
     party: 'PT',
-    position: 'Senadora',
+    position: 'Presidente da República',
     state: 'São Paulo',
     district: undefined,
-    termStart: '2023-02-01',
-    termEnd: '2031-02-01',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b647?w=400&h=400&fit=crop&crop=face',
-    biography: 'Senadora Maria Silva representa São Paulo há mais de 5 anos, com foco em reforma da saúde e proteção ambiental.',
-    website: 'https://mariasilva.senado.leg.br',
-    email: 'contato@mariasilva.senado.leg.br',
-    phone: '(61) 3303-1234',
-    committeeMemberships: ['Comissão de Saúde', 'Comissão de Meio Ambiente'],
+    termStart: '2023-01-01',
+    termEnd: '2027-01-01',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Presidente_Lula.jpg/440px-Presidente_Lula.jpg',
+    biography: 'Luiz Inácio Lula da Silva, nascido em 27 de outubro de 1945 em Caetés, Pernambuco, é o 39º presidente do Brasil, exercendo seu terceiro mandato desde 1º de janeiro de 2023. Metalúrgico e sindicalista, foi presidente do Sindicato dos Metalúrgicos do ABC e cofundador do Partido dos Trabalhadores (PT) em 1980. Governou o Brasil de 2003 a 2010, período marcado por programas sociais como o Bolsa Família e o Fome Zero, que retiraram milhões de brasileiros da pobreza. Em seu atual mandato, retomou políticas de combate à fome, proteção ambiental na Amazônia e reinserção do Brasil na diplomacia internacional.',
+    website: 'https://www.gov.br/planalto',
+    email: 'contato@planalto.gov.br',
+    phone: '(61) 3411-1200',
+    committeeMemberships: ['BRICS', 'G20', 'MERCOSUL', 'CELAC'],
     voteRecords: [
       {
         id: 'v1',
+        title: 'Novo Arcabouço Fiscal',
+        description: 'Sanção do novo marco fiscal em substituição ao Teto de Gastos.',
+        date: '2023-08-31',
+        vote: 'Yes',
+        billNumber: 'LC 200/2023',
+        category: 'Economia'
+      },
+      {
+        id: 'v2',
         title: 'Reforma Tributária',
-        description: 'Projeto de reforma do sistema tributário nacional.',
-        date: '2023-11-15',
+        description: 'Sanção da Emenda Constitucional da Reforma Tributária sobre o consumo.',
+        date: '2023-12-20',
         vote: 'Yes',
         billNumber: 'PEC 45/2019',
         category: 'Economia'
       },
       {
-        id: 'v2',
-        title: 'Marco Legal do Clima',
-        description: 'Legislação para reduzir emissões de carbono em 50% até 2030.',
-        date: '2023-10-28',
-        vote: 'Yes',
-        billNumber: 'PL 1298/2023',
+        id: 'v3',
+        title: 'Marco Temporal de Terras Indígenas',
+        description: 'Veto parcial ao projeto que estabelecia marco temporal para demarcação de terras indígenas.',
+        date: '2023-10-20',
+        vote: 'No',
+        billNumber: 'PL 2903/2023',
         category: 'Meio Ambiente'
       },
       {
-        id: 'v3',
-        title: 'Orçamento de Defesa',
-        description: 'Projeto de autorização de gastos de defesa.',
-        date: '2023-09-14',
-        vote: 'No',
-        billNumber: 'PL 2670/2023',
-        category: 'Defesa'
+        id: 'v16',
+        title: 'Igualdade Salarial',
+        description: 'Sanção da lei que garante igualdade salarial entre homens e mulheres.',
+        date: '2023-07-03',
+        vote: 'Yes',
+        billNumber: 'PL 1085/2023',
+        category: 'Trabalho'
       }
     ],
     promises: [
       {
         id: 'p1',
-        title: 'Expandir Acesso à Saúde',
-        description: 'Trabalhar para ampliar o SUS em todo o estado de São Paulo.',
-        datePromised: '2022-10-15',
+        title: 'Acabar com a Fome no Brasil',
+        description: 'Retomar e ampliar o programa Brasil Sem Fome para tirar o país do Mapa da Fome da ONU.',
+        datePromised: '2022-10-30',
         deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 65,
-        category: 'Saúde'
+        progress: 55,
+        category: 'Social'
       },
       {
         id: 'p2',
-        title: 'Reduzir Emissões de Carbono',
-        description: 'Apoiar legislação para neutralidade de carbono até 2035.',
-        datePromised: '2022-10-15',
-        deadline: '2027-01-01',
-        status: 'Fulfilled',
-        progress: 100,
+        title: 'Desmatamento Zero na Amazônia',
+        description: 'Combater o desmatamento ilegal e alcançar desmatamento zero na Amazônia até 2030.',
+        datePromised: '2022-10-30',
+        deadline: '2030-12-31',
+        status: 'In Progress',
+        progress: 45,
         category: 'Meio Ambiente'
       },
       {
         id: 'p3',
-        title: 'Investimento em Infraestrutura',
-        description: 'Garantir recursos federais para projetos de infraestrutura.',
-        datePromised: '2023-01-20',
-        deadline: '2025-12-31',
+        title: 'Reajuste Real do Salário Mínimo',
+        description: 'Garantir reajuste do salário mínimo acima da inflação, com ganho real pelo PIB.',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Infraestrutura'
+        category: 'Economia'
+      },
+      {
+        id: 'p16',
+        title: 'Retomar o Minha Casa Minha Vida',
+        description: 'Relançar o programa habitacional com meta de 2 milhões de moradias.',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 40,
+        category: 'Habitação'
       }
     ],
     proposals: [
       {
         id: 'pr1',
-        title: 'Lei de Transição Energética',
-        description: 'Projeto para acelerar a transição para fontes de energia renováveis.',
-        dateProposed: '2023-06-15',
+        title: 'Nova Indústria Brasil (NIB)',
+        description: 'Plano de neoindustrialização com foco em transição energética, saúde, agro sustentável e defesa.',
+        dateProposed: '2024-01-22',
         status: 'Active',
-        category: 'Meio Ambiente',
-        supportLevel: 78
+        category: 'Economia',
+        supportLevel: 65
       },
       {
         id: 'pr2',
-        title: 'Saúde Rural',
-        description: 'Iniciativa para melhorar acesso à saúde em comunidades rurais.',
-        dateProposed: '2023-03-22',
+        title: 'Programa Pé-de-Meia',
+        description: 'Poupança para estudantes do ensino médio público como incentivo à permanência escolar.',
+        dateProposed: '2024-03-26',
         status: 'Passed',
-        category: 'Saúde',
-        supportLevel: 85
+        category: 'Educação',
+        supportLevel: 82
+      },
+      {
+        id: 'pr11',
+        title: 'Programa Acredita',
+        description: 'Programa de crédito e microcrédito para famílias de baixa renda e pequenos empreendedores.',
+        dateProposed: '2024-04-22',
+        status: 'Active',
+        category: 'Economia',
+        supportLevel: 70
       }
     ]
   },
