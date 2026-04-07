@@ -133,7 +133,7 @@ export default function PoliticianProfile() {
                   </a>
                   <a href={politician.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary hover:underline">
                     <Globe className="w-4 h-4" />
-                    Official Website
+                    Site Oficial
                   </a>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function PoliticianProfile() {
               <div className="md:w-64">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">Promise Fulfillment</CardTitle>
+                    <CardTitle className="text-lg">Cumprimento de Promessas</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-center mb-2">
@@ -149,7 +149,7 @@ export default function PoliticianProfile() {
                     </div>
                     <Progress value={Number(fulfillmentRate)} className="mb-2" />
                     <p className="text-sm text-muted-foreground text-center">
-                      {fulfilledPromises} of {politician.promises.length} promises kept
+                      {fulfilledPromises} de {politician.promises.length} promessas cumpridas
                     </p>
                   </CardContent>
                 </Card>
