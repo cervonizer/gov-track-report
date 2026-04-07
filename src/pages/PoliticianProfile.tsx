@@ -161,12 +161,12 @@ export default function PoliticianProfile() {
         {/* Biography */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Biography</CardTitle>
+            <CardTitle>Biografia</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">{politician.biography}</p>
             <div>
-              <h3 className="font-semibold mb-2">Committee Memberships</h3>
+              <h3 className="font-semibold mb-2">Participação em Comissões</h3>
               <div className="flex flex-wrap gap-2">
                 {politician.committeeMemberships.map((committee, index) => (
                   <Badge key={index} variant="secondary">
