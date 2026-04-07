@@ -181,28 +181,28 @@ export default function PoliticianProfile() {
         {/* Tabs for detailed information */}
         <Tabs defaultValue="votes" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="votes">Voting Record</TabsTrigger>
-            <TabsTrigger value="promises">Campaign Promises</TabsTrigger>
-            <TabsTrigger value="proposals">Proposals</TabsTrigger>
+            <TabsTrigger value="votes">Histórico de Votos</TabsTrigger>
+            <TabsTrigger value="promises">Promessas de Campanha</TabsTrigger>
+            <TabsTrigger value="proposals">Propostas</TabsTrigger>
           </TabsList>
 
           <TabsContent value="votes" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Voting Record</CardTitle>
+                <CardTitle>Histórico de Votos</CardTitle>
                 <CardDescription>
-                  Recent votes on legislation and bills
+                  Votos recentes em legislações e projetos de lei
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Bill</TableHead>
-                      <TableHead>Title</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead>Vote</TableHead>
+                      <TableHead>Data</TableHead>
+                      <TableHead>Projeto</TableHead>
+                      <TableHead>Título</TableHead>
+                      <TableHead>Categoria</TableHead>
+                      <TableHead>Voto</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -235,9 +235,9 @@ export default function PoliticianProfile() {
           <TabsContent value="promises" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Campaign Promises</CardTitle>
+                <CardTitle>Promessas de Campanha</CardTitle>
                 <CardDescription>
-                  Track the status of campaign commitments
+                  Acompanhe o status dos compromissos de campanha
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -258,13 +258,13 @@ export default function PoliticianProfile() {
                       <CardContent>
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Progress</span>
+                            <span className="text-muted-foreground">Progresso</span>
                             <span className="font-medium">{promise.progress}%</span>
                           </div>
                           <Progress value={promise.progress} />
                           <div className="flex justify-between text-sm text-muted-foreground">
-                            <span>Promised: {new Date(promise.datePromised).toLocaleDateString()}</span>
-                            <span>Deadline: {new Date(promise.deadline).toLocaleDateString()}</span>
+                            <span>Prometido em: {new Date(promise.datePromised).toLocaleDateString()}</span>
+                            <span>Prazo: {new Date(promise.deadline).toLocaleDateString()}</span>
                           </div>
                           <Badge variant="secondary">{promise.category}</Badge>
                         </div>
@@ -279,9 +279,9 @@ export default function PoliticianProfile() {
           <TabsContent value="proposals" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Legislative Proposals</CardTitle>
+                <CardTitle>Propostas Legislativas</CardTitle>
                 <CardDescription>
-                  Bills and initiatives proposed by this representative
+                  Projetos de lei e iniciativas propostas por este representante
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -302,13 +302,13 @@ export default function PoliticianProfile() {
                       <CardContent>
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Support Level</span>
+                            <span className="text-muted-foreground">Nível de Apoio</span>
                             <span className="font-medium">{proposal.supportLevel}%</span>
                           </div>
                           <Progress value={proposal.supportLevel} />
                           <div className="flex justify-between items-center">
                             <span className="text-sm text-muted-foreground">
-                              Proposed: {new Date(proposal.dateProposed).toLocaleDateString()}
+                              Proposto em: {new Date(proposal.dateProposed).toLocaleDateString()}
                             </span>
                             <Badge variant="secondary">{proposal.category}</Badge>
                           </div>
