@@ -303,79 +303,98 @@ export const mockPoliticians: Politician[] = [
   },
   {
     id: '4',
-    name: 'Roberto Almeida',
-    party: 'PSD',
+    name: 'Ronaldo Caiado',
+    party: 'União Brasil',
     position: 'Governador',
-    state: 'Bahia',
+    state: 'Goiás',
     district: undefined,
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-    biography: 'Governador Roberto Almeida administra a Bahia, com foco em desenvolvimento agrícola e turismo.',
-    website: 'https://governador.ba.gov.br',
-    email: 'contato@governador.ba.gov.br',
-    phone: '(71) 3115-5628',
-    committeeMemberships: ['Conselho de Governadores do Nordeste'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ronaldo_Caiado_em_2023.jpg/440px-Ronaldo_Caiado_em_2023.jpg',
+    biography: 'Ronaldo Ramos Caiado é médico e político brasileiro, atual Governador de Goiás em seu segundo mandato (2023-2027). Nascido em Anápolis (GO) em 1949, formou-se em Medicina pela UFG. Foi presidente da UDR nos anos 1980, defendendo os interesses dos proprietários rurais. Elegeu-se senador por Goiás em 1990 e deputado federal em 1998, 2002, 2006 e 2010. Foi novamente senador entre 2015 e 2018, quando se elegeu governador. É considerado uma liderança do agronegócio e defensor de pautas conservadoras. Seu governo prioriza segurança pública, infraestrutura e desenvolvimento econômico do estado.',
+    website: 'https://www.goias.gov.br',
+    email: 'contato@goias.gov.br',
+    phone: '(62) 3201-2000',
+    committeeMemberships: ['Consórcio Brasil Central', 'Fórum de Governadores'],
     voteRecords: [
       {
         id: 'v9',
-        title: 'Plano Safra Estadual',
-        description: 'Programa de apoio à agricultura familiar.',
-        date: '2023-12-10',
+        title: 'Reforma Administrativa do Estado',
+        description: 'Reestruturação das secretarias e órgãos do governo estadual para maior eficiência.',
+        date: '2023-03-15',
         vote: 'Yes',
-        billNumber: 'Decreto 4672/2023',
-        category: 'Agricultura'
+        billNumber: 'Lei 21.792/2023',
+        category: 'Administração'
       },
       {
         id: 'v10',
-        title: 'Programa de Turismo',
-        description: 'Expansão do programa estadual de turismo.',
-        date: '2023-11-22',
+        title: 'Programa Goiás Social',
+        description: 'Ampliação de programas de transferência de renda e assistência social.',
+        date: '2023-06-20',
         vote: 'Yes',
-        billNumber: 'Lei 3891/2023',
-        category: 'Turismo'
+        billNumber: 'Lei 21.850/2023',
+        category: 'Social'
+      },
+      {
+        id: 'v11',
+        title: 'Incentivo ao Agronegócio',
+        description: 'Pacote de incentivos fiscais para o setor agropecuário goiano.',
+        date: '2023-09-10',
+        vote: 'Yes',
+        billNumber: 'Decreto 10.234/2023',
+        category: 'Agronegócio'
       }
     ],
     promises: [
       {
         id: 'p8',
-        title: 'Apoiar Agricultores Baianos',
-        description: 'Defender políticas que protejam a agricultura do estado.',
-        datePromised: '2022-10-01',
+        title: 'Segurança Pública Reforçada',
+        description: 'Reduzir a criminalidade em Goiás com investimento em polícia e inteligência.',
+        datePromised: '2022-08-15',
         deadline: '2026-12-31',
-        status: 'Fulfilled',
-        progress: 100,
-        category: 'Agricultura'
+        status: 'In Progress',
+        progress: 72,
+        category: 'Segurança'
       },
       {
         id: 'p9',
-        title: 'Desenvolver Turismo',
-        description: 'Expandir infraestrutura turística em todo o estado.',
-        datePromised: '2022-10-01',
+        title: 'Goiás na Frente em Infraestrutura',
+        description: 'Asfaltar 10 mil km de estradas estaduais e municipais.',
+        datePromised: '2022-08-15',
         deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 82,
-        category: 'Turismo'
+        progress: 60,
+        category: 'Infraestrutura'
+      },
+      {
+        id: 'p9b',
+        title: 'Equilíbrio Fiscal do Estado',
+        description: 'Manter as contas do estado equilibradas sem aumento de impostos.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Economia'
       }
     ],
     proposals: [
       {
         id: 'pr5',
-        title: 'Internet Rural',
-        description: 'Levar internet de alta velocidade para comunidades rurais da Bahia.',
-        dateProposed: '2023-07-18',
+        title: 'Programa Servidor do Futuro',
+        description: 'Modernização e valorização do funcionalismo público estadual com capacitação e revisão salarial.',
+        dateProposed: '2023-04-10',
         status: 'Active',
-        category: 'Tecnologia',
-        supportLevel: 76
+        category: 'Administração',
+        supportLevel: 68
       },
       {
         id: 'pr6',
-        title: 'Rota Turística do Cacau',
-        description: 'Desenvolvimento de rota turística na região cacaueira.',
-        dateProposed: '2023-05-30',
+        title: 'Corredor Logístico Centro-Oeste',
+        description: 'Desenvolvimento de infraestrutura logística para escoamento da produção agrícola goiana.',
+        dateProposed: '2023-07-22',
         status: 'Passed',
-        category: 'Turismo',
-        supportLevel: 89
+        category: 'Infraestrutura',
+        supportLevel: 85
       }
     ]
   },
