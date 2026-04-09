@@ -101,14 +101,14 @@ export default function PoliticianProfile() {
               
               <div className="flex-1">
                 <div className="flex flex-wrap items-start gap-3 mb-4">
-                  <h1 className="text-4xl font-bold">{politician.name}</h1>
-                  <Badge variant="outline" className={getPartyColor(politician.party)}>
+                  <h1 className="text-4xl font-bold my-0">{politician.name}</h1>
+                  <Badge variant="outline" className={`${getPartyColor(politician.party)} px-[10px] mx-0 py-[5px] my-[8px]`}>
                     {politician.party}
                   </Badge>
                 </div>
                 
                 <div className="space-y-2 mb-4">
-                  <p className="text-xl text-muted-foreground">
+                  <p className="text-xl text-muted-foreground my-0">
                     {politician.position}
                     {politician.district && ` - ${politician.district}`}
                   </p>
