@@ -488,89 +488,98 @@ export const mockPoliticians: Politician[] = [
   },
   {
     id: '6',
-    name: 'Fernando Santos',
+    name: 'Romeu Zema',
     party: 'NOVO',
-    position: 'Prefeito',
-    state: 'Santa Catarina',
-    district: 'Florianópolis',
-    termStart: '2021-01-01',
-    termEnd: '2025-01-01',
-    imageUrl: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop&crop=face',
-    biography: 'Prefeito Fernando Santos administra Florianópolis com foco em inovação, gestão eficiente e desenvolvimento sustentável.',
-    website: 'https://prefeito.florianopolis.sc.gov.br',
-    email: 'contato@prefeito.florianopolis.sc.gov.br',
-    phone: '(48) 3251-2025',
-    committeeMemberships: ['Conselho de Prefeitos de Capitais'],
+    position: 'Governador',
+    state: 'Minas Gerais',
+    district: undefined,
+    termStart: '2023-01-01',
+    termEnd: '2027-01-01',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Romeu_Zema_em_2023.jpg/440px-Romeu_Zema_em_2023.jpg',
+    biography: 'Romeu Zema Neto é empresário e político brasileiro, atual Governador de Minas Gerais em seu segundo mandato (2023-2027). Nascido em Araxá (MG) em 1964, é formado em Engenharia Mecânica pela UFMG e administrou o Grupo Zema, conglomerado empresarial com atuação em diversos setores. Filiado ao partido NOVO, foi eleito governador em 2018 como outsider da política, derrotando candidatos tradicionais. Reeleito em 2022 no primeiro turno com mais de 56% dos votos. Seu governo é marcado pelo foco em equilíbrio fiscal, desburocratização, concessões e parcerias público-privadas.',
+    website: 'https://www.mg.gov.br',
+    email: 'contato@governo.mg.gov.br',
+    phone: '(31) 3915-0000',
+    committeeMemberships: ['Consórcio de Integração Sul e Sudeste (COSUD)', 'Fórum de Governadores'],
     voteRecords: [
       {
         id: 'v14',
-        title: 'Reforma Administrativa',
-        description: 'Projeto de modernização da gestão municipal.',
-        date: '2023-09-10',
+        title: 'Reforma Administrativa de MG',
+        description: 'Reestruturação do governo estadual com extinção e fusão de secretarias para redução de gastos.',
+        date: '2023-02-15',
         vote: 'Yes',
-        billNumber: 'PL 4820/2023',
-        category: 'Gestão'
+        billNumber: 'Lei 24.313/2023',
+        category: 'Administração'
       },
       {
         id: 'v15',
-        title: 'Startup City',
-        description: 'Programa de incentivo a startups e empresas de tecnologia.',
-        date: '2023-08-25',
+        title: 'Programa Minas Livre para Crescer',
+        description: 'Pacote de desburocratização e simplificação tributária para empresas mineiras.',
+        date: '2023-07-10',
         vote: 'Yes',
-        billNumber: 'Lei 3245/2023',
+        billNumber: 'Lei 24.468/2023',
         category: 'Economia'
+      },
+      {
+        id: 'v15b',
+        title: 'Concessão de Rodovias Estaduais',
+        description: 'Aprovação de concessões rodoviárias para melhoria da malha viária de MG.',
+        date: '2023-10-05',
+        vote: 'Yes',
+        billNumber: 'Decreto 48.765/2023',
+        category: 'Infraestrutura'
       }
     ],
     promises: [
       {
         id: 'p13',
-        title: 'Desburocratização',
-        description: 'Simplificar processos na prefeitura e reduzir tempo de atendimento.',
-        datePromised: '2020-10-01',
-        deadline: '2024-12-31',
+        title: 'Equilíbrio Fiscal de Minas',
+        description: 'Recuperar as finanças do estado e eliminar o déficit fiscal herdado.',
+        datePromised: '2022-08-01',
+        deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Gestão'
+        category: 'Economia'
       },
       {
         id: 'p14',
-        title: 'Cidade Inteligente',
-        description: 'Implementar tecnologias de cidade inteligente em Florianópolis.',
-        datePromised: '2020-10-01',
-        deadline: '2024-12-31',
-        status: 'In Progress',
-        progress: 78,
-        category: 'Tecnologia'
+        title: 'Pagar Servidores em Dia',
+        description: 'Regularizar o pagamento dos servidores públicos estaduais sem atrasos.',
+        datePromised: '2022-08-01',
+        deadline: '2026-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Administração'
       },
       {
         id: 'p15',
-        title: 'Sustentabilidade Urbana',
-        description: 'Transformar Florianópolis em referência de sustentabilidade.',
-        datePromised: '2020-10-01',
-        deadline: '2024-12-31',
+        title: 'Concessões e PPPs',
+        description: 'Ampliar parcerias público-privadas para melhorar infraestrutura e serviços públicos.',
+        datePromised: '2022-08-01',
+        deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 62,
-        category: 'Meio Ambiente'
+        progress: 70,
+        category: 'Infraestrutura'
       }
     ],
     proposals: [
       {
         id: 'pr9',
-        title: 'Floripa Digital',
-        description: 'Digitalização completa dos serviços públicos municipais.',
-        dateProposed: '2024-02-15',
+        title: 'Minas Digital',
+        description: 'Digitalização completa dos serviços públicos estaduais com atendimento 100% online.',
+        dateProposed: '2023-05-20',
         status: 'Active',
         category: 'Tecnologia',
-        supportLevel: 84
+        supportLevel: 79
       },
       {
         id: 'pr10',
-        title: 'PPP Saneamento',
-        description: 'Parceria público-privada para universalizar saneamento básico.',
-        dateProposed: '2024-01-20',
+        title: 'Segurança Hídrica de MG',
+        description: 'Programa de recuperação de bacias hidrográficas e garantia de abastecimento de água.',
+        dateProposed: '2023-08-12',
         status: 'Active',
-        category: 'Infraestrutura',
-        supportLevel: 71
+        category: 'Meio Ambiente',
+        supportLevel: 74
       }
     ]
   }
