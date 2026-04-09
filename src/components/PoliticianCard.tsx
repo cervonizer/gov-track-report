@@ -25,7 +25,7 @@ const getPartyInfo = (party: string): PartyTendency => {
     'PSD': { tendency: 'centro-direita', color: 'bg-muted text-gray-800' },
   };
   
-  return partyMap[party] || { tendency: 'não definida', color: 'bg-gray-100 text-gray-800' };
+  return partyMap[party] || { tendency: 'não definida', color: 'bg-muted text-gray-800' };
 };
 
 export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProps) => {
