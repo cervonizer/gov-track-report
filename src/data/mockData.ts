@@ -304,7 +304,7 @@ export const mockPoliticians: Politician[] = [
   {
     id: '4',
     name: 'Ronaldo Caiado',
-    party: 'União Brasil',
+    party: '​PSD\n',
     position: 'Governador',
     state: 'Goiás',
     district: undefined,
