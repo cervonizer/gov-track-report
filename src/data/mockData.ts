@@ -400,89 +400,98 @@ export const mockPoliticians: Politician[] = [
   },
   {
     id: '5',
-    name: 'Luciana Ferreira',
-    party: 'PSOL',
-    position: 'Vereadora',
+    name: 'Renan Santos',
+    party: 'NOVO',
+    position: 'Deputado Federal',
     state: 'São Paulo',
     district: 'São Paulo',
-    termStart: '2021-01-01',
-    termEnd: '2025-01-01',
-    imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face',
-    biography: 'Vereadora Luciana Ferreira atua na Câmara Municipal de São Paulo, com foco em direitos humanos e mobilidade urbana.',
-    website: 'https://lucianaferreira.saopaulo.sp.leg.br',
-    email: 'contato@lucianaferreira.sp.leg.br',
-    phone: '(11) 3396-2024',
-    committeeMemberships: ['Comissão de Direitos Humanos', 'Comissão de Mobilidade'],
+    termStart: '2023-01-01',
+    termEnd: '2027-01-01',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Renan_Santos_em_2023.jpg/440px-Renan_Santos_em_2023.jpg',
+    biography: 'Renan Santos é empresário, ativista político e cofundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo partido NOVO, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
+    website: 'https://www.camara.leg.br/deputados/renan-santos',
+    email: 'dep.renansantos@camara.leg.br',
+    phone: '(11) 3115-5001',
+    committeeMemberships: ['Comissão de Administração e Serviço Público', 'Comissão de Fiscalização Financeira e Controle', 'Comissão de Ciência e Tecnologia'],
     voteRecords: [
       {
         id: 'v12',
-        title: 'Tarifa Zero nos Domingos',
-        description: 'Projeto para isenção de tarifa de transporte aos domingos.',
-        date: '2023-08-15',
+        title: 'Reforma Administrativa (PEC 32)',
+        description: 'Proposta de emenda constitucional para reformar o serviço público, acabando com estabilidade para novos servidores e reestruturando carreiras.',
+        date: '2023-09-12',
         vote: 'Yes',
-        billNumber: 'PL 1976/2023',
-        category: 'Mobilidade'
+        billNumber: 'PEC 32/2020',
+        category: 'Administração Pública'
       },
       {
         id: 'v13',
-        title: 'Moradia Digna',
-        description: 'Projeto para regularização de moradias populares.',
-        date: '2023-07-20',
+        title: 'Marco Legal das Startups',
+        description: 'Regulamentação do ecossistema de startups e fintechs no Brasil.',
+        date: '2023-06-20',
         vote: 'Yes',
-        billNumber: 'PL 109/2023',
-        category: 'Habitação'
+        billNumber: 'PL 2234/2022',
+        category: 'Tecnologia'
+      },
+      {
+        id: 'v14',
+        title: 'Privatização dos Correios',
+        description: 'Projeto para privatização da Empresa Brasileira de Correios e Telégrafos.',
+        date: '2023-11-05',
+        vote: 'Yes',
+        billNumber: 'PL 591/2021',
+        category: 'Economia'
       }
     ],
     promises: [
       {
         id: 'p10',
-        title: 'Transporte Público Acessível',
-        description: 'Reduzir tarifas de transporte público para a população.',
-        datePromised: '2020-10-15',
-        deadline: '2024-12-31',
+        title: 'Redução da Máquina Pública',
+        description: 'Propor cortes em cargos comissionados e funções de confiança no governo federal.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 55,
-        category: 'Mobilidade'
+        progress: 40,
+        category: 'Administração Pública'
       },
       {
         id: 'p11',
-        title: 'Direitos das Mulheres',
-        description: 'Ampliar políticas de proteção às mulheres.',
-        datePromised: '2020-10-15',
-        deadline: '2024-12-31',
+        title: 'Combate a Privilégios',
+        description: 'Projetos para acabar com penduricalhos salariais e privilégios no setor público.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 70,
-        category: 'Direitos Humanos'
+        progress: 55,
+        category: 'Transparência'
       },
       {
         id: 'p12',
-        title: 'Ciclovias na Cidade',
-        description: 'Expandir malha cicloviária em 50km.',
-        datePromised: '2020-10-15',
-        deadline: '2024-12-31',
-        status: 'Fulfilled',
-        progress: 100,
-        category: 'Mobilidade'
+        title: 'Desburocratização Digital',
+        description: 'Digitalizar e simplificar processos burocráticos para cidadãos e empresas.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 35,
+        category: 'Tecnologia'
       }
     ],
     proposals: [
       {
         id: 'pr7',
-        title: 'Passe Livre Estudantil',
-        description: 'Gratuidade no transporte para estudantes da rede pública.',
-        dateProposed: '2024-02-01',
+        title: 'Fim do Foro Privilegiado',
+        description: 'Proposta para extinguir o foro privilegiado para políticos em exercício de mandato.',
+        dateProposed: '2024-03-01',
         status: 'Active',
-        category: 'Mobilidade',
-        supportLevel: 68
+        category: 'Justiça',
+        supportLevel: 78
       },
       {
         id: 'pr8',
-        title: 'Casa da Mulher Paulistana',
-        description: 'Criação de centros de apoio às mulheres em situação de violência.',
-        dateProposed: '2024-03-15',
+        title: 'Transparência Total nos Gastos Públicos',
+        description: 'Obrigatoriedade de publicação detalhada e em tempo real de todos os gastos com cartão corporativo e verbas parlamentares.',
+        dateProposed: '2024-05-10',
         status: 'Active',
-        category: 'Direitos Humanos',
-        supportLevel: 72
+        category: 'Transparência',
+        supportLevel: 85
       }
     ]
   },
