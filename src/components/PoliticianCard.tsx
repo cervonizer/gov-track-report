@@ -22,7 +22,7 @@ const getPartyInfo = (party: string): PartyTendency => {
     'PL': { tendency: 'direita', color: 'bg-blue-100 text-blue-800' },
     'NOVO': { tendency: 'direita liberal', color: 'bg-orange-100 text-orange-800' },
     'MDB': { tendency: 'centro', color: 'bg-green-100 text-green-800' },
-    'PSD': { tendency: 'centro-direita', color: 'bg-teal-100 text-teal-800' },
+    'PSD': { tendency: 'centro-direita', color: 'bg-muted text-gray-800' },
   };
   
   return partyMap[party] || { tendency: 'não definida', color: 'bg-gray-100 text-gray-800' };
