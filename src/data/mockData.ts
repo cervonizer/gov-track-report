@@ -128,70 +128,98 @@ export const mockPoliticians: Politician[] = [
   },
   {
     id: '2',
-    name: 'Carlos Mendes',
+    name: 'Flávio Bolsonaro',
     party: 'PL',
-    position: 'Deputado Federal',
-    state: 'Minas Gerais',
+    position: 'Senador',
+    state: 'Rio de Janeiro',
     district: undefined,
     termStart: '2023-02-01',
-    termEnd: '2027-02-01',
-    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-    biography: 'Deputado Carlos Mendes representa Minas Gerais, defendendo o crescimento de pequenas empresas e responsabilidade fiscal.',
-    website: 'https://carlosmendes.camara.leg.br',
-    email: 'contato@carlosmendes.camara.leg.br',
-    phone: '(61) 3215-4567',
-    committeeMemberships: ['Comissão de Pequenas Empresas', 'Comissão de Orçamento'],
+    termEnd: '2031-02-01',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Foto_oficial_de_Fl%C3%A1vio_Bolsonaro_%282%29.jpg/440px-Foto_oficial_de_Fl%C3%A1vio_Bolsonaro_%282%29.jpg',
+    biography: 'Flávio Nantes Bolsonaro é um político brasileiro, senador pelo estado do Rio de Janeiro desde 2019. Filho mais velho do ex-presidente Jair Bolsonaro, iniciou sua carreira política como deputado estadual pelo Rio de Janeiro, cargo que exerceu por quatro mandatos consecutivos (2003-2019) na Assembleia Legislativa do Estado do Rio de Janeiro (ALERJ). Como senador, tem atuado em pautas conservadoras, defesa da família tradicional, segurança pública e liberalismo econômico. É formado em Direito e foi reeleito senador em 2022 para um mandato até 2031.',
+    website: 'https://flaviobolsonaro.com',
+    email: 'sen.flaviobolsonaro@senado.leg.br',
+    phone: '(61) 3303-6155',
+    committeeMemberships: ['Comissão de Assuntos Econômicos (CAE)', 'Comissão de Constituição, Justiça e Cidadania (CCJ)', 'Comissão de Segurança Pública (CSP)'],
     voteRecords: [
       {
         id: 'v4',
-        title: 'Apoio às Pequenas Empresas',
-        description: 'Legislação para oferecer benefícios fiscais a pequenas empresas.',
-        date: '2023-11-20',
-        vote: 'Yes',
-        billNumber: 'PL 4521/2023',
+        title: 'Reforma Tributária',
+        description: 'Votação da PEC da Reforma Tributária que unifica impostos sobre consumo.',
+        date: '2023-11-08',
+        vote: 'No',
+        billNumber: 'PEC 45/2019',
         category: 'Economia'
       },
       {
         id: 'v5',
-        title: 'Reforma Tributária',
-        description: 'Projeto de reforma do sistema tributário nacional.',
-        date: '2023-11-15',
+        title: 'Marco Legal das Armas',
+        description: 'Projeto que flexibiliza regras para posse e porte de armas de fogo.',
+        date: '2023-06-15',
         vote: 'Yes',
-        billNumber: 'PEC 45/2019',
+        billNumber: 'PL 3723/2019',
+        category: 'Segurança Pública'
+      },
+      {
+        id: 'v5b',
+        title: 'Novo Arcabouço Fiscal',
+        description: 'Votação do novo marco fiscal proposto pelo governo Lula.',
+        date: '2023-06-01',
+        vote: 'No',
+        billNumber: 'PLP 93/2023',
         category: 'Economia'
       }
     ],
     promises: [
       {
         id: 'p4',
-        title: 'Apoiar Pequenas Empresas',
-        description: 'Defender políticas que ajudem pequenas empresas a prosperar e criar empregos.',
-        datePromised: '2022-09-10',
+        title: 'Redução de Impostos',
+        description: 'Lutar pela redução da carga tributária sobre empresas e cidadãos brasileiros.',
+        datePromised: '2022-08-15',
         deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 72,
+        progress: 30,
         category: 'Economia'
       },
       {
         id: 'p5',
-        title: 'Reduzir Gastos Públicos',
-        description: 'Trabalhar para eliminar gastos governamentais desnecessários.',
-        datePromised: '2022-09-10',
+        title: 'Segurança Pública',
+        description: 'Defender o endurecimento de penas para crimes violentos e o direito à legítima defesa armada.',
+        datePromised: '2022-08-15',
         deadline: '2026-12-31',
         status: 'In Progress',
         progress: 45,
-        category: 'Política Fiscal'
+        category: 'Segurança Pública'
+      },
+      {
+        id: 'p5b',
+        title: 'Combate à Corrupção',
+        description: 'Apoiar projetos que fortaleçam o combate à corrupção e a transparência pública.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 25,
+        category: 'Governança'
       }
     ],
     proposals: [
       {
         id: 'pr3',
-        title: 'Reforma Tributária para PMEs',
-        description: 'Reforma tributária abrangente para beneficiar pequenos empresários.',
-        dateProposed: '2023-08-10',
+        title: 'Escola sem Partido',
+        description: 'Projeto que visa garantir a neutralidade político-ideológica nas escolas.',
+        dateProposed: '2023-03-20',
         status: 'Active',
-        category: 'Economia',
-        supportLevel: 62
+        category: 'Educação',
+        supportLevel: 48
+      },
+      {
+        id: 'pr3b',
+        title: 'Excludente de Ilicitude para Policiais',
+        description: 'Projeto que amplia a excludente de ilicitude para agentes de segurança em operações.',
+        dateProposed: '2023-05-10',
+        status: 'Active',
+        category: 'Segurança Pública',
+        supportLevel: 42
       }
     ]
   },
