@@ -61,16 +61,23 @@ export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProp
           </div>
         </div>
         
-        <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-3">
-          <div className="flex items-center">
-            <MapPin className="w-4 h-4 mr-1" />
-            {politician.district ? `${politician.district}, ` : ''}{politician.state}
-          </div>
-          <div className="flex items-center">
-            <Calendar className="w-4 h-4 mr-1" />
-            Mandato: {new Date(politician.termStart).getFullYear()} - {new Date(politician.termEnd).getFullYear()}
-          </div>
-        </div>
+        {(() => {
+          const currentMandate = politician.mandates.find((m) => m.current);
+          return (
+            <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-3">
+              <div className="flex items-center">
+                <MapPin className="w-4 h-4 mr-1" />
+                Natural de: {politician.birthPlace}
+              </div>
+              <div className="flex items-center">
+                <Calendar className="w-4 h-4 mr-1" />
+                {currentMandate
+                  ? `Mandato: ${currentMandate.position} (${currentMandate.start}–${currentMandate.end})`
+                  : "Sem mandato"}
+              </div>
+            </div>
+          );
+        })()}
       </CardHeader>
 
       <CardContent className="space-y-4">

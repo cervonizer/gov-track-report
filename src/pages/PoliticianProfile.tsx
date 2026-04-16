@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowLeft, Mail, Phone, Globe, Calendar, MapPin } from "lucide-react";
 import { LegacySection } from "@/components/LegacySection";
+import { translateVote, translatePromiseStatus, translateProposalStatus } from "@/lib/translations";
 
 export default function PoliticianProfile() {
   const { id } = useParams();
@@ -114,11 +115,25 @@ export default function PoliticianProfile() {
                   </p>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <MapPin className="w-4 h-4" />
-                    <span>{politician.state}</span>
+                    <span>Natural de: {politician.birthPlace}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Calendar className="w-4 h-4" />
-                    <span>Term: {new Date(politician.termStart).getFullYear()} - {new Date(politician.termEnd).getFullYear()}</span>
+                  <div className="flex items-start gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4 mt-1" />
+                    <div>
+                      <span className="font-medium text-foreground">Mandatos:</span>
+                      {politician.mandates.length === 0 ? (
+                        <p className="text-sm">Sem mandato</p>
+                      ) : (
+                        <ul className="text-sm mt-1 space-y-0.5">
+                          {politician.mandates.map((m, i) => (
+                            <li key={i}>
+                              • {m.position} — {m.start}–{m.end}
+                              {m.current && <span className="ml-1 text-primary font-medium">(atual)</span>}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -221,7 +236,7 @@ export default function PoliticianProfile() {
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline" className={getVoteColor(vote.vote)}>
-                            {vote.vote}
+                            {translateVote(vote.vote)}
                           </Badge>
                         </TableCell>
                       </TableRow>
@@ -251,7 +266,7 @@ export default function PoliticianProfile() {
                             <CardDescription>{promise.description}</CardDescription>
                           </div>
                           <Badge variant="outline" className={getStatusColor(promise.status)}>
-                            {promise.status}
+                            {translatePromiseStatus(promise.status)}
                           </Badge>
                         </div>
                       </CardHeader>
@@ -295,7 +310,7 @@ export default function PoliticianProfile() {
                             <CardDescription>{proposal.description}</CardDescription>
                           </div>
                           <Badge variant="outline" className={getStatusColor(proposal.status)}>
-                            {proposal.status}
+                            {translateProposalStatus(proposal.status)}
                           </Badge>
                         </div>
                       </CardHeader>
@@ -322,8 +337,8 @@ export default function PoliticianProfile() {
           </TabsContent>
         </Tabs>
 
-        {/* Legacy Section - only for Roberto Almeida */}
-        {politician.id === '4' && <LegacySection />}
+        {/* Legacy Section - performance overview for all politicians */}
+        <LegacySection politicianId={politician.id} politicianName={politician.name} />
       </main>
 
       <Footer />
