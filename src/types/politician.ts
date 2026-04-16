@@ -29,6 +29,13 @@ export interface Proposal {
   supportLevel: number;
 }
 
+export interface Mandate {
+  position: string;
+  start: string; // YYYY or YYYY-MM-DD
+  end: string;   // YYYY or YYYY-MM-DD
+  current?: boolean;
+}
+
 export interface Politician {
   id: string;
   name: string;
@@ -36,6 +43,8 @@ export interface Politician {
   position: string;
   district?: string;
   state: string;
+  birthPlace: string;
+  mandates: Mandate[];
   termStart: string;
   termEnd: string;
   imageUrl: string;
