@@ -62,12 +62,12 @@ export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProp
         </div>
         
         {(() => {
-          const currentMandate = politician.mandates.find((m) => m.current);
+          const currentMandate = politician.mandates?.find((m) => m.current);
           return (
             <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-3">
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-1" />
-                Natural de: {politician.birthPlace}
+                Natural de: {politician.birthPlace ?? `${politician.state}`}
               </div>
               <div className="flex items-center">
                 <Calendar className="w-4 h-4 mr-1" />
