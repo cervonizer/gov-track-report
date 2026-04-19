@@ -1,4 +1,6 @@
 import { Politician } from '@/types/politician';
+import anaBeatrizCostaImg from '@/assets/politicians/ana-beatriz-costa.jpg';
+import renanSantosImg from '@/assets/politicians/renan-santos.jpg';
 
 export const mockPoliticians: Politician[] = [
   {
@@ -253,7 +255,7 @@ export const mockPoliticians: Politician[] = [
     ],
     termStart: '2023-02-01',
     termEnd: '2027-02-01',
-    imageUrl: '/src/assets/politicians/ana-beatriz-costa.jpg',
+    imageUrl: anaBeatrizCostaImg,
     biography: 'Deputada Estadual Ana Beatriz Costa representa o Rio de Janeiro, focando em reforma educacional e habitação acessível.',
     website: 'https://anabeatriz.alerj.rj.gov.br',
     email: 'contato@anabeatriz.alerj.rj.gov.br',
@@ -443,7 +445,7 @@ export const mockPoliticians: Politician[] = [
     ],
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
-    imageUrl: '/src/assets/politicians/renan-santos.jpg',
+    imageUrl: renanSantosImg,
     biography: 'Renan Santos é empresário, ativista político e fundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo partido Missão, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
     website: 'https://www.camara.leg.br/deputados/renan-santos',
     email: 'dep.renansantos@camara.leg.br',
