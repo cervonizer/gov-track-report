@@ -21,7 +21,7 @@ export const mockPoliticians: Politician[] = [
     biography: 'Luiz Inácio Lula da Silva, nascido em 27 de outubro de 1945 em Caetés, Pernambuco, é o 39º presidente do Brasil, exercendo seu terceiro mandato desde 1º de janeiro de 2023. Metalúrgico e sindicalista, foi presidente do Sindicato dos Metalúrgicos do ABC e cofundador do Partido dos Trabalhadores (PT) em 1980. Governou o Brasil de 2003 a 2010, período marcado por programas sociais como o Bolsa Família e o Fome Zero, que retiraram milhões de brasileiros da pobreza. Em seu atual mandato, retomou políticas de combate à fome, proteção ambiental na Amazônia e reinserção do Brasil na diplomacia internacional.',
     website: 'https://www.gov.br/planalto',
     email: 'contato@planalto.gov.br',
-    phone: '(61) 3411-1200',
+    instagram: 'lulaoficial',
     committeeMemberships: ['BRICS', 'G20', 'MERCOSUL', 'CELAC'],
     voteRecords: [
       {
@@ -155,7 +155,7 @@ export const mockPoliticians: Politician[] = [
     biography: 'Flávio Nantes Bolsonaro é um político brasileiro, senador pelo estado do Rio de Janeiro desde 2019. Filho mais velho do ex-presidente Jair Bolsonaro, iniciou sua carreira política como deputado estadual pelo Rio de Janeiro, cargo que exerceu por quatro mandatos consecutivos (2003-2019) na Assembleia Legislativa do Estado do Rio de Janeiro (ALERJ). Como senador, tem atuado em pautas conservadoras, defesa da família tradicional, segurança pública e liberalismo econômico. É formado em Direito e foi reeleito senador em 2022 para um mandato até 2031.',
     website: 'https://flaviobolsonaro.com',
     email: 'sen.flaviobolsonaro@senado.leg.br',
-    phone: '(61) 3303-6155',
+    instagram: 'flaviobolsonaro',
     committeeMemberships: ['Comissão de Assuntos Econômicos (CAE)', 'Comissão de Constituição, Justiça e Cidadania (CCJ)', 'Comissão de Segurança Pública (CSP)'],
     voteRecords: [
       {
@@ -253,11 +253,11 @@ export const mockPoliticians: Politician[] = [
     ],
     termStart: '2023-02-01',
     termEnd: '2027-02-01',
-    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
+    imageUrl: '/src/assets/politicians/ana-beatriz-costa.jpg',
     biography: 'Deputada Estadual Ana Beatriz Costa representa o Rio de Janeiro, focando em reforma educacional e habitação acessível.',
     website: 'https://anabeatriz.alerj.rj.gov.br',
     email: 'contato@anabeatriz.alerj.rj.gov.br',
-    phone: '(21) 2588-7891',
+    instagram: 'anabeatrizcosta',
     committeeMemberships: ['Comissão de Educação', 'Comissão de Habitação'],
     voteRecords: [
       {
@@ -346,7 +346,7 @@ export const mockPoliticians: Politician[] = [
     biography: 'Ronaldo Ramos Caiado é médico e político brasileiro, atual Governador de Goiás em seu segundo mandato (2023-2027). Nascido em Anápolis (GO) em 1949, formou-se em Medicina pela UFG. Foi presidente da UDR nos anos 1980, defendendo os interesses dos proprietários rurais. Elegeu-se senador por Goiás em 1990 e deputado federal em 1998, 2002, 2006 e 2010. Foi novamente senador entre 2015 e 2018, quando se elegeu governador. É considerado uma liderança do agronegócio e defensor de pautas conservadoras. Seu governo prioriza segurança pública, infraestrutura e desenvolvimento econômico do estado.',
     website: 'https://www.goias.gov.br',
     email: 'contato@goias.gov.br',
-    phone: '(62) 3201-2000',
+    instagram: 'ronaldocaiado',
     committeeMemberships: ['Consórcio Brasil Central', 'Fórum de Governadores'],
     voteRecords: [
       {
@@ -443,11 +443,11 @@ export const mockPoliticians: Politician[] = [
     ],
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Renan_Santos_em_2023.jpg/440px-Renan_Santos_em_2023.jpg',
+    imageUrl: '/src/assets/politicians/renan-santos.jpg',
     biography: 'Renan Santos é empresário, ativista político e fundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo partido Missão, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
     website: 'https://www.camara.leg.br/deputados/renan-santos',
     email: 'dep.renansantos@camara.leg.br',
-    phone: '(11) 3115-5001',
+    instagram: 'renansantosmbl',
     committeeMemberships: ['Comissão de Administração e Serviço Público', 'Comissão de Fiscalização Financeira e Controle', 'Comissão de Ciência e Tecnologia'],
     voteRecords: [
       {
@@ -549,7 +549,7 @@ export const mockPoliticians: Politician[] = [
     biography: 'Romeu Zema Neto é empresário e político brasileiro, atual Governador de Minas Gerais em seu segundo mandato (2023-2027). Nascido em Araxá (MG) em 1964, é formado em Engenharia Mecânica pela UFMG e administrou o Grupo Zema, conglomerado empresarial com atuação em diversos setores. Filiado ao partido NOVO, foi eleito governador em 2018 como outsider da política, derrotando candidatos tradicionais. Reeleito em 2022 no primeiro turno com mais de 56% dos votos. Seu governo é marcado pelo foco em equilíbrio fiscal, desburocratização, concessões e parcerias público-privadas.',
     website: 'https://www.mg.gov.br',
     email: 'contato@governo.mg.gov.br',
-    phone: '(31) 3915-0000',
+    instagram: 'romeuzemape',
     committeeMemberships: ['Consórcio de Integração Sul e Sudeste (COSUD)', 'Fórum de Governadores'],
     voteRecords: [
       {
