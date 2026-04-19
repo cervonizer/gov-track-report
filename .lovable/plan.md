@@ -1,25 +1,24 @@
-
 ## Plano
 
-Três mudanças nos perfis dos políticos:
+Tornar as estatísticas da seção "Estatísticas da Plataforma" dinâmicas, calculadas a partir dos dados reais em `mockData.ts`.
 
-### 1. Adicionar fotos reais para todos os políticos
-Substituir as URLs placeholder/genéricas em `imageUrl` por fotos reais. Como não tenho acesso a APIs de imagem em modo plan, a melhor abordagem é:
-- **Opção A (recomendada)**: Você anexa as fotos de cada político no chat, e eu salvo em `src/assets/politicians/` e atualizo o `imageUrl` de cada um.
-- **Opção B**: Uso URLs públicas (ex: Wikipedia/sites oficiais) diretamente no `imageUrl`. Risco: links podem quebrar e fogem do padrão de assets locais do projeto.
+### Mudanças
 
-### 2. Remover telefone, adicionar Instagram
-- **`src/types/politician.ts`**: trocar campo `phone: string` por `instagram: string` (handle ou URL completa).
-- **`src/data/mockData.ts`**: remover `phone` de cada político e adicionar `instagram` com o @ oficial de cada um (ex: `@ratinhojunior`, `@romeuzemape`, etc.).
-- **`src/pages/PoliticianProfile.tsx`**: substituir o bloco que renderiza o telefone (com ícone `Phone`) por um bloco com ícone `Instagram` (lucide-react) que abre `https://instagram.com/{handle}` em nova aba.
-- **`src/lib/translations.ts`**: se houver label "Telefone", trocar por "Instagram".
+`**src/components/StatsSection.tsx**`
 
-### 3. Arquivos afetados
-- `src/types/politician.ts`
-- `src/data/mockData.ts`
-- `src/pages/PoliticianProfile.tsx`
-- `src/components/PoliticianCard.tsx` (se exibir telefone)
-- `src/assets/politicians/*.jpg` (novos arquivos, se opção A)
+- Importar `politicians` de `@/data/mockData`.
+- Calcular em tempo real:
+  - **Políticos Monitorados**: `politicians.length`
+  - **Promessas Acompanhadas**: soma de `p.promises.length` em todos os políticos
+  - **Votações Registradas**: soma de `p.voteRecords.length` em todos os políticos
+  - **Apagar o quarto card, de atualizaçoes 24/7**
+- Formatar números com separador de milhar PT-BR (`toLocaleString('pt-BR')`).
 
-### Pergunta
-Qual opção você prefere para as fotos — **A) anexar imagens** uma a uma no chat, ou **B) usar URLs públicas** diretamente? E você já tem os @ do Instagram de cada político ou quer que eu pesquise/sugira os handles oficiais conhecidos?
+### Comportamento automático
+
+Como os números são derivados diretamente do array `politicians` em cada render, qualquer político/promessa/votação/proposta nova adicionada ao mock (ou futuramente ao Supabase) atualiza os contadores automaticamente — sem hardcode.
+
+### Arquivos
+
+- `src/components/StatsSection.tsx` — substituir valores fixos por cálculos derivados de `politicians`.
+

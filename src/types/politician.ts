@@ -51,7 +51,7 @@ export interface Politician {
   biography: string;
   website: string;
   email: string;
-  instagram: string;
+  phone: string;
   voteRecords: VoteRecord[];
   promises: Promise[];
   proposals: Proposal[];
