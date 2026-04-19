@@ -433,7 +433,7 @@ export const mockPoliticians: Politician[] = [
   {
     id: '5',
     name: 'Renan Santos',
-    party: 'NOVO',
+    party: 'MBL',
     position: 'Deputado Federal',
     state: 'São Paulo',
     district: 'São Paulo',
@@ -444,7 +444,7 @@ export const mockPoliticians: Politician[] = [
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Renan_Santos_em_2023.jpg/440px-Renan_Santos_em_2023.jpg',
-    biography: 'Renan Santos é empresário, ativista político e cofundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo partido NOVO, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
+    biography: 'Renan Santos é empresário, ativista político e fundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo MBL, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
     website: 'https://www.camara.leg.br/deputados/renan-santos',
     email: 'dep.renansantos@camara.leg.br',
     phone: '(11) 3115-5001',
