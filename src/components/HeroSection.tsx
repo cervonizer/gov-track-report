@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Wallet, Vote, Scale } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import heroImage from "@/assets/hero-government.jpg";
+import heroImage from "@/assets/hero-government-v2.jpg";
 import searchIcon from "@/assets/search-icon.png";
 
 export const HeroSection = () => {
