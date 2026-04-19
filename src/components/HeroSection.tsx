@@ -25,10 +25,6 @@ export const HeroSection = () => {
             tudo traduzido para uma linguagem que você entende.
           </p>
           
-          <p className="text-sm text-primary-foreground/70 mb-4">
-            Comece digitando o nome de um político, cidade ou cargo.
-          </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 mx-auto">
             <div className="relative w-full sm:w-auto">
               <Input
