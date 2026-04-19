@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Users, FileCheck } from "lucide-react";
-import { politicians } from "@/data/mockData";
+import { mockPoliticians } from "@/data/mockData";
 
 export const StatsSection = () => {
-  const totalPoliticians = politicians.length;
-  const totalPromises = politicians.reduce((sum, p) => sum + p.promises.length, 0);
-  const totalVotes = politicians.reduce((sum, p) => sum + p.voteRecords.length, 0);
+  const totalPoliticians = mockPoliticians.length;
+  const totalPromises = mockPoliticians.reduce((sum, p) => sum + p.promises.length, 0);
+  const totalVotes = mockPoliticians.reduce((sum, p) => sum + p.voteRecords.length, 0);
 
   const fmt = (n: number) => n.toLocaleString('pt-BR');
 
