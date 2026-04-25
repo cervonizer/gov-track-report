@@ -16,6 +16,11 @@ import {
 
 export type CommitmentStatus = "Cumprida" | "Parcialmente Cumprida" | "Em Andamento" | "Não Cumprida";
 
+export interface Source {
+  label: string;
+  url: string;
+}
+
 export interface Commitment {
   id: number;
   title: string;
@@ -23,6 +28,7 @@ export interface Commitment {
   status: CommitmentStatus;
   progress: number;
   detail: string;
+  sources?: Source[];
 }
 
 export interface PerformanceMetric {
@@ -31,6 +37,7 @@ export interface PerformanceMetric {
   after: string;
   change: string;
   positive: boolean;
+  sources?: Source[];
 }
 
 export interface PerformanceCategory {
@@ -49,10 +56,11 @@ export interface LegacyData {
   subtitle: string;
   commitments: Commitment[];
   performance: PerformanceCategory[];
-  chart1: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean };
-  chart2: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean };
-  comparisonLabel: string; // e.g. "Gov. Anterior"
+  chart1: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean; sources?: Source[] };
+  chart2: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean; sources?: Source[] };
+  comparisonLabel: string;
   footnote: string;
+  dataSources?: Source[];
 }
 
 // Helper: build chart data with split series
