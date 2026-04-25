@@ -28,6 +28,7 @@ import {
   Legend,
 } from "recharts";
 import { legacyDataMap, type CommitmentStatus } from "@/data/legacyData";
+import { SourceCitation } from "@/components/SourceCitation";
 
 interface LegacySectionProps {
   politicianId: string;
@@ -53,7 +54,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
   const data = legacyDataMap[politicianId];
   if (!data) return null;
 
-  const { commitments, performance, chart1, chart2, comparisonLabel, footnote, subtitle } = data;
+  const { commitments, performance, chart1, chart2, comparisonLabel, footnote, subtitle, dataSources } = data;
 
   return (
     <section className="mt-10 space-y-10">
@@ -111,6 +112,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                     <Progress value={c.progress} className="h-2" />
                   </div>
                   <p className="text-xs text-muted-foreground">{c.detail}</p>
+                  <SourceCitation sources={c.sources} />
                 </CardContent>
               </Card>
             );
@@ -164,7 +166,10 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                     <TableBody>
                       {category.metrics.map((m) => (
                         <TableRow key={m.label}>
-                          <TableCell className="text-sm font-medium">{m.label}</TableCell>
+                          <TableCell className="text-sm font-medium">
+                            <div>{m.label}</div>
+                            <SourceCitation sources={m.sources} className="mt-1" />
+                          </TableCell>
                           <TableCell className="text-center text-sm text-muted-foreground">
                             {m.before}
                           </TableCell>
