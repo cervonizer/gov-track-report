@@ -367,16 +367,18 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Atividade Legislativa",
         icon: FileText,
         metrics: [
-          { label: "Projetos apresentados", before: "0", after: "26", change: "+26", positive: true },
-          { label: "Discursos em plenário", before: "0", after: "48", change: "+48", positive: true },
+          { label: "Projetos apresentados", before: "0", after: "26", change: "+26", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
+          { label: "Discursos em plenário", before: "0", after: "48", change: "+48", positive: true, sources: [{ label: "Câmara — Discursos", url: "https://www.camara.leg.br/deputados/220552/discursos" }] },
+          { label: "Requerimentos de informação", before: "0", after: "62", change: "+62", positive: true, sources: [{ label: "Câmara — Proposições", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
         ],
       },
       {
         title: "Participação",
         icon: Vote,
         metrics: [
-          { label: "Presença em votações", before: "—", after: "92%", change: "92%", positive: true },
-          { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true },
+          { label: "Presença em votações nominais", before: "—", after: "92%", change: "92%", positive: true, sources: [{ label: "Câmara — Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
+          { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true, sources: [{ label: "Câmara — Comissões", url: "https://www.camara.leg.br/comissoes" }] },
+          { label: "Comissões integradas", before: "0", after: "3", change: "+3", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }] },
         ],
       },
     ],
@@ -392,6 +394,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 14, current: true },
         { ano: "2024", value: 12, current: true },
       ]),
+      sources: [{ label: "Câmara — Proposições do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }],
     },
     chart2: {
       title: "Presença em Votações Nominais (%)",
@@ -401,9 +404,14 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 90, current: true },
         { ano: "2024", value: 92, current: true },
       ]),
+      sources: [{ label: "Câmara — Presença em Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }],
     },
     comparisonLabel: "Antes do Mandato",
-    footnote: "Fontes: Câmara dos Deputados, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    footnote: "Comparação com o período anterior ao primeiro mandato (sem atividade parlamentar). Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "Câmara dos Deputados", url: "https://www.camara.leg.br/" },
+      { label: "Portal da Transparência", url: "https://portaldatransparencia.gov.br/" },
+    ],
   },
 
   // Romeu Zema - Governador de MG
