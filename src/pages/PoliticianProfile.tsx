@@ -231,12 +231,13 @@ export default function PoliticianProfile() {
                   <TableBody>
                     {politician.voteRecords.map((vote) => (
                       <TableRow key={vote.id}>
-                        <TableCell>{new Date(vote.date).toLocaleDateString()}</TableCell>
+                        <TableCell>{new Date(vote.date).toLocaleDateString('pt-BR')}</TableCell>
                         <TableCell className="font-mono text-sm">{vote.billNumber}</TableCell>
                         <TableCell>
                           <div>
                             <p className="font-medium">{vote.title}</p>
                             <p className="text-sm text-muted-foreground">{vote.description}</p>
+                            <SourceCitation sources={vote.sources} />
                           </div>
                         </TableCell>
                         <TableCell>
@@ -286,10 +287,11 @@ export default function PoliticianProfile() {
                           </div>
                           <Progress value={promise.progress} />
                           <div className="flex justify-between text-sm text-muted-foreground">
-                            <span>Prometido em: {new Date(promise.datePromised).toLocaleDateString()}</span>
-                            <span>Prazo: {new Date(promise.deadline).toLocaleDateString()}</span>
+                            <span>Prometido em: {new Date(promise.datePromised).toLocaleDateString('pt-BR')}</span>
+                            <span>Prazo: {new Date(promise.deadline).toLocaleDateString('pt-BR')}</span>
                           </div>
                           <Badge variant="secondary">{promise.category}</Badge>
+                          <SourceCitation sources={promise.sources} />
                         </div>
                       </CardContent>
                     </Card>
@@ -331,10 +333,11 @@ export default function PoliticianProfile() {
                           <Progress value={proposal.supportLevel} />
                           <div className="flex justify-between items-center">
                             <span className="text-sm text-muted-foreground">
-                              Proposto em: {new Date(proposal.dateProposed).toLocaleDateString()}
+                              Proposto em: {new Date(proposal.dateProposed).toLocaleDateString('pt-BR')}
                             </span>
                             <Badge variant="secondary">{proposal.category}</Badge>
                           </div>
+                          <SourceCitation sources={proposal.sources} />
                         </div>
                       </CardContent>
                     </Card>
