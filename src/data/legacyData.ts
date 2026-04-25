@@ -430,24 +430,26 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Economia",
         icon: TrendingUp,
         metrics: [
-          { label: "Crescimento do PIB estadual", before: "0,8%", after: "3,1%", change: "+2,3 p.p.", positive: true },
-          { label: "Resultado fiscal primário (R$ bi)", before: "-9,8", after: "+5,2", change: "Superávit", positive: true },
+          { label: "Crescimento do PIB estadual", before: "0,8%", after: "3,1%", change: "+2,3 p.p.", positive: true, sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }] },
+          { label: "Resultado fiscal primário (R$ bi)", before: "-9,8", after: "+5,2", change: "Superávit", positive: true, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Capacidade de pagamento (CAPAG)", before: "D", after: "C", change: "Melhora", positive: true, sources: [{ label: "Tesouro Nacional — CAPAG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }] },
         ],
       },
       {
         title: "Administração",
         icon: Landmark,
         metrics: [
-          { label: "Número de secretarias", before: "21", after: "14", change: "-33,3%", positive: true },
-          { label: "Atrasos no pagamento de servidores", before: "Sim", after: "Não", change: "Regularizado", positive: true },
+          { label: "Número de secretarias", before: "21", after: "14", change: "-33,3%", positive: true, sources: [{ label: "ALMG — Lei 24.313/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/" }] },
+          { label: "Atrasos no pagamento de servidores", before: "Sim", after: "Não", change: "Regularizado", positive: true, sources: [{ label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" }] },
+          { label: "Cargos comissionados", before: "8.230", after: "5.940", change: "-27,8%", positive: true, sources: [{ label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" }] },
         ],
       },
       {
         title: "Investimentos",
         icon: Building2,
         metrics: [
-          { label: "Concessões e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true },
-          { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true },
+          { label: "Concessões e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true, sources: [{ label: "SEINFRA-MG", url: "https://www.infraestrutura.mg.gov.br/" }] },
+          { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true, sources: [{ label: "Invest Minas", url: "https://www.investminas.mg.gov.br/" }] },
         ],
       },
     ],
@@ -464,6 +466,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2022", value: 4.6, current: true },
         { ano: "2023", value: 5.2, current: true },
       ]),
+      sources: [{ label: "Tesouro Nacional — Estados e Municípios", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }],
     },
     chart2: {
       title: "Crescimento do PIB Estadual (%)",
@@ -478,8 +481,15 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2022", value: 2.8, current: true },
         { ano: "2023", value: 3.1, current: true },
       ]),
+      sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }],
     },
-    comparisonLabel: "Gov. Anterior",
-    footnote: "Fontes: IBGE, Secretaria de Estado de Fazenda de MG, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "Gov. Fernando Pimentel (2015–2018)",
+    footnote: "Comparação entre o governo Pimentel (PT, 2015–2018) e o governo Zema (NOVO, 2019–). Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "IBGE", url: "https://www.ibge.gov.br/" },
+      { label: "Tesouro Nacional", url: "https://www.tesourotransparente.gov.br/" },
+      { label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" },
+      { label: "ALMG", url: "https://www.almg.gov.br/" },
+    ],
   },
 };
