@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowLeft, Mail, Phone, Globe, Calendar, MapPin } from "lucide-react";
+import { ArrowLeft, Mail, Instagram, Globe, Calendar, MapPin } from "lucide-react";
 import { LegacySection } from "@/components/LegacySection";
+import { SourceCitation } from "@/components/SourceCitation";
 import { translateVote, translatePromiseStatus, translateProposalStatus } from "@/lib/translations";
 
 export default function PoliticianProfile() {
@@ -142,10 +143,17 @@ export default function PoliticianProfile() {
                     <Mail className="w-4 h-4" />
                     {politician.email}
                   </a>
-                  <a href={`tel:${politician.phone}`} className="flex items-center gap-2 text-primary hover:underline">
-                    <Phone className="w-4 h-4" />
-                    {politician.phone}
-                  </a>
+                  {politician.phone && politician.phone.startsWith('@') && (
+                    <a
+                      href={`https://instagram.com/${politician.phone.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-primary hover:underline"
+                    >
+                      <Instagram className="w-4 h-4" />
+                      {politician.phone}
+                    </a>
+                  )}
                   <a href={politician.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary hover:underline">
                     <Globe className="w-4 h-4" />
                     Site Oficial
