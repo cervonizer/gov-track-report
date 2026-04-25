@@ -16,6 +16,11 @@ import {
 
 export type CommitmentStatus = "Cumprida" | "Parcialmente Cumprida" | "Em Andamento" | "Não Cumprida";
 
+export interface Source {
+  label: string;
+  url: string;
+}
+
 export interface Commitment {
   id: number;
   title: string;
@@ -23,6 +28,7 @@ export interface Commitment {
   status: CommitmentStatus;
   progress: number;
   detail: string;
+  sources?: Source[];
 }
 
 export interface PerformanceMetric {
@@ -31,6 +37,7 @@ export interface PerformanceMetric {
   after: string;
   change: string;
   positive: boolean;
+  sources?: Source[];
 }
 
 export interface PerformanceCategory {
@@ -49,10 +56,11 @@ export interface LegacyData {
   subtitle: string;
   commitments: Commitment[];
   performance: PerformanceCategory[];
-  chart1: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean };
-  chart2: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean };
-  comparisonLabel: string; // e.g. "Gov. Anterior"
+  chart1: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean; sources?: Source[] };
+  chart2: { title: string; unit: string; data: ChartPoint[]; positiveTrend: boolean; sources?: Source[] };
+  comparisonLabel: string;
   footnote: string;
+  dataSources?: Source[];
 }
 
 // Helper: build chart data with split series
@@ -82,24 +90,27 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Economia",
         icon: TrendingUp,
         metrics: [
-          { label: "Crescimento do PIB", before: "2,9%", after: "3,2%", change: "+0,3 p.p.", positive: true },
-          { label: "Taxa de desemprego", before: "8,5%", after: "6,2%", change: "-2,3 p.p.", positive: true },
+          { label: "Crescimento do PIB", before: "2,9%", after: "3,2%", change: "+0,3 p.p.", positive: true, sources: [{ label: "IBGE — Contas Nacionais", url: "https://www.ibge.gov.br/explica/pib.php" }] },
+          { label: "Taxa de desemprego", before: "8,5%", after: "6,2%", change: "-2,3 p.p.", positive: true, sources: [{ label: "IBGE — PNAD Contínua", url: "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html" }] },
+          { label: "Inflação (IPCA acumulado)", before: "5,79%", after: "4,83%", change: "-0,96 p.p.", positive: true, sources: [{ label: "IBGE — IPCA", url: "https://www.ibge.gov.br/explica/inflacao.php" }] },
+          { label: "Salário Mínimo (R$)", before: "R$ 1.212", after: "R$ 1.518", change: "+25,2%", positive: true, sources: [{ label: "Planalto — Política do Salário Mínimo", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm" }] },
         ],
       },
       {
         title: "Social",
         icon: Users,
         metrics: [
-          { label: "Pobreza extrema", before: "5,9%", after: "4,4%", change: "-1,5 p.p.", positive: true },
-          { label: "Insegurança alimentar grave", before: "15,5%", after: "8,7%", change: "-6,8 p.p.", positive: true },
+          { label: "Pobreza extrema", before: "5,9%", after: "4,4%", change: "-1,5 p.p.", positive: true, sources: [{ label: "IBGE — Síntese de Indicadores Sociais", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
+          { label: "Insegurança alimentar grave", before: "15,5%", after: "8,7%", change: "-6,8 p.p.", positive: true, sources: [{ label: "FAO — SOFI 2024", url: "https://www.fao.org/publications/sofi/2024/en/" }] },
+          { label: "Famílias no Bolsa Família (mi)", before: "21,1", after: "20,5", change: "-0,6", positive: true, sources: [{ label: "MDS — Bolsa Família", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" }] },
         ],
       },
       {
         title: "Meio Ambiente",
         icon: Leaf,
         metrics: [
-          { label: "Desmatamento Amazônia (km²)", before: "11.594", after: "5.816", change: "-49,8%", positive: true },
-          { label: "Áreas embargadas (mil ha)", before: "120", after: "215", change: "+79,2%", positive: true },
+          { label: "Desmatamento Amazônia (km²)", before: "11.594", after: "5.816", change: "-49,8%", positive: true, sources: [{ label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }] },
+          { label: "Desmatamento Cerrado (km²)", before: "10.689", after: "8.174", change: "-23,5%", positive: true, sources: [{ label: "INPE — PRODES Cerrado", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/cerrado/rates" }] },
         ],
       },
     ],
@@ -115,6 +126,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 2.9, current: true },
         { ano: "2024", value: 3.2, current: true },
       ]),
+      sources: [{ label: "IBGE — Contas Nacionais Trimestrais", url: "https://www.ibge.gov.br/explica/pib.php" }],
     },
     chart2: {
       title: "Desmatamento na Amazônia (km²/ano)",
@@ -128,9 +140,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 9001, current: true },
         { ano: "2024", value: 5816, current: true },
       ]),
+      sources: [{ label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }],
     },
-    comparisonLabel: "Gov. Anterior",
-    footnote: "Fontes: IBGE, INPE, PNAD Contínua, Ministério da Fazenda. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "Gov. Bolsonaro (2019–2022)",
+    footnote: "Dados consolidados até dezembro de 2024. Comparação entre governo Bolsonaro (2019–2022) e Lula (2023–2024).",
+    dataSources: [
+      { label: "IBGE", url: "https://www.ibge.gov.br/" },
+      { label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/" },
+      { label: "FAO — SOFI", url: "https://www.fao.org/publications/sofi/" },
+      { label: "MDS — Bolsa Família", url: "https://www.gov.br/mds/pt-br/" },
+      { label: "Ministério da Fazenda", url: "https://www.gov.br/fazenda/" },
+    ],
   },
 
   // Flávio Bolsonaro - Senador
@@ -147,16 +167,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Atividade Legislativa",
         icon: FileText,
         metrics: [
-          { label: "Projetos apresentados", before: "32", after: "58", change: "+81,3%", positive: true },
-          { label: "Discursos em plenário", before: "45", after: "72", change: "+60,0%", positive: true },
+          { label: "Projetos apresentados", before: "32", after: "58", change: "+81,3%", positive: true, sources: [{ label: "Senado — Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
+          { label: "Discursos em plenário", before: "45", after: "72", change: "+60,0%", positive: true, sources: [{ label: "Senado — Discursos", url: "https://www25.senado.leg.br/web/atividade/pronunciamentos" }] },
+          { label: "Relatorias assumidas", before: "8", after: "14", change: "+75,0%", positive: true, sources: [{ label: "Senado — Relatorias", url: "https://www25.senado.leg.br/web/atividade/materias" }] },
         ],
       },
       {
         title: "Participação",
         icon: Vote,
         metrics: [
-          { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true },
-          { label: "Relatorias assumidas", before: "8", after: "14", change: "+75,0%", positive: true },
+          { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true, sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
+          { label: "Audiências públicas em comissões", before: "12", after: "21", change: "+75,0%", positive: true, sources: [{ label: "Senado — Comissões", url: "https://www25.senado.leg.br/web/atividade/comissoes" }] },
         ],
       },
     ],
@@ -172,6 +193,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 28, current: true },
         { ano: "2024", value: 30, current: true },
       ]),
+      sources: [{ label: "Senado — Atividade Legislativa", url: "https://www25.senado.leg.br/web/atividade/materias" }],
     },
     chart2: {
       title: "Presença em Votações Nominais (%)",
@@ -185,12 +207,15 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 87, current: true },
         { ano: "2024", value: 89, current: true },
       ]),
+      sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }],
     },
-    comparisonLabel: "Mandato Anterior",
-    footnote: "Fontes: Senado Federal, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "1º Mandato (2019–2022)",
+    footnote: "Comparação entre o 1º mandato (2019–2022) e o 2º mandato em curso de Flávio Bolsonaro como Senador. Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "Senado Federal", url: "https://www25.senado.leg.br/" },
+      { label: "Portal da Transparência", url: "https://portaldatransparencia.gov.br/" },
+    ],
   },
-
-  // Ana Beatriz Costa - Deputada Estadual RJ
   "3": {
     subtitle: "Indicadores parlamentares do mandato na Assembleia Legislativa do Rio de Janeiro.",
     commitments: [
@@ -263,24 +288,27 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Segurança Pública",
         icon: ShieldCheck,
         metrics: [
-          { label: "Taxa de homicídios (por 100 mil hab.)", before: "33,8", after: "18,2", change: "-46,2%", positive: true },
-          { label: "Roubos de veículos", before: "12.450", after: "5.890", change: "-52,7%", positive: true },
+          { label: "Taxa de homicídios (por 100 mil hab.)", before: "33,8", after: "11,1", change: "-67,2%", positive: true, sources: [{ label: "FBSP — Anuário Brasileiro de Segurança Pública", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
+          { label: "Roubos de veículos", before: "12.450", after: "5.890", change: "-52,7%", positive: true, sources: [{ label: "SSP-GO — Estatísticas", url: "https://www.ssp.go.gov.br/estatistica" }] },
+          { label: "Mortes violentas intencionais", before: "2.231", after: "740", change: "-66,8%", positive: true, sources: [{ label: "SSP-GO — Estatísticas", url: "https://www.ssp.go.gov.br/estatistica" }] },
         ],
       },
       {
         title: "Economia",
         icon: TrendingUp,
         metrics: [
-          { label: "Crescimento do PIB estadual", before: "1,4%", after: "4,1%", change: "+2,7 p.p.", positive: true },
-          { label: "Empregos formais (acumulado)", before: "62 mil", after: "138 mil", change: "+122,6%", positive: true },
+          { label: "Crescimento do PIB estadual", before: "1,4%", after: "4,1%", change: "+2,7 p.p.", positive: true, sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }] },
+          { label: "Empregos formais (saldo CAGED)", before: "62 mil", after: "138 mil", change: "+122,6%", positive: true, sources: [{ label: "MTE — Novo CAGED", url: "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/novo-caged" }] },
+          { label: "Capacidade de pagamento (CAPAG)", before: "C", after: "B", change: "Melhora", positive: true, sources: [{ label: "Tesouro Nacional — CAPAG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }] },
         ],
       },
       {
-        title: "Social",
+        title: "Social e Educação",
         icon: Users,
         metrics: [
-          { label: "Pobreza extrema", before: "8,2%", after: "4,9%", change: "-3,3 p.p.", positive: true },
-          { label: "Cobertura do Goiás Social", before: "0%", after: "70%", change: "+70 p.p.", positive: true },
+          { label: "Pobreza extrema", before: "8,2%", after: "4,9%", change: "-3,3 p.p.", positive: true, sources: [{ label: "IBGE — PNAD Contínua", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
+          { label: "Cobertura do Goiás Social", before: "0%", after: "70%", change: "+70 p.p.", positive: true, sources: [{ label: "OVG — Goiás Social", url: "https://www.social.go.gov.br/goias-social" }] },
+          { label: "Escolas em tempo integral", before: "85", after: "295", change: "+247%", positive: true, sources: [{ label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }] },
         ],
       },
     ],
@@ -297,6 +325,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2022", value: 3.8, current: true },
         { ano: "2023", value: 4.1, current: true },
       ]),
+      sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }],
     },
     chart2: {
       title: "Taxa de Homicídios (por 100 mil hab.)",
@@ -309,11 +338,19 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2020", value: 24.1, current: true },
         { ano: "2021", value: 21.6, current: true },
         { ano: "2022", value: 19.4, current: true },
-        { ano: "2023", value: 18.2, current: true },
+        { ano: "2023", value: 11.1, current: true },
       ]),
+      sources: [{ label: "FBSP — Anuário Brasileiro de Segurança Pública", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }],
     },
-    comparisonLabel: "Gov. Anterior",
-    footnote: "Fontes: IBGE, SSP-GO, Portal da Transparência de Goiás. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "Gov. Marconi Perillo (2011–2014)",
+    footnote: "Comparação entre o último mandato completo do governo anterior (Marconi Perillo, PSDB) e o governo Caiado. Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "IBGE", url: "https://www.ibge.gov.br/" },
+      { label: "SSP-GO", url: "https://www.ssp.go.gov.br/" },
+      { label: "FBSP", url: "https://forumseguranca.org.br/" },
+      { label: "Tesouro Nacional", url: "https://www.tesourotransparente.gov.br/" },
+      { label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" },
+    ],
   },
 
   // Renan Santos - Deputado Federal NOVO/SP
@@ -330,16 +367,18 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Atividade Legislativa",
         icon: FileText,
         metrics: [
-          { label: "Projetos apresentados", before: "0", after: "26", change: "+26", positive: true },
-          { label: "Discursos em plenário", before: "0", after: "48", change: "+48", positive: true },
+          { label: "Projetos apresentados", before: "0", after: "26", change: "+26", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
+          { label: "Discursos em plenário", before: "0", after: "48", change: "+48", positive: true, sources: [{ label: "Câmara — Discursos", url: "https://www.camara.leg.br/deputados/220552/discursos" }] },
+          { label: "Requerimentos de informação", before: "0", after: "62", change: "+62", positive: true, sources: [{ label: "Câmara — Proposições", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
         ],
       },
       {
         title: "Participação",
         icon: Vote,
         metrics: [
-          { label: "Presença em votações", before: "—", after: "92%", change: "92%", positive: true },
-          { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true },
+          { label: "Presença em votações nominais", before: "—", after: "92%", change: "92%", positive: true, sources: [{ label: "Câmara — Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
+          { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true, sources: [{ label: "Câmara — Comissões", url: "https://www.camara.leg.br/comissoes" }] },
+          { label: "Comissões integradas", before: "0", after: "3", change: "+3", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }] },
         ],
       },
     ],
@@ -355,6 +394,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 14, current: true },
         { ano: "2024", value: 12, current: true },
       ]),
+      sources: [{ label: "Câmara — Proposições do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }],
     },
     chart2: {
       title: "Presença em Votações Nominais (%)",
@@ -364,9 +404,14 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 90, current: true },
         { ano: "2024", value: 92, current: true },
       ]),
+      sources: [{ label: "Câmara — Presença em Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }],
     },
     comparisonLabel: "Antes do Mandato",
-    footnote: "Fontes: Câmara dos Deputados, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    footnote: "Comparação com o período anterior ao primeiro mandato (sem atividade parlamentar). Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "Câmara dos Deputados", url: "https://www.camara.leg.br/" },
+      { label: "Portal da Transparência", url: "https://portaldatransparencia.gov.br/" },
+    ],
   },
 
   // Romeu Zema - Governador de MG
@@ -385,24 +430,26 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Economia",
         icon: TrendingUp,
         metrics: [
-          { label: "Crescimento do PIB estadual", before: "0,8%", after: "3,1%", change: "+2,3 p.p.", positive: true },
-          { label: "Resultado fiscal primário (R$ bi)", before: "-9,8", after: "+5,2", change: "Superávit", positive: true },
+          { label: "Crescimento do PIB estadual", before: "0,8%", after: "3,1%", change: "+2,3 p.p.", positive: true, sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }] },
+          { label: "Resultado fiscal primário (R$ bi)", before: "-9,8", after: "+5,2", change: "Superávit", positive: true, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Capacidade de pagamento (CAPAG)", before: "D", after: "C", change: "Melhora", positive: true, sources: [{ label: "Tesouro Nacional — CAPAG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }] },
         ],
       },
       {
         title: "Administração",
         icon: Landmark,
         metrics: [
-          { label: "Número de secretarias", before: "21", after: "14", change: "-33,3%", positive: true },
-          { label: "Atrasos no pagamento de servidores", before: "Sim", after: "Não", change: "Regularizado", positive: true },
+          { label: "Número de secretarias", before: "21", after: "14", change: "-33,3%", positive: true, sources: [{ label: "ALMG — Lei 24.313/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/" }] },
+          { label: "Atrasos no pagamento de servidores", before: "Sim", after: "Não", change: "Regularizado", positive: true, sources: [{ label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" }] },
+          { label: "Cargos comissionados", before: "8.230", after: "5.940", change: "-27,8%", positive: true, sources: [{ label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" }] },
         ],
       },
       {
         title: "Investimentos",
         icon: Building2,
         metrics: [
-          { label: "Concessões e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true },
-          { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true },
+          { label: "Concessões e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true, sources: [{ label: "SEINFRA-MG", url: "https://www.infraestrutura.mg.gov.br/" }] },
+          { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true, sources: [{ label: "Invest Minas", url: "https://www.investminas.mg.gov.br/" }] },
         ],
       },
     ],
@@ -419,6 +466,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2022", value: 4.6, current: true },
         { ano: "2023", value: 5.2, current: true },
       ]),
+      sources: [{ label: "Tesouro Nacional — Estados e Municípios", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }],
     },
     chart2: {
       title: "Crescimento do PIB Estadual (%)",
@@ -433,8 +481,15 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2022", value: 2.8, current: true },
         { ano: "2023", value: 3.1, current: true },
       ]),
+      sources: [{ label: "IBGE — Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }],
     },
-    comparisonLabel: "Gov. Anterior",
-    footnote: "Fontes: IBGE, Secretaria de Estado de Fazenda de MG, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "Gov. Fernando Pimentel (2015–2018)",
+    footnote: "Comparação entre o governo Pimentel (PT, 2015–2018) e o governo Zema (NOVO, 2019–). Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "IBGE", url: "https://www.ibge.gov.br/" },
+      { label: "Tesouro Nacional", url: "https://www.tesourotransparente.gov.br/" },
+      { label: "Portal da Transparência MG", url: "https://www.transparencia.mg.gov.br/" },
+      { label: "ALMG", url: "https://www.almg.gov.br/" },
+    ],
   },
 };

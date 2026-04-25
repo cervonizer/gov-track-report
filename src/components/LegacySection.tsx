@@ -28,6 +28,7 @@ import {
   Legend,
 } from "recharts";
 import { legacyDataMap, type CommitmentStatus } from "@/data/legacyData";
+import { SourceCitation } from "@/components/SourceCitation";
 
 interface LegacySectionProps {
   politicianId: string;
@@ -53,7 +54,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
   const data = legacyDataMap[politicianId];
   if (!data) return null;
 
-  const { commitments, performance, chart1, chart2, comparisonLabel, footnote, subtitle } = data;
+  const { commitments, performance, chart1, chart2, comparisonLabel, footnote, subtitle, dataSources } = data;
 
   return (
     <section className="mt-10 space-y-10">
@@ -111,6 +112,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                     <Progress value={c.progress} className="h-2" />
                   </div>
                   <p className="text-xs text-muted-foreground">{c.detail}</p>
+                  <SourceCitation sources={c.sources} />
                 </CardContent>
               </Card>
             );
@@ -164,7 +166,10 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                     <TableBody>
                       {category.metrics.map((m) => (
                         <TableRow key={m.label}>
-                          <TableCell className="text-sm font-medium">{m.label}</TableCell>
+                          <TableCell className="text-sm font-medium">
+                            <div>{m.label}</div>
+                            <SourceCitation sources={m.sources} className="mt-1" />
+                          </TableCell>
                           <TableCell className="text-center text-sm text-muted-foreground">
                             {m.before}
                           </TableCell>
@@ -215,6 +220,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                 <Bar dataKey="Atual" name="Atual" fill="hsl(210, 70%, 30%)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
+            <SourceCitation sources={chart1.sources} className="mt-3" />
           </CardContent>
         </Card>
 
@@ -236,13 +242,20 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                 <Bar dataKey="Atual" name="Atual" fill="hsl(145, 60%, 36%)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
+            <SourceCitation sources={chart2.sources} className="mt-3" />
           </CardContent>
         </Card>
       </div>
 
       {/* Footnote */}
-      <div className="border-t pt-4" style={{ borderColor: "hsl(210, 30%, 85%)" }}>
+      <div className="border-t pt-4 space-y-2" style={{ borderColor: "hsl(210, 30%, 85%)" }}>
         <p className="text-xs text-muted-foreground italic">{footnote}</p>
+        {dataSources && dataSources.length > 0 && (
+          <div>
+            <p className="text-xs font-semibold text-muted-foreground mb-1">Fontes dos dados:</p>
+            <SourceCitation sources={dataSources} />
+          </div>
+        )}
       </div>
     </section>
   );

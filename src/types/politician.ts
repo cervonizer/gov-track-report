@@ -1,3 +1,8 @@
+export interface Source {
+  label: string;
+  url: string;
+}
+
 export interface VoteRecord {
   id: string;
   title: string;
@@ -6,6 +11,7 @@ export interface VoteRecord {
   vote: 'Yes' | 'No' | 'Abstain' | 'Absent';
   billNumber: string;
   category: string;
+  sources?: Source[];
 }
 
 export interface Promise {
@@ -17,6 +23,7 @@ export interface Promise {
   status: 'Fulfilled' | 'In Progress' | 'Broken' | 'Expired';
   progress: number;
   category: string;
+  sources?: Source[];
 }
 
 export interface Proposal {
@@ -27,6 +34,7 @@ export interface Proposal {
   status: 'Active' | 'Passed' | 'Failed' | 'Withdrawn';
   category: string;
   supportLevel: number;
+  sources?: Source[];
 }
 
 export interface Mandate {

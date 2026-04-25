@@ -26,26 +26,32 @@ export const mockPoliticians: Politician[] = [
     biography: 'Luiz Inácio Lula da Silva, nascido em 27 de outubro de 1945 em Caetés, Pernambuco, é o 39º presidente do Brasil, exercendo seu terceiro mandato desde 1º de janeiro de 2023. Metalúrgico e sindicalista, foi presidente do Sindicato dos Metalúrgicos do ABC e cofundador do Partido dos Trabalhadores (PT) em 1980. Governou o Brasil de 2003 a 2010, período marcado por programas sociais como o Bolsa Família e o Fome Zero, que retiraram milhões de brasileiros da pobreza. Em seu atual mandato, retomou políticas de combate à fome, proteção ambiental na Amazônia e reinserção do Brasil na diplomacia internacional.',
     website: 'https://www.gov.br/planalto',
     email: 'contato@planalto.gov.br',
-    phone: '(61) 3411-1200',
+    phone: '@lulaoficial',
     committeeMemberships: ['BRICS', 'G20', 'MERCOSUL', 'CELAC'],
     voteRecords: [
       {
         id: 'v1',
         title: 'Novo Arcabouço Fiscal',
-        description: 'Sanção do novo marco fiscal em substituição ao Teto de Gastos.',
-        date: '2023-08-31',
+        description: 'Sanção da Lei Complementar que substituiu o Teto de Gastos por uma nova regra fiscal.',
+        date: '2023-08-30',
         vote: 'Yes',
         billNumber: 'LC 200/2023',
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — LC 200/2023', url: 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm' },
+        ],
       },
       {
         id: 'v2',
         title: 'Reforma Tributária',
-        description: 'Sanção da Emenda Constitucional da Reforma Tributária sobre o consumo.',
+        description: 'Promulgação da Emenda Constitucional que unifica impostos sobre o consumo (CBS, IBS e IS).',
         date: '2023-12-20',
         vote: 'Yes',
-        billNumber: 'PEC 45/2019',
-        category: 'Economia'
+        billNumber: 'EC 132/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — EC 132/2023', url: 'https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm' },
+        ],
       },
       {
         id: 'v3',
@@ -53,29 +59,99 @@ export const mockPoliticians: Politician[] = [
         description: 'Veto parcial ao projeto que estabelecia marco temporal para demarcação de terras indígenas.',
         date: '2023-10-20',
         vote: 'No',
-        billNumber: 'PL 2903/2023',
-        category: 'Meio Ambiente'
+        billNumber: 'Lei 14.701/2023',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'Planalto — Lei 14.701/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14701.htm' },
+        ],
       },
       {
         id: 'v16',
-        title: 'Igualdade Salarial',
-        description: 'Sanção da lei que garante igualdade salarial entre homens e mulheres.',
+        title: 'Igualdade Salarial entre Mulheres e Homens',
+        description: 'Sanção da lei que assegura igualdade de remuneração para o mesmo trabalho ou função.',
         date: '2023-07-03',
         vote: 'Yes',
-        billNumber: 'PL 1085/2023',
-        category: 'Trabalho'
-      }
+        billNumber: 'Lei 14.611/2023',
+        category: 'Trabalho',
+        sources: [
+          { label: 'Planalto — Lei 14.611/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14611.htm' },
+        ],
+      },
+      {
+        id: 'v17',
+        title: 'Programa Desenrola Brasil',
+        description: 'Sanção do programa de renegociação de dívidas de pessoas físicas com instituições financeiras.',
+        date: '2023-10-04',
+        vote: 'Yes',
+        billNumber: 'Lei 14.690/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — Lei 14.690/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14690.htm' },
+        ],
+      },
+      {
+        id: 'v18',
+        title: 'Programa Pé-de-Meia',
+        description: 'Sanção da poupança para estudantes do ensino médio público como incentivo à permanência escolar.',
+        date: '2024-01-16',
+        vote: 'Yes',
+        billNumber: 'Lei 14.818/2024',
+        category: 'Educação',
+        sources: [
+          { label: 'Planalto — Lei 14.818/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14818.htm' },
+        ],
+      },
+      {
+        id: 'v19',
+        title: 'Taxação de Fundos Exclusivos e Offshores',
+        description: 'Sanção da lei que tributa rendimentos de fundos exclusivos no Brasil e investimentos no exterior.',
+        date: '2023-12-12',
+        vote: 'Yes',
+        billNumber: 'Lei 14.754/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — Lei 14.754/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14754.htm' },
+        ],
+      },
+      {
+        id: 'v20',
+        title: 'Mobilidade Elétrica e Sustentável (Mover)',
+        description: 'Sanção do programa de incentivo à indústria automotiva verde e descarbonização.',
+        date: '2024-08-13',
+        vote: 'Yes',
+        billNumber: 'Lei 14.902/2024',
+        category: 'Indústria',
+        sources: [
+          { label: 'Planalto — Lei 14.902/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14902.htm' },
+        ],
+      },
+      {
+        id: 'v21',
+        title: 'Combustível do Futuro',
+        description: 'Sanção da lei que amplia a mistura de etanol na gasolina e cria mercado de combustíveis sustentáveis.',
+        date: '2024-10-08',
+        vote: 'Yes',
+        billNumber: 'Lei 14.993/2024',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'Planalto — Lei 14.993/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14993.htm' },
+        ],
+      },
     ],
     promises: [
       {
         id: 'p1',
         title: 'Acabar com a Fome no Brasil',
-        description: 'Retomar e ampliar o programa Brasil Sem Fome para tirar o país do Mapa da Fome da ONU.',
+        description: 'Retomar e ampliar o programa Brasil Sem Fome para tirar o país do Mapa da Fome da ONU/FAO.',
         datePromised: '2022-10-30',
         deadline: '2026-12-31',
-        status: 'In Progress',
-        progress: 55,
-        category: 'Social'
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Social',
+        sources: [
+          { label: 'Plano Brasil Sem Fome — gov.br', url: 'https://www.gov.br/mds/pt-br/acoes-e-programas/brasil-sem-fome' },
+          { label: 'FAO — SOFI 2024', url: 'https://www.fao.org/publications/sofi/2024/en/' },
+        ],
       },
       {
         id: 'p2',
@@ -84,59 +160,140 @@ export const mockPoliticians: Politician[] = [
         datePromised: '2022-10-30',
         deadline: '2030-12-31',
         status: 'In Progress',
-        progress: 45,
-        category: 'Meio Ambiente'
+        progress: 50,
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'INPE — PRODES', url: 'http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates' },
+        ],
       },
       {
         id: 'p3',
         title: 'Reajuste Real do Salário Mínimo',
-        description: 'Garantir reajuste do salário mínimo acima da inflação, com ganho real pelo PIB.',
+        description: 'Política de valorização que garante reajuste do salário mínimo acima da inflação (INPC + PIB).',
         datePromised: '2022-10-30',
         deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — Lei 14.663/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm' },
+        ],
       },
       {
         id: 'p16',
         title: 'Retomar o Minha Casa Minha Vida',
-        description: 'Relançar o programa habitacional com meta de 2 milhões de moradias.',
+        description: 'Relançar o programa habitacional com meta de 2 milhões de moradias até 2026.',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 45,
+        category: 'Habitação',
+        sources: [
+          { label: 'gov.br — Minha Casa Minha Vida', url: 'https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/habitacao/minha-casa-minha-vida' },
+        ],
+      },
+      {
+        id: 'p17',
+        title: 'Reforma Tributária sobre o Consumo',
+        description: 'Aprovar reforma tributária simplificando impostos sobre consumo (PIS/Cofins/ICMS/ISS).',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — EC 132/2023', url: 'https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm' },
+        ],
+      },
+      {
+        id: 'p18',
+        title: 'Retomada de Obras Paradas (Novo PAC)',
+        description: 'Lançar Novo PAC com R$ 1,7 trilhão em investimentos em infraestrutura até 2026.',
         datePromised: '2022-10-30',
         deadline: '2026-12-31',
         status: 'In Progress',
         progress: 40,
-        category: 'Habitação'
-      }
+        category: 'Infraestrutura',
+        sources: [
+          { label: 'gov.br — Novo PAC', url: 'https://www.gov.br/casacivil/pt-br/novopac' },
+        ],
+      },
+      {
+        id: 'p19',
+        title: 'Reinserção do Brasil na Diplomacia',
+        description: 'Recolocar o Brasil em fóruns internacionais (BRICS, G20, COP, ONU) com protagonismo.',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Política Externa',
+        sources: [
+          { label: 'Itamaraty — Presidência G20 2024', url: 'https://www.gov.br/mre/pt-br/g20' },
+        ],
+      },
     ],
     proposals: [
       {
         id: 'pr1',
         title: 'Nova Indústria Brasil (NIB)',
-        description: 'Plano de neoindustrialização com foco em transição energética, saúde, agro sustentável e defesa.',
+        description: 'Plano de neoindustrialização com R$ 300 bilhões até 2026 em transição energética, saúde, agro sustentável e defesa.',
         dateProposed: '2024-01-22',
         status: 'Active',
         category: 'Economia',
-        supportLevel: 65
+        supportLevel: 65,
+        sources: [
+          { label: 'gov.br — Nova Indústria Brasil', url: 'https://www.gov.br/mdic/pt-br/composicao/se/cndi/plano-de-acao' },
+        ],
       },
       {
         id: 'pr2',
         title: 'Programa Pé-de-Meia',
-        description: 'Poupança para estudantes do ensino médio público como incentivo à permanência escolar.',
-        dateProposed: '2024-03-26',
+        description: 'Poupança de até R$ 9.200 para estudantes do ensino médio público como incentivo à permanência escolar.',
+        dateProposed: '2024-01-16',
         status: 'Passed',
         category: 'Educação',
-        supportLevel: 82
+        supportLevel: 82,
+        sources: [
+          { label: 'Planalto — Lei 14.818/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14818.htm' },
+        ],
       },
       {
         id: 'pr11',
         title: 'Programa Acredita',
-        description: 'Programa de crédito e microcrédito para famílias de baixa renda e pequenos empreendedores.',
+        description: 'Programa de crédito e microcrédito para famílias de baixa renda e MPEs.',
         dateProposed: '2024-04-22',
+        status: 'Passed',
+        category: 'Economia',
+        supportLevel: 70,
+        sources: [
+          { label: 'Planalto — Lei 14.995/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14995.htm' },
+        ],
+      },
+      {
+        id: 'pr12',
+        title: 'Reforma do Imposto de Renda',
+        description: 'Proposta de isenção do IR para quem recebe até R$ 5 mil mensais, com compensação via tributação dos super-ricos.',
+        dateProposed: '2025-03-18',
         status: 'Active',
         category: 'Economia',
-        supportLevel: 70
-      }
-    ]
+        supportLevel: 75,
+        sources: [
+          { label: 'Câmara — PL 1087/2025', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2495334' },
+        ],
+      },
+      {
+        id: 'pr13',
+        title: 'Plano de Transformação Ecológica',
+        description: 'Estratégia nacional para transição verde, finanças sustentáveis e descarbonização da economia.',
+        dateProposed: '2023-08-09',
+        status: 'Active',
+        category: 'Meio Ambiente',
+        supportLevel: 68,
+        sources: [
+          { label: 'Ministério da Fazenda — PTE', url: 'https://www.gov.br/fazenda/pt-br/orgaos/spe/transformacao-ecologica' },
+        ],
+      },
+    ],
   },
   {
     id: '2',
@@ -151,26 +308,28 @@ export const mockPoliticians: Politician[] = [
       { position: 'Deputado Estadual (RJ)', start: '2007', end: '2011' },
       { position: 'Deputado Estadual (RJ)', start: '2011', end: '2015' },
       { position: 'Deputado Estadual (RJ)', start: '2015', end: '2019' },
-      { position: 'Senador (RJ)', start: '2019', end: '2027' },
-      { position: 'Senador (RJ)', start: '2023', end: '2031', current: true },
+      { position: 'Senador (RJ)', start: '2019', end: '2027', current: true },
     ],
-    termStart: '2023-02-01',
-    termEnd: '2031-02-01',
+    termStart: '2019-02-01',
+    termEnd: '2027-02-01',
     imageUrl: flavioImg,
-    biography: 'Flávio Nantes Bolsonaro é um político brasileiro, senador pelo estado do Rio de Janeiro desde 2019. Filho mais velho do ex-presidente Jair Bolsonaro, iniciou sua carreira política como deputado estadual pelo Rio de Janeiro, cargo que exerceu por quatro mandatos consecutivos (2003-2019) na Assembleia Legislativa do Estado do Rio de Janeiro (ALERJ). Como senador, tem atuado em pautas conservadoras, defesa da família tradicional, segurança pública e liberalismo econômico. É formado em Direito e foi reeleito senador em 2022 para um mandato até 2031.',
-    website: 'https://flaviobolsonaro.com',
+    biography: 'Flávio Nantes Bolsonaro é um político brasileiro, senador pelo estado do Rio de Janeiro desde 2019. Filho mais velho do ex-presidente Jair Bolsonaro, iniciou sua carreira política como deputado estadual pelo Rio de Janeiro, cargo que exerceu por quatro mandatos consecutivos (2003-2019) na ALERJ. Como senador, tem atuado em pautas conservadoras, defesa da família tradicional, segurança pública e liberalismo econômico. É formado em Direito.',
+    website: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988',
     email: 'sen.flaviobolsonaro@senado.leg.br',
-    phone: '(61) 3303-6155',
+    phone: '@flaviobolsonaro',
     committeeMemberships: ['Comissão de Assuntos Econômicos (CAE)', 'Comissão de Constituição, Justiça e Cidadania (CCJ)', 'Comissão de Segurança Pública (CSP)'],
     voteRecords: [
       {
         id: 'v4',
-        title: 'Reforma Tributária',
-        description: 'Votação da PEC da Reforma Tributária que unifica impostos sobre consumo.',
+        title: 'Reforma Tributária (PEC 45)',
+        description: 'Votação em segundo turno no Senado da PEC da Reforma Tributária sobre o consumo.',
         date: '2023-11-08',
         vote: 'No',
         billNumber: 'PEC 45/2019',
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — Tramitação PEC 45/2019', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/137699' },
+        ],
       },
       {
         id: 'v5',
@@ -179,49 +338,163 @@ export const mockPoliticians: Politician[] = [
         date: '2023-06-15',
         vote: 'Yes',
         billNumber: 'PL 3723/2019',
-        category: 'Segurança Pública'
+        category: 'Segurança Pública',
+        sources: [
+          { label: 'Senado — PL 3723/2019', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/137357' },
+        ],
       },
       {
         id: 'v5b',
         title: 'Novo Arcabouço Fiscal',
-        description: 'Votação do novo marco fiscal proposto pelo governo Lula.',
-        date: '2023-06-01',
+        description: 'Votação no Senado do novo marco fiscal proposto pelo governo Lula.',
+        date: '2023-08-22',
         vote: 'No',
         billNumber: 'PLP 93/2023',
-        category: 'Economia'
-      }
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — PLP 93/2023', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/158040' },
+        ],
+      },
+      {
+        id: 'v22',
+        title: 'PEC do Estouro Fiscal de Transição',
+        description: 'PEC que abriu espaço fiscal de R$ 145 bi fora do teto de gastos para o início do governo Lula.',
+        date: '2022-12-21',
+        vote: 'No',
+        billNumber: 'PEC 32/2022',
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — PEC 32/2022', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/156003' },
+        ],
+      },
+      {
+        id: 'v23',
+        title: 'Marco Temporal Indígena',
+        description: 'Votação do projeto que estabelece marco temporal para demarcação de terras indígenas.',
+        date: '2023-09-27',
+        vote: 'Yes',
+        billNumber: 'PL 2903/2023',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'Senado — PL 2903/2023', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/158738' },
+        ],
+      },
+      {
+        id: 'v24',
+        title: 'Taxação de Fundos Exclusivos e Offshores',
+        description: 'Votação da lei que tributa rendimentos de fundos exclusivos e investimentos no exterior.',
+        date: '2023-11-29',
+        vote: 'No',
+        billNumber: 'PL 4173/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — PL 4173/2023', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/160250' },
+        ],
+      },
+      {
+        id: 'v25',
+        title: 'Saidinhas de Presos',
+        description: 'Votação que restringe as saídas temporárias de presos do regime semiaberto.',
+        date: '2024-04-09',
+        vote: 'Yes',
+        billNumber: 'PL 2253/2022',
+        category: 'Segurança Pública',
+        sources: [
+          { label: 'Senado — PL 2253/2022', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/154886' },
+        ],
+      },
+      {
+        id: 'v26',
+        title: 'Regulamentação da Reforma Tributária',
+        description: 'Votação do PLP que regulamenta a Reforma Tributária (CBS/IBS).',
+        date: '2024-12-12',
+        vote: 'No',
+        billNumber: 'PLP 68/2024',
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — PLP 68/2024', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/164914' },
+        ],
+      },
     ],
     promises: [
       {
         id: 'p4',
         title: 'Redução de Impostos',
         description: 'Lutar pela redução da carga tributária sobre empresas e cidadãos brasileiros.',
-        datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
         status: 'In Progress',
         progress: 30,
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — Atividade do Senador', url: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988' },
+        ],
       },
       {
         id: 'p5',
-        title: 'Segurança Pública',
+        title: 'Endurecimento de Penas',
         description: 'Defender o endurecimento de penas para crimes violentos e o direito à legítima defesa armada.',
-        datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
         status: 'In Progress',
-        progress: 45,
-        category: 'Segurança Pública'
+        progress: 50,
+        category: 'Segurança Pública',
+        sources: [
+          { label: 'Senado — Projetos do Senador', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988' },
+        ],
       },
       {
         id: 'p5b',
         title: 'Combate à Corrupção',
         description: 'Apoiar projetos que fortaleçam o combate à corrupção e a transparência pública.',
-        datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
         status: 'In Progress',
         progress: 25,
-        category: 'Governança'
-      }
+        category: 'Governança',
+        sources: [
+          { label: 'Senado — Atividade do Senador', url: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988' },
+        ],
+      },
+      {
+        id: 'p20',
+        title: 'Defesa da Família Tradicional',
+        description: 'Defender em plenário e nas comissões pautas conservadoras ligadas à família.',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 65,
+        category: 'Costumes',
+        sources: [
+          { label: 'Senado — Atividade do Senador', url: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988' },
+        ],
+      },
+      {
+        id: 'p21',
+        title: 'Privatizações Estratégicas',
+        description: 'Apoiar a privatização de estatais não estratégicas e desestatização da economia.',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 35,
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — Atividade do Senador', url: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988' },
+        ],
+      },
+      {
+        id: 'p22',
+        title: 'Excludente de Ilicitude para Polícias',
+        description: 'Aprovar o excludente de ilicitude para agentes de segurança em operações.',
+        datePromised: '2018-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 30,
+        category: 'Segurança Pública',
+        sources: [
+          { label: 'Senado — Atividade do Senador', url: 'https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988' },
+        ],
+      },
     ],
     proposals: [
       {
@@ -231,7 +504,10 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-03-20',
         status: 'Active',
         category: 'Educação',
-        supportLevel: 48
+        supportLevel: 48,
+        sources: [
+          { label: 'Senado — Atividade Legislativa', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988' },
+        ],
       },
       {
         id: 'pr3b',
@@ -240,9 +516,36 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-05-10',
         status: 'Active',
         category: 'Segurança Pública',
-        supportLevel: 42
-      }
-    ]
+        supportLevel: 42,
+        sources: [
+          { label: 'Senado — Atividade Legislativa', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988' },
+        ],
+      },
+      {
+        id: 'pr14',
+        title: 'CPI dos Atos de 8 de Janeiro — Voto Vencido',
+        description: 'Atuação na CPMI do 8 de Janeiro com posicionamento contrário ao relatório final.',
+        dateProposed: '2023-10-17',
+        status: 'Failed',
+        category: 'Política',
+        supportLevel: 30,
+        sources: [
+          { label: 'Senado — CPMI 8 de Janeiro', url: 'https://legis.senado.leg.br/comissoes/comissao?codcol=2606' },
+        ],
+      },
+      {
+        id: 'pr15',
+        title: 'Suspensão da Cobrança de Saidinhas',
+        description: 'Projeto para restringir saídas temporárias de presos condenados por crimes hediondos.',
+        dateProposed: '2024-04-09',
+        status: 'Passed',
+        category: 'Segurança Pública',
+        supportLevel: 72,
+        sources: [
+          { label: 'Planalto — Lei 14.843/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14843.htm' },
+        ],
+      },
+    ],
   },
   {
     id: '3',
@@ -258,62 +561,62 @@ export const mockPoliticians: Politician[] = [
     ],
     termStart: '2023-02-01',
     termEnd: '2027-02-01',
-    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
-    biography: 'Deputada Estadual Ana Beatriz Costa representa o Rio de Janeiro, focando em reforma educacional e habitação acessível.',
-    website: 'https://anabeatriz.alerj.rj.gov.br',
-    email: 'contato@anabeatriz.alerj.rj.gov.br',
-    phone: '(21) 2588-7891',
-    committeeMemberships: ['Comissão de Educação', 'Comissão de Habitação'],
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+    biography: 'Ana Beatriz Costa é Deputada Estadual pelo Rio de Janeiro, com forte atuação em educação, saúde pública e habitação popular. Iniciou sua trajetória política como vereadora em Niterói (2017-2021) antes de se eleger para a Assembleia Legislativa (ALERJ). Defende políticas públicas baseadas em dados e participação cidadã.',
+    website: 'https://www.alerj.rj.gov.br',
+    email: 'anabeatriz@alerj.rj.gov.br',
+    phone: '@anabeatrizcosta',
+    committeeMemberships: ['Comissão de Educação', 'Comissão de Saúde', 'Comissão de Habitação'],
     voteRecords: [
       {
         id: 'v6',
-        title: 'Lei de Habitação Popular',
-        description: 'Projeto para aumentar financiamento de programas de habitação.',
-        date: '2023-12-05',
+        title: 'Lei do Transporte Público',
+        description: 'Reforma do sistema de transporte público no estado do RJ.',
+        date: '2023-08-15',
         vote: 'Yes',
-        billNumber: 'PL 5623/2023',
-        category: 'Habitação'
+        billNumber: 'PL 1234/2023',
+        category: 'Transporte',
       },
       {
         id: 'v7',
-        title: 'Financiamento da Educação',
-        description: 'Projeto para aumentar recursos para escolas públicas.',
-        date: '2023-11-28',
+        title: 'Programa Estadual de Habitação',
+        description: 'Criação de programa para habitação popular no estado.',
+        date: '2023-09-22',
         vote: 'Yes',
-        billNumber: 'PL 5201/2023',
-        category: 'Educação'
+        billNumber: 'PL 2345/2023',
+        category: 'Habitação',
       },
       {
         id: 'v8',
-        title: 'Infraestrutura Estadual',
-        description: 'Investimento em melhorias de infraestrutura estadual.',
-        date: '2023-11-15',
+        title: 'Aumento Salarial dos Professores',
+        description: 'Reajuste salarial para professores da rede estadual.',
+        date: '2023-11-10',
         vote: 'Yes',
-        billNumber: 'PL 3684/2023',
-        category: 'Infraestrutura'
-      }
+        billNumber: 'PL 3456/2023',
+        category: 'Educação',
+      },
     ],
     promises: [
       {
         id: 'p6',
-        title: 'Aumentar Investimento em Educação',
-        description: 'Garantir recursos adicionais para escolas públicas do estado.',
-        datePromised: '2022-09-15',
+        title: 'Investimento em Educação Pública',
+        description: 'Aumentar em 30% o investimento em educação pública estadual.',
+        datePromised: '2022-10-30',
         deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 68,
-        category: 'Educação'
+        progress: 65,
+        category: 'Educação',
       },
       {
         id: 'p7',
-        title: 'Programa de Habitação Popular',
-        description: 'Criar 5.000 novas unidades habitacionais populares.',
-        datePromised: '2022-09-15',
-        deadline: '2027-01-01',
+        title: 'Programa Habitacional',
+        description: 'Construir 5.000 unidades habitacionais para famílias de baixa renda.',
+        datePromised: '2022-10-30',
+        deadline: '2026-12-31',
         status: 'In Progress',
         progress: 55,
-        category: 'Habitação'
-      }
+        category: 'Habitação',
+      },
     ],
     proposals: [
       {
@@ -323,14 +626,14 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-09-12',
         status: 'Active',
         category: 'Educação',
-        supportLevel: 71
-      }
-    ]
+        supportLevel: 71,
+      },
+    ],
   },
   {
     id: '4',
     name: 'Ronaldo Caiado',
-    party: 'PSD',
+    party: 'União Brasil',
     position: 'Governador',
     state: 'Goiás',
     district: undefined,
@@ -348,10 +651,10 @@ export const mockPoliticians: Politician[] = [
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
     imageUrl: caiadoImg,
-    biography: 'Ronaldo Ramos Caiado é médico e político brasileiro, atual Governador de Goiás em seu segundo mandato (2023-2027). Nascido em Anápolis (GO) em 1949, formou-se em Medicina pela UFG. Foi presidente da UDR nos anos 1980, defendendo os interesses dos proprietários rurais. Elegeu-se senador por Goiás em 1990 e deputado federal em 1998, 2002, 2006 e 2010. Foi novamente senador entre 2015 e 2018, quando se elegeu governador. É considerado uma liderança do agronegócio e defensor de pautas conservadoras. Seu governo prioriza segurança pública, infraestrutura e desenvolvimento econômico do estado.',
+    biography: 'Ronaldo Ramos Caiado é médico e político brasileiro, atual Governador de Goiás em seu segundo mandato (2023-2027). Nascido em Anápolis (GO) em 1949, formou-se em Medicina pela UFG. Foi presidente da UDR nos anos 1980. Elegeu-se senador por Goiás em 1990 e deputado federal em 1998, 2002, 2006 e 2010. Foi novamente senador entre 2015 e 2018, quando se elegeu governador. É considerado uma liderança do agronegócio. Seu governo prioriza segurança pública, infraestrutura e desenvolvimento econômico do estado.',
     website: 'https://www.goias.gov.br',
-    email: 'contato@goias.gov.br',
-    phone: '(62) 3201-2000',
+    email: 'governador@goias.gov.br',
+    phone: '@ronaldocaiado',
     committeeMemberships: ['Consórcio Brasil Central', 'Fórum de Governadores'],
     voteRecords: [
       {
@@ -361,7 +664,10 @@ export const mockPoliticians: Politician[] = [
         date: '2023-03-15',
         vote: 'Yes',
         billNumber: 'Lei 21.792/2023',
-        category: 'Administração'
+        category: 'Administração',
+        sources: [
+          { label: 'ALEGO — Leis Sancionadas', url: 'https://portal.al.go.leg.br/leis' },
+        ],
       },
       {
         id: 'v10',
@@ -370,17 +676,71 @@ export const mockPoliticians: Politician[] = [
         date: '2023-06-20',
         vote: 'Yes',
         billNumber: 'Lei 21.850/2023',
-        category: 'Social'
+        category: 'Social',
+        sources: [
+          { label: 'Goiás Social — gov.br', url: 'https://www.social.go.gov.br/goias-social' },
+        ],
       },
       {
         id: 'v11',
-        title: 'Incentivo ao Agronegócio',
+        title: 'Incentivos ao Agronegócio',
         description: 'Pacote de incentivos fiscais para o setor agropecuário goiano.',
         date: '2023-09-10',
         vote: 'Yes',
         billNumber: 'Decreto 10.234/2023',
-        category: 'Agronegócio'
-      }
+        category: 'Agronegócio',
+        sources: [
+          { label: 'SEFAZ-GO — Legislação', url: 'https://appasp.economia.go.gov.br/legislacao/arquivos/Superintendencia/SGAF/DECRETO/D_10234_023.htm' },
+        ],
+      },
+      {
+        id: 'v27',
+        title: 'Universalização do Saneamento',
+        description: 'Marco regulatório do saneamento básico no estado de Goiás.',
+        date: '2023-11-28',
+        vote: 'Yes',
+        billNumber: 'Lei 22.193/2023',
+        category: 'Saneamento',
+        sources: [
+          { label: 'Goiás — Saneamento', url: 'https://www.goias.gov.br/category/governo/saneamento/' },
+        ],
+      },
+      {
+        id: 'v28',
+        title: 'Programa CRAS Bem Perto',
+        description: 'Ampliação da rede de Centros de Referência da Assistência Social no estado.',
+        date: '2024-02-14',
+        vote: 'Yes',
+        billNumber: 'Decreto 10.418/2024',
+        category: 'Social',
+        sources: [
+          { label: 'Casa Civil GO — Decretos', url: 'https://legisla.casacivil.go.gov.br/' },
+        ],
+      },
+      {
+        id: 'v29',
+        title: 'Bolsa Estudo Universitária',
+        description: 'Programa estadual de bolsas para estudantes do ensino superior.',
+        date: '2024-05-22',
+        vote: 'Yes',
+        billNumber: 'Lei 22.554/2024',
+        category: 'Educação',
+        sources: [
+          { label: 'ALEGO — Leis', url: 'https://portal.al.go.leg.br/leis' },
+        ],
+      },
+      {
+        id: 'v30',
+        title: 'Operação Tiradentes (Segurança)',
+        description: 'Decreto que reforça operações integradas de segurança pública em Goiás.',
+        date: '2023-04-21',
+        vote: 'Yes',
+        billNumber: 'Decreto 10.156/2023',
+        category: 'Segurança',
+        sources: [
+          { label: 'SSP-GO', url: 'https://www.policiacivil.go.gov.br/' },
+        ],
+      },
     ],
     promises: [
       {
@@ -389,9 +749,12 @@ export const mockPoliticians: Politician[] = [
         description: 'Reduzir a criminalidade em Goiás com investimento em polícia e inteligência.',
         datePromised: '2022-08-15',
         deadline: '2026-12-31',
-        status: 'In Progress',
-        progress: 72,
-        category: 'Segurança'
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Segurança',
+        sources: [
+          { label: 'SSP-GO — Estatísticas', url: 'https://www.ssp.go.gov.br/estatistica' },
+        ],
       },
       {
         id: 'p9',
@@ -400,8 +763,11 @@ export const mockPoliticians: Politician[] = [
         datePromised: '2022-08-15',
         deadline: '2026-12-31',
         status: 'In Progress',
-        progress: 60,
-        category: 'Infraestrutura'
+        progress: 65,
+        category: 'Infraestrutura',
+        sources: [
+          { label: 'AGETOP — Goiás Estradeiro', url: 'https://www.goinfra.go.gov.br/' },
+        ],
       },
       {
         id: 'p9b',
@@ -411,8 +777,50 @@ export const mockPoliticians: Politician[] = [
         deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Economia'
-      }
+        category: 'Economia',
+        sources: [
+          { label: 'Tesouro Nacional — Capag GO', url: 'https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag' },
+        ],
+      },
+      {
+        id: 'p23',
+        title: 'Saneamento Universal',
+        description: 'Levar saneamento básico a todos os municípios goianos até 2026.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 55,
+        category: 'Saneamento',
+        sources: [
+          { label: 'SNIS — Saneamento', url: 'https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/snis' },
+        ],
+      },
+      {
+        id: 'p24',
+        title: 'Escolas em Tempo Integral',
+        description: 'Construir/converter 320 escolas em tempo integral até o fim do mandato.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 65,
+        category: 'Educação',
+        sources: [
+          { label: 'Seduc-GO', url: 'https://site.educacao.go.gov.br/' },
+        ],
+      },
+      {
+        id: 'p25',
+        title: 'Crédito Social (Aluguel Social)',
+        description: 'Conceder benefício mensal de aluguel social para 100 mil famílias.',
+        datePromised: '2022-08-15',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 78,
+        category: 'Social',
+        sources: [
+          { label: 'OVG — Aluguel Social', url: 'https://www.social.go.gov.br/aluguel-social' },
+        ],
+      },
     ],
     proposals: [
       {
@@ -422,7 +830,10 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-04-10',
         status: 'Active',
         category: 'Administração',
-        supportLevel: 68
+        supportLevel: 68,
+        sources: [
+          { label: 'SEAD-GO', url: 'https://www.administracao.go.gov.br/' },
+        ],
       },
       {
         id: 'pr6',
@@ -431,14 +842,41 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-07-22',
         status: 'Passed',
         category: 'Infraestrutura',
-        supportLevel: 85
-      }
-    ]
+        supportLevel: 85,
+        sources: [
+          { label: 'Goinfra', url: 'https://www.goinfra.go.gov.br/' },
+        ],
+      },
+      {
+        id: 'pr16',
+        title: 'Goiás Sem Fome',
+        description: 'Programa estadual de combate à insegurança alimentar e nutricional.',
+        dateProposed: '2024-03-18',
+        status: 'Passed',
+        category: 'Social',
+        supportLevel: 88,
+        sources: [
+          { label: 'OVG — Goiás Sem Fome', url: 'https://www.ovg.org.br/post/goias-sem-fome' },
+        ],
+      },
+      {
+        id: 'pr17',
+        title: 'Bolsa Pesquisa Goiás',
+        description: 'Concessão de bolsas para pesquisadores e mestrandos de instituições goianas.',
+        dateProposed: '2024-06-12',
+        status: 'Active',
+        category: 'Educação',
+        supportLevel: 74,
+        sources: [
+          { label: 'FAPEG', url: 'https://www.fapeg.go.gov.br/' },
+        ],
+      },
+    ],
   },
   {
     id: '5',
     name: 'Renan Santos',
-    party: 'Missão',
+    party: 'NOVO',
     position: 'Deputado Federal',
     state: 'São Paulo',
     district: 'São Paulo',
@@ -446,42 +884,111 @@ export const mockPoliticians: Politician[] = [
     mandates: [
       { position: 'Deputado Federal (SP)', start: '2023', end: '2027', current: true },
     ],
-    termStart: '2023-01-01',
-    termEnd: '2027-01-01',
+    termStart: '2023-02-01',
+    termEnd: '2027-01-31',
     imageUrl: renanImg,
-    biography: 'Renan Santos é empresário, ativista político e fundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Nascido em São Paulo, tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022 pelo partido Missão, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público. É defensor da reforma administrativa, privatizações e da modernização da gestão pública.',
-    website: 'https://www.camara.leg.br/deputados/renan-santos',
+    biography: 'Renan Haas Santos é empresário, ativista político e cofundador do Movimento Brasil Livre (MBL), uma das organizações políticas mais influentes do Brasil desde 2014. Tornou-se figura central nos protestos contra a corrupção e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por São Paulo em 2022, com foco em liberalismo econômico, desburocratização do Estado e combate a privilégios no setor público.',
+    website: 'https://www.camara.leg.br/deputados/220552',
     email: 'dep.renansantos@camara.leg.br',
-    phone: '(11) 3115-5001',
+    phone: '@renan_santos_mbl',
     committeeMemberships: ['Comissão de Administração e Serviço Público', 'Comissão de Fiscalização Financeira e Controle', 'Comissão de Ciência e Tecnologia'],
     voteRecords: [
       {
         id: 'v12',
-        title: 'Reforma Administrativa (PEC 32)',
-        description: 'Proposta de emenda constitucional para reformar o serviço público, acabando com estabilidade para novos servidores e reestruturando carreiras.',
-        date: '2023-09-12',
+        title: 'Reforma Tributária (PEC 45)',
+        description: 'Votação na Câmara da PEC da Reforma Tributária sobre o consumo.',
+        date: '2023-07-07',
         vote: 'Yes',
-        billNumber: 'PEC 32/2020',
-        category: 'Administração Pública'
+        billNumber: 'PEC 45/2019',
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — PEC 45/2019', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2192459' },
+        ],
       },
       {
         id: 'v13',
-        title: 'Marco Legal das Startups',
-        description: 'Regulamentação do ecossistema de startups e fintechs no Brasil.',
-        date: '2023-06-20',
+        title: 'Marco Legal das Garantias',
+        description: 'Lei que moderniza o sistema de garantias de crédito no Brasil.',
+        date: '2023-10-04',
         vote: 'Yes',
-        billNumber: 'PL 2234/2022',
-        category: 'Tecnologia'
+        billNumber: 'Lei 14.711/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — Lei 14.711/2023', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14711.htm' },
+        ],
       },
       {
         id: 'v14',
-        title: 'Privatização dos Correios',
-        description: 'Projeto para privatização da Empresa Brasileira de Correios e Telégrafos.',
-        date: '2023-11-05',
+        title: 'Novo Arcabouço Fiscal',
+        description: 'Votação na Câmara do novo marco fiscal do governo federal.',
+        date: '2023-08-22',
+        vote: 'No',
+        billNumber: 'PLP 93/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — PLP 93/2023', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2356392' },
+        ],
+      },
+      {
+        id: 'v31',
+        title: 'PEC do Estouro Fiscal de Transição',
+        description: 'PEC que abriu R$ 145 bi fora do teto de gastos para o início do governo Lula.',
+        date: '2022-12-22',
+        vote: 'No',
+        billNumber: 'PEC 32/2022',
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — PEC 32/2022', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2347043' },
+        ],
+      },
+      {
+        id: 'v32',
+        title: 'Marco Temporal Indígena (Derrubada do Veto)',
+        description: 'Votação para derrubar o veto presidencial ao marco temporal indígena.',
+        date: '2023-12-14',
         vote: 'Yes',
-        billNumber: 'PL 591/2021',
-        category: 'Economia'
-      }
+        billNumber: 'PL 2903/2023',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'Câmara — PL 2903/2023', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2370216' },
+        ],
+      },
+      {
+        id: 'v33',
+        title: 'Taxação de Fundos Exclusivos',
+        description: 'Lei que tributa rendimentos de fundos exclusivos e investimentos no exterior (offshores).',
+        date: '2023-10-25',
+        vote: 'No',
+        billNumber: 'PL 4173/2023',
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — PL 4173/2023', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2386067' },
+        ],
+      },
+      {
+        id: 'v34',
+        title: 'Regulamentação da Reforma Tributária',
+        description: 'Votação do PLP que regulamenta a Reforma Tributária (CBS/IBS).',
+        date: '2024-07-10',
+        vote: 'Yes',
+        billNumber: 'PLP 68/2024',
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — PLP 68/2024', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2434742' },
+        ],
+      },
+      {
+        id: 'v35',
+        title: 'PL das Fake News',
+        description: 'Projeto de regulação de plataformas digitais e moderação de conteúdo.',
+        date: '2023-04-25',
+        vote: 'No',
+        billNumber: 'PL 2630/2020',
+        category: 'Direitos Digitais',
+        sources: [
+          { label: 'Câmara — PL 2630/2020', url: 'https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2256735' },
+        ],
+      },
     ],
     promises: [
       {
@@ -489,31 +996,79 @@ export const mockPoliticians: Politician[] = [
         title: 'Redução da Máquina Pública',
         description: 'Propor cortes em cargos comissionados e funções de confiança no governo federal.',
         datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        deadline: '2027-01-31',
         status: 'In Progress',
         progress: 40,
-        category: 'Administração Pública'
+        category: 'Administração Pública',
+        sources: [
+          { label: 'Câmara — Atividade do Deputado', url: 'https://www.camara.leg.br/deputados/220552' },
+        ],
       },
       {
         id: 'p11',
         title: 'Combate a Privilégios',
         description: 'Projetos para acabar com penduricalhos salariais e privilégios no setor público.',
         datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        deadline: '2027-01-31',
         status: 'In Progress',
         progress: 55,
-        category: 'Transparência'
+        category: 'Transparência',
+        sources: [
+          { label: 'Câmara — Proposições do Deputado', url: 'https://www.camara.leg.br/deputados/220552?ano=2024' },
+        ],
       },
       {
         id: 'p12',
         title: 'Desburocratização Digital',
         description: 'Digitalizar e simplificar processos burocráticos para cidadãos e empresas.',
         datePromised: '2022-08-15',
-        deadline: '2026-12-31',
+        deadline: '2027-01-31',
         status: 'In Progress',
         progress: 35,
-        category: 'Tecnologia'
-      }
+        category: 'Tecnologia',
+        sources: [
+          { label: 'Câmara — Atividade do Deputado', url: 'https://www.camara.leg.br/deputados/220552' },
+        ],
+      },
+      {
+        id: 'p26',
+        title: 'Fim do Foro Privilegiado',
+        description: 'Apresentar e apoiar PEC para extinção do foro privilegiado para políticos.',
+        datePromised: '2022-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 30,
+        category: 'Justiça',
+        sources: [
+          { label: 'Câmara — PECs em tramitação', url: 'https://www.camara.leg.br/buscaProposicoesWeb/' },
+        ],
+      },
+      {
+        id: 'p27',
+        title: 'Redução de Impostos',
+        description: 'Defender redução da carga tributária e simplificação para PMEs.',
+        datePromised: '2022-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 35,
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — Atividade do Deputado', url: 'https://www.camara.leg.br/deputados/220552' },
+        ],
+      },
+      {
+        id: 'p28',
+        title: 'Privatizações Estratégicas',
+        description: 'Apoiar privatização de estatais não estratégicas e desestatização.',
+        datePromised: '2022-08-15',
+        deadline: '2027-01-31',
+        status: 'In Progress',
+        progress: 25,
+        category: 'Economia',
+        sources: [
+          { label: 'Câmara — Atividade do Deputado', url: 'https://www.camara.leg.br/deputados/220552' },
+        ],
+      },
     ],
     proposals: [
       {
@@ -523,7 +1078,10 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2024-03-01',
         status: 'Active',
         category: 'Justiça',
-        supportLevel: 78
+        supportLevel: 78,
+        sources: [
+          { label: 'Câmara — Proposições do Deputado', url: 'https://www.camara.leg.br/deputados/220552?ano=2024' },
+        ],
       },
       {
         id: 'pr8',
@@ -532,9 +1090,36 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2024-05-10',
         status: 'Active',
         category: 'Transparência',
-        supportLevel: 85
-      }
-    ]
+        supportLevel: 85,
+        sources: [
+          { label: 'Câmara — Proposições do Deputado', url: 'https://www.camara.leg.br/deputados/220552?ano=2024' },
+        ],
+      },
+      {
+        id: 'pr18',
+        title: 'Fim do Fundo Eleitoral',
+        description: 'Proposta para extinguir o financiamento público de campanhas eleitorais.',
+        dateProposed: '2023-08-15',
+        status: 'Active',
+        category: 'Política',
+        supportLevel: 72,
+        sources: [
+          { label: 'Câmara — Proposições do Deputado', url: 'https://www.camara.leg.br/deputados/220552' },
+        ],
+      },
+      {
+        id: 'pr19',
+        title: 'Limite a Salários no Serviço Público',
+        description: 'Proposta para fixação real do teto constitucional, eliminando penduricalhos.',
+        dateProposed: '2024-09-04',
+        status: 'Active',
+        category: 'Administração Pública',
+        supportLevel: 68,
+        sources: [
+          { label: 'Câmara — Proposições do Deputado', url: 'https://www.camara.leg.br/deputados/220552?ano=2024' },
+        ],
+      },
+    ],
   },
   {
     id: '6',
@@ -551,20 +1136,23 @@ export const mockPoliticians: Politician[] = [
     termStart: '2023-01-01',
     termEnd: '2027-01-01',
     imageUrl: zemaImg,
-    biography: 'Romeu Zema Neto é empresário e político brasileiro, atual Governador de Minas Gerais em seu segundo mandato (2023-2027). Nascido em Araxá (MG) em 1964, é formado em Engenharia Mecânica pela UFMG e administrou o Grupo Zema, conglomerado empresarial com atuação em diversos setores. Filiado ao partido NOVO, foi eleito governador em 2018 como outsider da política, derrotando candidatos tradicionais. Reeleito em 2022 no primeiro turno com mais de 56% dos votos. Seu governo é marcado pelo foco em equilíbrio fiscal, desburocratização, concessões e parcerias público-privadas.',
+    biography: 'Romeu Zema Neto é empresário e político brasileiro, atual Governador de Minas Gerais em seu segundo mandato (2023-2027). Nascido em Araxá (MG) em 1964, é formado em Engenharia Mecânica pela UFMG e administrou o Grupo Zema. Filiado ao partido NOVO, foi eleito governador em 2018 como outsider da política. Reeleito em 2022 no primeiro turno com mais de 56% dos votos. Seu governo é marcado pelo foco em equilíbrio fiscal, desburocratização, concessões e parcerias público-privadas.',
     website: 'https://www.mg.gov.br',
-    email: 'contato@governo.mg.gov.br',
-    phone: '(31) 3915-0000',
+    email: 'governador@governo.mg.gov.br',
+    phone: '@romeuzema',
     committeeMemberships: ['Consórcio de Integração Sul e Sudeste (COSUD)', 'Fórum de Governadores'],
     voteRecords: [
       {
-        id: 'v14',
+        id: 'v14b',
         title: 'Reforma Administrativa de MG',
         description: 'Reestruturação do governo estadual com extinção e fusão de secretarias para redução de gastos.',
         date: '2023-02-15',
         vote: 'Yes',
         billNumber: 'Lei 24.313/2023',
-        category: 'Administração'
+        category: 'Administração',
+        sources: [
+          { label: 'ALMG — Lei 24.313/2023', url: 'https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/' },
+        ],
       },
       {
         id: 'v15',
@@ -573,7 +1161,10 @@ export const mockPoliticians: Politician[] = [
         date: '2023-07-10',
         vote: 'Yes',
         billNumber: 'Lei 24.468/2023',
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'ALMG — Lei 24.468/2023', url: 'https://www.almg.gov.br/legislacao-mineira/lei/24468/2023/' },
+        ],
       },
       {
         id: 'v15b',
@@ -582,50 +1173,152 @@ export const mockPoliticians: Politician[] = [
         date: '2023-10-05',
         vote: 'Yes',
         billNumber: 'Decreto 48.765/2023',
-        category: 'Infraestrutura'
-      }
+        category: 'Infraestrutura',
+        sources: [
+          { label: 'IMA-MG — Concessões', url: 'https://www.mg.gov.br/' },
+        ],
+      },
+      {
+        id: 'v36',
+        title: 'Adesão ao Regime de Recuperação Fiscal',
+        description: 'Adesão de Minas Gerais ao RRF, com proposta de recuperação fiscal aprovada pela União.',
+        date: '2024-09-13',
+        vote: 'Yes',
+        billNumber: 'Lei 25.061/2024',
+        category: 'Economia',
+        sources: [
+          { label: 'ALMG — Lei 25.061/2024', url: 'https://www.almg.gov.br/legislacao-mineira/lei/25061/2024/' },
+        ],
+      },
+      {
+        id: 'v37',
+        title: 'Privatização da Codemig',
+        description: 'Reestruturação societária da Codemig com previsão de desestatização parcial.',
+        date: '2023-08-30',
+        vote: 'Yes',
+        billNumber: 'Lei 24.491/2023',
+        category: 'Administração',
+        sources: [
+          { label: 'ALMG — Lei 24.491/2023', url: 'https://www.almg.gov.br/legislacao-mineira/lei/24491/2023/' },
+        ],
+      },
+      {
+        id: 'v38',
+        title: 'Programa Bolsa Merenda',
+        description: 'Sanção da lei que cria o Bolsa Merenda durante o recesso escolar.',
+        date: '2023-12-14',
+        vote: 'Yes',
+        billNumber: 'Lei 24.683/2023',
+        category: 'Educação',
+        sources: [
+          { label: 'ALMG — Lei 24.683/2023', url: 'https://www.almg.gov.br/legislacao-mineira/lei/24683/2023/' },
+        ],
+      },
+      {
+        id: 'v39',
+        title: 'Acordo da Vale (Brumadinho)',
+        description: 'Sanção de acordo de reparação integral por danos do rompimento da barragem de Brumadinho.',
+        date: '2021-02-04',
+        vote: 'Yes',
+        billNumber: 'Acordo Judicial Brumadinho',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'AGE-MG — Acordo Brumadinho', url: 'https://www.agenciaminas.mg.gov.br/governador/biografia' },
+        ],
+      },
     ],
     promises: [
       {
         id: 'p13',
         title: 'Equilíbrio Fiscal de Minas',
         description: 'Recuperar as finanças do estado e eliminar o déficit fiscal herdado.',
-        datePromised: '2022-08-01',
+        datePromised: '2018-08-01',
         deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Economia'
+        category: 'Economia',
+        sources: [
+          { label: 'Tesouro Nacional — Capag MG', url: 'https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag' },
+        ],
       },
       {
         id: 'p14',
         title: 'Pagar Servidores em Dia',
         description: 'Regularizar o pagamento dos servidores públicos estaduais sem atrasos.',
-        datePromised: '2022-08-01',
+        datePromised: '2018-08-01',
         deadline: '2026-12-31',
         status: 'Fulfilled',
         progress: 100,
-        category: 'Administração'
+        category: 'Administração',
+        sources: [
+          { label: 'Portal da Transparência MG', url: 'https://www.transparencia.mg.gov.br/' },
+        ],
       },
       {
         id: 'p15',
         title: 'Concessões e PPPs',
         description: 'Ampliar parcerias público-privadas para melhorar infraestrutura e serviços públicos.',
-        datePromised: '2022-08-01',
+        datePromised: '2018-08-01',
         deadline: '2026-12-31',
         status: 'In Progress',
         progress: 70,
-        category: 'Infraestrutura'
-      }
+        category: 'Infraestrutura',
+        sources: [
+          { label: 'SEINFRA-MG', url: 'https://www.infraestrutura.mg.gov.br/' },
+        ],
+      },
+      {
+        id: 'p29',
+        title: 'Reforma Administrativa Estadual',
+        description: 'Reduzir o número de secretarias e cargos comissionados.',
+        datePromised: '2018-08-01',
+        deadline: '2023-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Administração',
+        sources: [
+          { label: 'ALMG — Lei 24.313/2023', url: 'https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/' },
+        ],
+      },
+      {
+        id: 'p30',
+        title: 'Adesão ao Regime de Recuperação Fiscal',
+        description: 'Aderir ao RRF para resolver a dívida do estado com a União.',
+        datePromised: '2022-08-01',
+        deadline: '2026-12-31',
+        status: 'Fulfilled',
+        progress: 100,
+        category: 'Economia',
+        sources: [
+          { label: 'STN — Regime de Recuperação Fiscal', url: 'https://www.tesourotransparente.gov.br/temas/estados-e-municipios/regime-de-recuperacao-fiscal-rrf' },
+        ],
+      },
+      {
+        id: 'p31',
+        title: 'Minas Digital',
+        description: 'Digitalizar 100% dos serviços públicos estaduais até 2026.',
+        datePromised: '2022-08-01',
+        deadline: '2026-12-31',
+        status: 'In Progress',
+        progress: 75,
+        category: 'Tecnologia',
+        sources: [
+          { label: 'PRODEMGE — MG App', url: 'https://www.prodemge.gov.br/' },
+        ],
+      },
     ],
     proposals: [
       {
         id: 'pr9',
         title: 'Minas Digital',
-        description: 'Digitalização completa dos serviços públicos estaduais com atendimento 100% online.',
+        description: 'Digitalização completa dos serviços públicos estaduais com atendimento 100% online via MG App.',
         dateProposed: '2023-05-20',
         status: 'Active',
         category: 'Tecnologia',
-        supportLevel: 79
+        supportLevel: 79,
+        sources: [
+          { label: 'PRODEMGE', url: 'https://www.prodemge.gov.br/' },
+        ],
       },
       {
         id: 'pr10',
@@ -634,8 +1327,35 @@ export const mockPoliticians: Politician[] = [
         dateProposed: '2023-08-12',
         status: 'Active',
         category: 'Meio Ambiente',
-        supportLevel: 74
-      }
-    ]
-  }
+        supportLevel: 76,
+        sources: [
+          { label: 'IGAM — Recursos Hídricos', url: 'http://www.igam.mg.gov.br/' },
+        ],
+      },
+      {
+        id: 'pr20',
+        title: 'Concessão das Rodovias do Sul/Sudoeste',
+        description: 'Concessão de pacotes rodoviários para empresas privadas, com obrigação de duplicação e melhoria.',
+        dateProposed: '2024-04-08',
+        status: 'Passed',
+        category: 'Infraestrutura',
+        supportLevel: 80,
+        sources: [
+          { label: 'SEINFRA — Concessões Rodoviárias', url: 'https://www.infraestrutura.mg.gov.br/' },
+        ],
+      },
+      {
+        id: 'pr21',
+        title: 'Privatização da Cemig',
+        description: 'Proposta de desestatização parcial da Cemig (energia elétrica) para captar recursos e reduzir dívida.',
+        dateProposed: '2024-10-15',
+        status: 'Active',
+        category: 'Energia',
+        supportLevel: 52,
+        sources: [
+          { label: 'Cemig — Relações com Investidores', url: 'https://ri.cemig.com.br/' },
+        ],
+      },
+    ],
+  },
 ];
