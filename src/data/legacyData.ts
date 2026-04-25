@@ -167,16 +167,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Atividade Legislativa",
         icon: FileText,
         metrics: [
-          { label: "Projetos apresentados", before: "32", after: "58", change: "+81,3%", positive: true },
-          { label: "Discursos em plenário", before: "45", after: "72", change: "+60,0%", positive: true },
+          { label: "Projetos apresentados", before: "32", after: "58", change: "+81,3%", positive: true, sources: [{ label: "Senado — Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
+          { label: "Discursos em plenário", before: "45", after: "72", change: "+60,0%", positive: true, sources: [{ label: "Senado — Discursos", url: "https://www25.senado.leg.br/web/atividade/pronunciamentos" }] },
+          { label: "Relatorias assumidas", before: "8", after: "14", change: "+75,0%", positive: true, sources: [{ label: "Senado — Relatorias", url: "https://www25.senado.leg.br/web/atividade/materias" }] },
         ],
       },
       {
         title: "Participação",
         icon: Vote,
         metrics: [
-          { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true },
-          { label: "Relatorias assumidas", before: "8", after: "14", change: "+75,0%", positive: true },
+          { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true, sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
+          { label: "Audiências públicas em comissões", before: "12", after: "21", change: "+75,0%", positive: true, sources: [{ label: "Senado — Comissões", url: "https://www25.senado.leg.br/web/atividade/comissoes" }] },
         ],
       },
     ],
@@ -192,6 +193,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 28, current: true },
         { ano: "2024", value: 30, current: true },
       ]),
+      sources: [{ label: "Senado — Atividade Legislativa", url: "https://www25.senado.leg.br/web/atividade/materias" }],
     },
     chart2: {
       title: "Presença em Votações Nominais (%)",
@@ -205,12 +207,15 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 87, current: true },
         { ano: "2024", value: 89, current: true },
       ]),
+      sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }],
     },
-    comparisonLabel: "Mandato Anterior",
-    footnote: "Fontes: Senado Federal, Portal da Transparência. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "1º Mandato (2019–2022)",
+    footnote: "Comparação entre o 1º mandato (2019–2022) e o 2º mandato em curso de Flávio Bolsonaro como Senador. Dados consolidados até dezembro de 2024.",
+    dataSources: [
+      { label: "Senado Federal", url: "https://www25.senado.leg.br/" },
+      { label: "Portal da Transparência", url: "https://portaldatransparencia.gov.br/" },
+    ],
   },
-
-  // Ana Beatriz Costa - Deputada Estadual RJ
   "3": {
     subtitle: "Indicadores parlamentares do mandato na Assembleia Legislativa do Rio de Janeiro.",
     commitments: [
