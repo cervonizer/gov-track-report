@@ -220,13 +220,9 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
                 <Bar dataKey="Atual" name="Atual" fill="hsl(210, 70%, 30%)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
+            <SourceCitation sources={chart1.sources} className="mt-3" />
           </CardContent>
         </Card>
-
-        <Card style={{ borderColor: "hsl(210, 30%, 85%)" }}>
-          <CardHeader>
-            <CardTitle className="text-base" style={{ color: "hsl(210, 70%, 20%)" }}>
-              {chart2.title}
             </CardTitle>
           </CardHeader>
           <CardContent>
