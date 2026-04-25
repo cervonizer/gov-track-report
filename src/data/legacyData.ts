@@ -90,24 +90,27 @@ export const legacyDataMap: Record<string, LegacyData> = {
         title: "Economia",
         icon: TrendingUp,
         metrics: [
-          { label: "Crescimento do PIB", before: "2,9%", after: "3,2%", change: "+0,3 p.p.", positive: true },
-          { label: "Taxa de desemprego", before: "8,5%", after: "6,2%", change: "-2,3 p.p.", positive: true },
+          { label: "Crescimento do PIB", before: "2,9%", after: "3,2%", change: "+0,3 p.p.", positive: true, sources: [{ label: "IBGE — Contas Nacionais", url: "https://www.ibge.gov.br/explica/pib.php" }] },
+          { label: "Taxa de desemprego", before: "8,5%", after: "6,2%", change: "-2,3 p.p.", positive: true, sources: [{ label: "IBGE — PNAD Contínua", url: "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html" }] },
+          { label: "Inflação (IPCA acumulado)", before: "5,79%", after: "4,83%", change: "-0,96 p.p.", positive: true, sources: [{ label: "IBGE — IPCA", url: "https://www.ibge.gov.br/explica/inflacao.php" }] },
+          { label: "Salário Mínimo (R$)", before: "R$ 1.212", after: "R$ 1.518", change: "+25,2%", positive: true, sources: [{ label: "Planalto — Política do Salário Mínimo", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm" }] },
         ],
       },
       {
         title: "Social",
         icon: Users,
         metrics: [
-          { label: "Pobreza extrema", before: "5,9%", after: "4,4%", change: "-1,5 p.p.", positive: true },
-          { label: "Insegurança alimentar grave", before: "15,5%", after: "8,7%", change: "-6,8 p.p.", positive: true },
+          { label: "Pobreza extrema", before: "5,9%", after: "4,4%", change: "-1,5 p.p.", positive: true, sources: [{ label: "IBGE — Síntese de Indicadores Sociais", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
+          { label: "Insegurança alimentar grave", before: "15,5%", after: "8,7%", change: "-6,8 p.p.", positive: true, sources: [{ label: "FAO — SOFI 2024", url: "https://www.fao.org/publications/sofi/2024/en/" }] },
+          { label: "Famílias no Bolsa Família (mi)", before: "21,1", after: "20,5", change: "-0,6", positive: true, sources: [{ label: "MDS — Bolsa Família", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" }] },
         ],
       },
       {
         title: "Meio Ambiente",
         icon: Leaf,
         metrics: [
-          { label: "Desmatamento Amazônia (km²)", before: "11.594", after: "5.816", change: "-49,8%", positive: true },
-          { label: "Áreas embargadas (mil ha)", before: "120", after: "215", change: "+79,2%", positive: true },
+          { label: "Desmatamento Amazônia (km²)", before: "11.594", after: "5.816", change: "-49,8%", positive: true, sources: [{ label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }] },
+          { label: "Desmatamento Cerrado (km²)", before: "10.689", after: "8.174", change: "-23,5%", positive: true, sources: [{ label: "INPE — PRODES Cerrado", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/cerrado/rates" }] },
         ],
       },
     ],
@@ -123,6 +126,7 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 2.9, current: true },
         { ano: "2024", value: 3.2, current: true },
       ]),
+      sources: [{ label: "IBGE — Contas Nacionais Trimestrais", url: "https://www.ibge.gov.br/explica/pib.php" }],
     },
     chart2: {
       title: "Desmatamento na Amazônia (km²/ano)",
@@ -136,9 +140,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
         { ano: "2023", value: 9001, current: true },
         { ano: "2024", value: 5816, current: true },
       ]),
+      sources: [{ label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }],
     },
-    comparisonLabel: "Gov. Anterior",
-    footnote: "Fontes: IBGE, INPE, PNAD Contínua, Ministério da Fazenda. Dados consolidados até dezembro de 2024.",
+    comparisonLabel: "Gov. Bolsonaro (2019–2022)",
+    footnote: "Dados consolidados até dezembro de 2024. Comparação entre governo Bolsonaro (2019–2022) e Lula (2023–2024).",
+    dataSources: [
+      { label: "IBGE", url: "https://www.ibge.gov.br/" },
+      { label: "INPE — PRODES", url: "http://terrabrasilis.dpi.inpe.br/" },
+      { label: "FAO — SOFI", url: "https://www.fao.org/publications/sofi/" },
+      { label: "MDS — Bolsa Família", url: "https://www.gov.br/mds/pt-br/" },
+      { label: "Ministério da Fazenda", url: "https://www.gov.br/fazenda/" },
+    ],
   },
 
   // Flávio Bolsonaro - Senador
