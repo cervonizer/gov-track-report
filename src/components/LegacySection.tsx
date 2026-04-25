@@ -223,7 +223,6 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
             <SourceCitation sources={chart1.sources} className="mt-3" />
           </CardContent>
         </Card>
-        </Card>
 
         <Card style={{ borderColor: "hsl(210, 30%, 85%)" }}>
           <CardHeader>
