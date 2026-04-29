@@ -137,6 +137,42 @@ export const mockPoliticians: Politician[] = [
           { label: 'Planalto — Lei 14.993/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14993.htm' },
         ],
       },
+      {
+        id: 'v22',
+        title: 'Derrubada do Veto ao Marco Temporal',
+        description: 'Congresso Nacional derrubou o veto presidencial ao marco temporal de terras indígenas; governo foi derrotado.',
+        date: '2023-12-14',
+        vote: 'No',
+        billNumber: 'Lei 14.701/2023 (veto)',
+        category: 'Meio Ambiente',
+        sources: [
+          { label: 'Congresso Nacional — Sessão Conjunta 14/12/2023', url: 'https://www.congressonacional.leg.br/materias/vetos/-/veto/detalhe/15375' },
+        ],
+      },
+      {
+        id: 'v23',
+        title: 'Reoneração da Folha de Pagamento',
+        description: 'Governo tentou reonerar a folha de 17 setores via MP; derrotado, recuou e sancionou desoneração até 2027.',
+        date: '2024-09-16',
+        vote: 'No',
+        billNumber: 'Lei 14.973/2024',
+        category: 'Economia',
+        sources: [
+          { label: 'Planalto — Lei 14.973/2024', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14973.htm' },
+        ],
+      },
+      {
+        id: 'v24',
+        title: 'MP 1.227/2024 — Limite a créditos de PIS/Cofins',
+        description: 'Medida Provisória editada pelo governo para limitar compensação de créditos tributários; teve trechos devolvidos pelo Congresso após forte rejeição do setor produtivo.',
+        date: '2024-06-04',
+        vote: 'Yes',
+        billNumber: 'MP 1.227/2024',
+        category: 'Economia',
+        sources: [
+          { label: 'Senado — MP 1.227/2024', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/164093' },
+        ],
+      },
     ],
     promises: [
       {
