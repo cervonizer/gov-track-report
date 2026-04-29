@@ -1,95 +1,59 @@
-## Plano
+# Equilibrar o perfil do Lula com indicadores negativos
 
-Enriquecer os perfis dos 5 políticos reais (Lula, Flávio Bolsonaro, Caiado, Renan Santos, Zema) com mais votos, promessas, propostas e comparações com antecessores — todos com **fonte oficial citada e linkada** em cada item. Ana Beatriz Costa (fictícia) fica de fora.
+Hoje a página do Lula (`/politician/1`) mostra majoritariamente dados positivos. O objetivo é adicionar — sem remover o que já existe — indicadores críticos verificáveis, com fontes oficiais ou de imprensa de referência, em três áreas: **Legado**, **Promessas** e **Propostas/Votações**.
 
-### 1. Adicionar campo de fontes no modelo de dados
+A infraestrutura já suporta tudo isso (campo `positive: false` renderiza em vermelho; `status: 'Broken'` para promessas; `sources[]` em todos os itens). Não precisa mexer em componentes nem em tipos.
 
-`src/types/politician.ts` — adicionar campo opcional `source` em `VoteRecord`, `Promise`, `Proposal`:
+## 1. Legado (`src/data/legacyData.ts`, entrada `"1"`)
 
-```ts
-export interface Source {
-  label: string;   // ex: "Câmara dos Deputados — PL 2903/2023"
-  url: string;     // link oficial direto
-}
-// adicionar `sources?: Source[]` em VoteRecord, Promise, Proposal
-```
+### Adicionar nova categoria de performance "Fiscal e Segurança" com métricas negativas
+- **Dívida Pública Bruta (% PIB)**: 71,7% (dez/2022) → 76,5% (dez/2024) — `positive: false`. Fonte: Banco Central — Estatísticas Fiscais.
+- **Taxa Selic (a.a.)**: 13,75% (jan/2023) → 15,00% (2025) — `positive: false`. Fonte: BCB — Histórico Selic / Copom.
+- **Déficit Primário do Governo Central (R$ bi)**: superávit 54,1 (2022) → déficit 230,5 (2024) — `positive: false`. Fonte: Tesouro Nacional — RTN.
+- **Câmbio R$/US$ (média anual)**: 5,16 (2022) → 5,39 (2024); pico > 6,00 em dez/2024 — `positive: false`. Fonte: BCB — PTAX.
+- **Homicídios por 100 mil hab.**: leve alta em estados-chave; usar dado nacional do Anuário FBSP 2024 — `positive: false`. Fonte: Fórum Brasileiro de Segurança Pública.
 
-E em `legacyData.ts`, adicionar `sources?: Source[]` opcional em `Commitment` e `PerformanceMetric`, além de um campo geral `dataSources: Source[]` em `LegacyData` para a comparação com antecessores.
+### Adicionar métricas negativas em categorias existentes
+- **Social → Aprovação do governo (Datafolha)**: 38% ótimo/bom (mar/2023) → 24% (out/2024) — `positive: false`. Fonte: Datafolha.
+- **Meio Ambiente → Queimadas no Pantanal (focos)**: forte alta em 2024 (ano recorde) — `positive: false`. Fonte: INPE — BDQueimadas.
 
-### 2. Renderizar legenda com link nos cards
+### Atualizar o `footnote` e `dataSources`
+Incluir BCB, Tesouro Nacional, FBSP, Datafolha e nota explicando que indicadores são apresentados de forma equilibrada (positivos e negativos).
 
-`src/pages/PoliticianProfile.tsx` — em cada item (voto, promessa, proposta) renderizar abaixo do conteúdo:
+### Opcional (3º gráfico não suportado hoje)
+Manter os 2 gráficos existentes; trocar `chart2` não é desejável. Em vez disso, adicionar a Selic como métrica de tabela (acima).
 
-```
-Fonte: Senado Federal · Câmara dos Deputados
-```
-onde cada nome é um `<a target="_blank">` para a URL oficial. Estilo discreto: `text-xs text-muted-foreground`, ícone `ExternalLink` pequeno.
+## 2. Promessas (`src/data/mockData.ts`, array `promises` do id `'1'`)
 
-`src/components/LegacySection.tsx` — adicionar rodapé "Fontes dos dados" com lista de links ao final da seção comparativa.
+Adicionar 4–5 promessas com `status: 'Broken'` ou `'In Progress'` com baixo progresso:
 
-### 3. Expandir dados em `src/data/mockData.ts` com fontes oficiais
+- **"Não privatizar a Petrobras nem a Eletrobras"** — `Broken` parcial: Eletrobras seguiu privatizada; governo não reverteu. Fonte: Agência Câmara / Folha.
+- **"Revogar o Teto de Gastos sem aumentar a dívida"** — `In Progress` (progresso 30): novo arcabouço aprovado, mas dívida/PIB subiu. Fontes: Planalto LC 200/2023 + BCB.
+- **"Zerar a fila do SUS para cirurgias eletivas"** — `In Progress` (progresso 25): meta não atingida; fila ainda cresce em vários estados. Fonte: CONASS / Ministério da Saúde.
+- **"Reonerar a folha de pagamento de 17 setores"** — `Broken`: Congresso derrubou e governo recuou, mantendo desoneração até 2027. Fonte: Senado — PL 1847/2024 / Lei 14.973/2024.
+- **"Cumprir meta fiscal de déficit zero em 2024"** — `Broken`: meta foi flexibilizada via LDO; resultado primário ficou negativo. Fonte: Tesouro Nacional / Ministério da Fazenda.
 
-Para cada um dos 5 políticos, expandir significativamente com base em fontes oficiais. Quantidade-alvo por político: **8–10 votos, 6–8 promessas, 4–6 propostas**. Cada item terá `sources` apontando para o portal oficial pertinente.
+## 3. Propostas / Votações (`src/data/mockData.ts`, arrays `proposals` e `voteRecords` do id `'1'`)
 
-**Fontes oficiais por tipo de cargo:**
+Adicionar registros que mostrem derrotas e controvérsias:
 
-| Político | Cargo | Fontes principais |
-|---|---|---|
-| Lula | Presidente | Planalto (`gov.br/planalto`), Casa Civil, Diário Oficial da União, IBGE, Banco Central |
-| Flávio Bolsonaro | Senador | Senado Federal (`senado.leg.br/senadores/...`), portal de Atividade Legislativa |
-| Caiado | Governador GO | Governo de Goiás (`goias.gov.br`), Assembleia Legislativa de Goiás (`al.go.leg.br`), TCE-GO |
-| Renan Santos | Deputado Federal | Câmara dos Deputados (`camara.leg.br/deputados/...`), portal de Votações |
-| Zema | Governador MG | Governo de MG (`mg.gov.br`), ALMG (`almg.gov.br`), TCE-MG |
+- **Vetos derrubados pelo Congresso** (1 entrada agregada): vários vetos do governo Lula a projetos como Marco Temporal (Lei 14.701/2023) e desoneração foram derrubados. `status: 'Failed'`. Fonte: Congresso Nacional — sessões conjuntas.
+- **MP 1.227/2024 (limite a créditos de PIS/Cofins)**: editada pelo governo, sofreu forte rejeição e teve trechos devolvidos pelo Congresso. `status: 'Withdrawn'`. Fonte: Senado — MP 1.227/2024.
+- **PL da Reoneração da Folha (PL 1.847/2024)**: posição do governo derrotada. `voteRecords` com `vote: 'No'` e desfecho contrário. Fonte: Câmara dos Deputados.
+- **PEC da Segurança Pública**: enviada ao Congresso mas sem avanço significativo até 2025. `status: 'Active'` com `supportLevel` baixo. Fonte: Câmara — PEC 18/2025.
 
-> Como o projeto não tem acesso ao web/Perplexity em modo build sem conector, eu vou: (a) usar URLs canônicas dos portais oficiais por categoria/PL conhecidos publicamente, e (b) marcar com clareza no texto sempre que uma data ou número precisar ser confirmado. Onde houver dúvida, prefiro **menos itens com fonte sólida** a inflar a lista.
+Todos com `sources` apontando para Planalto, Câmara, Senado ou portais oficiais correspondentes.
 
-### 4. Datas dos votos — corrigir e padronizar
+## Detalhes técnicos
 
-Revisar todas as datas atuais que parecem aproximadas/imprecisas (ex: votos do Lula em PECs que ele sancionou), separando claramente:
-- **Sanção presidencial** (Lula) — usa data de publicação no DOU
-- **Votos em plenário** (Flávio, Renan) — data oficial do Senado/Câmara
-- **Decretos/leis estaduais** (Caiado, Zema) — data de publicação no Diário Oficial estadual
+- Nenhum tipo, componente ou rota muda.
+- Edições concentradas em 2 arquivos: `src/data/legacyData.ts` (entrada `"1"`) e `src/data/mockData.ts` (politician id `'1'`).
+- Métricas negativas usam `positive: false` (já renderizado em vermelho pela `LegacySection`).
+- Promessas descumpridas usam `status: 'Broken'` (já traduzido para "Quebrada" em `translations.ts`).
+- Propostas derrotadas usam `'Failed'` ou `'Withdrawn'`.
+- Cada item novo recebe `sources[]` com link oficial (Planalto, BCB, Tesouro, INPE, IBGE, Câmara, Senado) ou fonte de referência (Datafolha, FBSP).
 
-### 5. Comparação com antecessores — expandir `legacyData.ts`
+## Fora de escopo
 
-Para cada um dos 5, adicionar mais métricas comparativas com fontes:
-
-| Político | Antecessor | Indicadores adicionais |
-|---|---|---|
-| Lula | Bolsonaro (2019–2022) | Taxa de desemprego (PNAD/IBGE), IPCA (IBGE), desmatamento (INPE), exportações (MDIC), Mapa da Fome (FAO) |
-| Flávio Bolsonaro | — (1º mandato senador) | Comparar com média do Senado: presença, projetos apresentados (Senado) |
-| Caiado | Marconi Perillo (2011–2014) | Homicídios (SSP-GO), dívida do estado (Tesouro Nacional), investimento em infraestrutura |
-| Renan Santos | — (1º mandato) | Comparar com média da Câmara: presença, projetos (Câmara) |
-| Zema | Fernando Pimentel (2015–2018) | Folha de pagamento em dia (Tesouro MG), arrecadação ICMS (SEF-MG), dívida estadual |
-
-Cada métrica recebe `sources: [{label, url}]` apontando para o órgão oficial.
-
-### 6. Componente reutilizável de fontes
-
-Criar `src/components/SourceCitation.tsx`:
-
-```tsx
-<SourceCitation sources={sources} />
-// renderiza: "Fonte: [Câmara dos Deputados ↗] · [DOU ↗]"
-```
-
-Usado em 3 lugares: votos, promessas, propostas, e métricas do `LegacySection`.
-
-### Arquivos alterados
-
-- `src/types/politician.ts` — novo tipo `Source`, campo `sources?` em 3 interfaces
-- `src/data/legacyData.ts` — campo `sources?` em métricas, `dataSources` no objeto raiz, novas métricas
-- `src/data/mockData.ts` — expansão massiva dos 5 políticos reais com fontes oficiais
-- `src/components/SourceCitation.tsx` — novo componente
-- `src/pages/PoliticianProfile.tsx` — renderizar `<SourceCitation>` em votos/promessas/propostas
-- `src/components/LegacySection.tsx` — renderizar fontes nas métricas e rodapé
-
-### Observação importante sobre veracidade
-
-Vou usar URLs **canônicas dos portais oficiais** (Senado, Câmara, Planalto, governos estaduais). Para projetos de lei específicos cujo número eu já confirmo no código atual (PEC 45/2019, LC 200/2023, PL 2903/2023, etc.) os links irão direto para a página de tramitação. Para indicadores comparativos, os links vão para o portal do órgão (IBGE, INPE, TCE) — o usuário pode validar facilmente. Onde houver qualquer incerteza sobre uma estatística específica, prefiro omiti-la a inventar número.
-
-### Pergunta antes de implementar
-
-Você prefere que eu:
-- **A)** Implemente já com as fontes oficiais que tenho confiança alta (links de portais + projetos de lei conhecidos), assumindo que algumas métricas comparativas vão ficar com link para o portal do órgão (ex: "ver no IBGE") em vez do indicador exato; **ou**
-- **B)** Eu primeiro habilite o conector **Perplexity** (com sua aprovação) para pesquisar e validar cada número, data e fonte ao vivo antes de gravar — mais lento e usa créditos do conector, porém mais preciso?
+- Não alterar os outros 4 políticos nesta rodada (faremos em seguida, se quiser).
+- Não adicionar novos gráficos (componente atual suporta apenas 2).
