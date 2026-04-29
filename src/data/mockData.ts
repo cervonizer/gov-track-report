@@ -397,6 +397,42 @@ export const mockPoliticians: Politician[] = [
           { label: 'Ministério da Fazenda — PTE', url: 'https://www.gov.br/fazenda/pt-br/orgaos/spe/transformacao-ecologica' },
         ],
       },
+      {
+        id: 'pr14',
+        title: 'MP 1.227/2024 — Compensação de PIS/Cofins',
+        description: 'Medida Provisória que limitava a compensação de créditos tributários para conter o déficit; trechos centrais foram devolvidos pelo presidente do Congresso após reação do setor produtivo.',
+        dateProposed: '2024-06-04',
+        status: 'Withdrawn',
+        category: 'Economia',
+        supportLevel: 25,
+        sources: [
+          { label: 'Senado — MP 1.227/2024', url: 'https://www25.senado.leg.br/web/atividade/materias/-/materia/164093' },
+        ],
+      },
+      {
+        id: 'pr15',
+        title: 'PEC da Segurança Pública',
+        description: 'Proposta enviada ao Congresso para constitucionalizar o SUSP e ampliar competência da União em segurança; tramitação travada e baixa adesão de governadores.',
+        dateProposed: '2024-10-31',
+        status: 'Active',
+        category: 'Segurança',
+        supportLevel: 35,
+        sources: [
+          { label: 'Câmara — PEC da Segurança Pública', url: 'https://www.camara.leg.br/noticias/1110050-governo-envia-pec-da-seguranca-publica-ao-congresso/' },
+        ],
+      },
+      {
+        id: 'pr16',
+        title: 'Vetos derrubados pelo Congresso',
+        description: 'Conjunto de vetos presidenciais derrubados pelo Congresso em 2023–2024, incluindo Marco Temporal de Terras Indígenas e trechos da desoneração da folha — sinal de derrotas políticas relevantes para o Executivo.',
+        dateProposed: '2023-12-14',
+        status: 'Failed',
+        category: 'Política',
+        supportLevel: 30,
+        sources: [
+          { label: 'Congresso Nacional — Vetos', url: 'https://www.congressonacional.leg.br/materias/vetos' },
+        ],
+      },
     ],
   },
   {
