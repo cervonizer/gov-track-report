@@ -305,6 +305,19 @@ export const legacyDataMap: Record<string, LegacyData> = {
       {
         title: "Atividade Legislativa",
         icon: FileText,
+    commitments: [
+      { id: 1, title: "Investimento em educação", icon: GraduationCap, status: "Em Andamento", progress: 68, detail: "Aumento real no orçamento da educação" },
+      { id: 2, title: "Habitação popular", icon: Building2, status: "Em Andamento", progress: 55, detail: "2.700 de 5.000 unidades em obras" },
+      { id: 3, title: "Valorização do professor", icon: GraduationCap, status: "Em Andamento", progress: 60, detail: "Reajuste salarial em discussão" },
+      { id: 4, title: "Infraestrutura estadual", icon: Building2, status: "Parcialmente Cumprida", progress: 72, detail: "Projetos aprovados em 2023-2024" },
+      { id: 5, title: "Reduzir letalidade policial no RJ", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "RJ segue como estado com maior número absoluto de mortes por intervenção policial (Anuário FBSP 2024)" },
+      { id: 6, title: "Zerar fila da saúde estadual", icon: Stethoscope, status: "Não Cumprida", progress: 15, detail: "Fila por cirurgias eletivas e consultas especializadas cresceu em 2023–2024" },
+      { id: 7, title: "Concluir obras paradas do estado", icon: Building2, status: "Parcialmente Cumprida", progress: 35, detail: "TCE-RJ aponta dezenas de obras com atraso superior a 24 meses" },
+    ],
+    performance: [
+      {
+        title: "Atividade Legislativa",
+        icon: FileText,
         metrics: [
           { label: "Projetos apresentados", before: "18", after: "34", change: "+88,9%", positive: true },
           { label: "Emendas ao orçamento", before: "12", after: "21", change: "+75,0%", positive: true },
@@ -316,6 +329,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
         metrics: [
           { label: "Presença em sessões", before: "85%", after: "94%", change: "+9,0 p.p.", positive: true },
           { label: "Audiências públicas realizadas", before: "6", after: "13", change: "+116,7%", positive: true },
+        ],
+      },
+      {
+        title: "Indicadores Críticos do Estado",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Mortes por intervenção policial (RJ)", before: "1.245", after: "1.330", change: "+6,8%", positive: false, sources: [{ label: "ISP-RJ — Estatísticas", url: "http://www.ispdados.rj.gov.br/" }, { label: "FBSP — Anuário 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
+          { label: "Fila por cirurgia eletiva no SUS-RJ", before: "62 mil", after: "84 mil", change: "+35,5%", positive: false, sources: [{ label: "SES-RJ — Painel SUS", url: "https://www.saude.rj.gov.br/" }] },
+          { label: "Evasão no Ensino Médio (RJ)", before: "6,8%", after: "7,9%", change: "+1,1 p.p.", positive: false, sources: [{ label: "INEP — Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
+          { label: "Obras estaduais com atraso > 24 meses", before: "—", after: "47", change: "Crítico", positive: false, sources: [{ label: "TCE-RJ — Relatórios", url: "https://www.tce.rj.gov.br/" }] },
         ],
       },
     ],
