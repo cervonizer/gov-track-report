@@ -300,16 +300,6 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Habitação popular", icon: Building2, status: "Em Andamento", progress: 55, detail: "2.700 de 5.000 unidades em obras" },
       { id: 3, title: "Valorização do professor", icon: GraduationCap, status: "Em Andamento", progress: 60, detail: "Reajuste salarial em discussão" },
       { id: 4, title: "Infraestrutura estadual", icon: Building2, status: "Parcialmente Cumprida", progress: 72, detail: "Projetos aprovados em 2023-2024" },
-    ],
-    performance: [
-      {
-        title: "Atividade Legislativa",
-        icon: FileText,
-    commitments: [
-      { id: 1, title: "Investimento em educação", icon: GraduationCap, status: "Em Andamento", progress: 68, detail: "Aumento real no orçamento da educação" },
-      { id: 2, title: "Habitação popular", icon: Building2, status: "Em Andamento", progress: 55, detail: "2.700 de 5.000 unidades em obras" },
-      { id: 3, title: "Valorização do professor", icon: GraduationCap, status: "Em Andamento", progress: 60, detail: "Reajuste salarial em discussão" },
-      { id: 4, title: "Infraestrutura estadual", icon: Building2, status: "Parcialmente Cumprida", progress: 72, detail: "Projetos aprovados em 2023-2024" },
       { id: 5, title: "Reduzir letalidade policial no RJ", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "RJ segue como estado com maior número absoluto de mortes por intervenção policial (Anuário FBSP 2024)" },
       { id: 6, title: "Zerar fila da saúde estadual", icon: Stethoscope, status: "Não Cumprida", progress: 15, detail: "Fila por cirurgias eletivas e consultas especializadas cresceu em 2023–2024" },
       { id: 7, title: "Concluir obras paradas do estado", icon: Building2, status: "Parcialmente Cumprida", progress: 35, detail: "TCE-RJ aponta dezenas de obras com atraso superior a 24 meses" },
