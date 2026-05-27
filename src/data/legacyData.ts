@@ -225,6 +225,9 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Redução de impostos", icon: Landmark, status: "Em Andamento", progress: 30, detail: "Votos contrários a aumentos tributários" },
       { id: 3, title: "Combate à corrupção", icon: ShieldCheck, status: "Em Andamento", progress: 25, detail: "Apoio a projetos de transparência" },
       { id: 4, title: "Segurança pública", icon: ShieldCheck, status: "Em Andamento", progress: 45, detail: "Defesa do excludente de ilicitude" },
+      { id: 5, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "PEC 333/2017 e correlatas seguem sem votação; senador não apresentou proposta própria sobre o tema" },
+      { id: 6, title: "Aprovar lei de proteção a agentes de segurança", icon: ShieldCheck, status: "Não Cumprida", progress: 15, detail: "Projetos arquivados ao fim das legislaturas sem aprovação no plenário" },
+      { id: 7, title: "Esclarecer caso das 'rachadinhas' do gabinete na ALERJ", icon: ShieldCheck, status: "Não Cumprida", progress: 0, detail: "Investigação do MP-RJ ainda em curso; STJ rejeitou suspensão em 2023" },
     ],
     performance: [
       {
@@ -242,6 +245,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
         metrics: [
           { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true, sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
           { label: "Audiências públicas em comissões", before: "12", after: "21", change: "+75,0%", positive: true, sources: [{ label: "Senado — Comissões", url: "https://www25.senado.leg.br/web/atividade/comissoes" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Projetos aprovados pelo plenário (sancionados)", before: "4", after: "2", change: "-50,0%", positive: false, sources: [{ label: "Senado — Matérias do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
+          { label: "Faltas em votações secretas", before: "6", after: "11", change: "+83,3%", positive: false, sources: [{ label: "Senado — Votações", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
+          { label: "Processos em investigação (MP-RJ — 'rachadinhas')", before: "1", after: "1 (ativo)", change: "Sem desfecho", positive: false, sources: [{ label: "MP-RJ — Notas Oficiais", url: "https://www.mprj.mp.br/" }, { label: "STJ — APn 989", url: "https://www.stj.jus.br/" }] },
+          { label: "Alinhamento com pauta do governo eleito (2023–2024)", before: "—", after: "18%", change: "Oposição sistemática", positive: false, sources: [{ label: "DIAP — Radiografia do Congresso", url: "https://www.diap.org.br/" }] },
         ],
       },
     ],
@@ -287,6 +300,9 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Habitação popular", icon: Building2, status: "Em Andamento", progress: 55, detail: "2.700 de 5.000 unidades em obras" },
       { id: 3, title: "Valorização do professor", icon: GraduationCap, status: "Em Andamento", progress: 60, detail: "Reajuste salarial em discussão" },
       { id: 4, title: "Infraestrutura estadual", icon: Building2, status: "Parcialmente Cumprida", progress: 72, detail: "Projetos aprovados em 2023-2024" },
+      { id: 5, title: "Reduzir letalidade policial no RJ", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "RJ segue como estado com maior número absoluto de mortes por intervenção policial (Anuário FBSP 2024)" },
+      { id: 6, title: "Zerar fila da saúde estadual", icon: Stethoscope, status: "Não Cumprida", progress: 15, detail: "Fila por cirurgias eletivas e consultas especializadas cresceu em 2023–2024" },
+      { id: 7, title: "Concluir obras paradas do estado", icon: Building2, status: "Parcialmente Cumprida", progress: 35, detail: "TCE-RJ aponta dezenas de obras com atraso superior a 24 meses" },
     ],
     performance: [
       {
@@ -303,6 +319,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
         metrics: [
           { label: "Presença em sessões", before: "85%", after: "94%", change: "+9,0 p.p.", positive: true },
           { label: "Audiências públicas realizadas", before: "6", after: "13", change: "+116,7%", positive: true },
+        ],
+      },
+      {
+        title: "Indicadores Críticos do Estado",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Mortes por intervenção policial (RJ)", before: "1.245", after: "1.330", change: "+6,8%", positive: false, sources: [{ label: "ISP-RJ — Estatísticas", url: "http://www.ispdados.rj.gov.br/" }, { label: "FBSP — Anuário 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
+          { label: "Fila por cirurgia eletiva no SUS-RJ", before: "62 mil", after: "84 mil", change: "+35,5%", positive: false, sources: [{ label: "SES-RJ — Painel SUS", url: "https://www.saude.rj.gov.br/" }] },
+          { label: "Evasão no Ensino Médio (RJ)", before: "6,8%", after: "7,9%", change: "+1,1 p.p.", positive: false, sources: [{ label: "INEP — Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
+          { label: "Obras estaduais com atraso > 24 meses", before: "—", after: "47", change: "Crítico", positive: false, sources: [{ label: "TCE-RJ — Relatórios", url: "https://www.tce.rj.gov.br/" }] },
         ],
       },
     ],
@@ -346,6 +372,9 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 4, title: "Programa Goiás Social", icon: Stethoscope, status: "Em Andamento", progress: 78, detail: "Cobertura ampliada em 70% dos municípios" },
       { id: 5, title: "Construção de escolas em tempo integral", icon: GraduationCap, status: "Parcialmente Cumprida", progress: 65, detail: "210 de 320 unidades entregues" },
       { id: 6, title: "Saneamento básico universal", icon: Droplets, status: "Em Andamento", progress: 55, detail: "Cobertura passou de 38% para 58%" },
+      { id: 7, title: "Zerar desmatamento ilegal no Cerrado goiano", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "GO segue entre os estados com maior alerta de desmatamento do Cerrado (MapBiomas/INPE 2024)" },
+      { id: 8, title: "Universalizar atendimento básico de saúde", icon: Stethoscope, status: "Parcialmente Cumprida", progress: 50, detail: "Fila por consultas e cirurgias eletivas cresceu em 2023" },
+      { id: 9, title: "Renegociar dívida do estado com a União", icon: Landmark, status: "Não Cumprida", progress: 20, detail: "GO ainda não aderiu ao RRF; estoque da dívida segue elevado" },
     ],
     performance: [
       {
@@ -373,6 +402,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
           { label: "Pobreza extrema", before: "8,2%", after: "4,9%", change: "-3,3 p.p.", positive: true, sources: [{ label: "IBGE — PNAD Contínua", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
           { label: "Cobertura do Goiás Social", before: "0%", after: "70%", change: "+70 p.p.", positive: true, sources: [{ label: "OVG — Goiás Social", url: "https://www.social.go.gov.br/goias-social" }] },
           { label: "Escolas em tempo integral", before: "85", after: "295", change: "+247%", positive: true, sources: [{ label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Alertas de desmatamento no Cerrado (GO, km²)", before: "612", after: "1.034", change: "+68,9%", positive: false, sources: [{ label: "INPE — DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }, { label: "MapBiomas Alerta", url: "https://alerta.mapbiomas.org/" }] },
+          { label: "Estoque da dívida consolidada (R$ bi)", before: "16,4", after: "22,1", change: "+34,8%", positive: false, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Fila por cirurgia eletiva no SUS-GO", before: "28 mil", after: "41 mil", change: "+46,4%", positive: false, sources: [{ label: "SES-GO — Painel Saúde", url: "https://www.saude.go.gov.br/" }] },
+          { label: "Mortes por intervenção policial", before: "112", after: "168", change: "+50,0%", positive: false, sources: [{ label: "FBSP — Anuário 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
+          { label: "Feminicídios consumados", before: "38", after: "57", change: "+50,0%", positive: false, sources: [{ label: "SSP-GO", url: "https://www.ssp.go.gov.br/estatistica" }] },
         ],
       },
     ],
@@ -425,6 +465,10 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Combate a privilégios", icon: ShieldCheck, status: "Em Andamento", progress: 55, detail: "Projetos contra penduricalhos" },
       { id: 3, title: "Desburocratização digital", icon: TrendingUp, status: "Em Andamento", progress: 35, detail: "Marco Legal das Startups apoiado" },
       { id: 4, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "Em Andamento", progress: 30, detail: "Proposta em tramitação" },
+      { id: 5, title: "Aprovar Reforma Administrativa (PEC 32)", icon: Landmark, status: "Não Cumprida", progress: 5, detail: "PEC sequer foi pautada no plenário da Câmara em 2023–2024" },
+      { id: 6, title: "Acabar com o fundão eleitoral", icon: ShieldCheck, status: "Não Cumprida", progress: 0, detail: "Fundo eleitoral atingiu R$ 4,9 bi em 2024, recorde histórico" },
+      { id: 7, title: "Reduzir o número de ministérios", icon: Landmark, status: "Não Cumprida", progress: 0, detail: "Número de ministérios passou de 23 para 38 na atual gestão" },
+      { id: 8, title: "Aprovar projetos de autoria própria", icon: FileText, status: "Não Cumprida", progress: 8, detail: "Nenhum PL de autoria do deputado foi sancionado até 2024" },
     ],
     performance: [
       {
@@ -443,6 +487,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
           { label: "Presença em votações nominais", before: "—", after: "92%", change: "92%", positive: true, sources: [{ label: "Câmara — Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
           { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true, sources: [{ label: "Câmara — Comissões", url: "https://www.camara.leg.br/comissoes" }] },
           { label: "Comissões integradas", before: "0", after: "3", change: "+3", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Projetos de autoria aprovados pelo plenário", before: "0", after: "0", change: "Sem aprovação", positive: false, sources: [{ label: "Câmara — Proposições", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
+          { label: "Alinhamento com pautas do governo (2023–2024)", before: "—", after: "12%", change: "Oposição quase total", positive: false, sources: [{ label: "DIAP — Radiografia do Congresso", url: "https://www.diap.org.br/" }] },
+          { label: "Faltas em sessões deliberativas", before: "—", after: "34", change: "+34", positive: false, sources: [{ label: "Câmara — Presença", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
+          { label: "Pautas do NOVO aprovadas em plenário (Reforma Adm.)", before: "—", after: "0", change: "Sem avanço", positive: false, sources: [{ label: "Câmara — Tramitação PEC 32/2020", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" }] },
         ],
       },
     ],
@@ -488,6 +542,10 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 4, title: "Minas Livre para Crescer", icon: TrendingUp, status: "Cumprida", progress: 100, detail: "Lei sancionada em 2023" },
       { id: 5, title: "Reforma Administrativa", icon: Landmark, status: "Cumprida", progress: 100, detail: "Secretarias reduzidas e fundidas" },
       { id: 6, title: "Segurança hídrica", icon: Droplets, status: "Em Andamento", progress: 50, detail: "Recuperação de bacias em curso" },
+      { id: 7, title: "Resolver a dívida de MG com a União", icon: Landmark, status: "Não Cumprida", progress: 25, detail: "MG segue fora do Regime de Recuperação Fiscal; estoque da dívida passou de R$ 120 bi" },
+      { id: 8, title: "Reajuste e plano de carreira para servidores", icon: BriefcaseBusiness, status: "Não Cumprida", progress: 20, detail: "Categorias da educação e segurança realizaram greves em 2023–2024 por reajuste linear" },
+      { id: 9, title: "Reparação integral das vítimas de Brumadinho", icon: ShieldCheck, status: "Parcialmente Cumprida", progress: 55, detail: "Acordo de R$ 37,7 bi assinado, mas MPMG aponta atrasos e atendimento incompleto a atingidos" },
+      { id: 10, title: "Universalizar o ensino em tempo integral", icon: GraduationCap, status: "Não Cumprida", progress: 18, detail: "MG está abaixo da meta do PNE para ensino médio em tempo integral (INEP)" },
     ],
     performance: [
       {
@@ -514,6 +572,18 @@ export const legacyDataMap: Record<string, LegacyData> = {
         metrics: [
           { label: "Concessões e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true, sources: [{ label: "SEINFRA-MG", url: "https://www.infraestrutura.mg.gov.br/" }] },
           { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true, sources: [{ label: "Invest Minas", url: "https://www.investminas.mg.gov.br/" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Dívida consolidada do estado (R$ bi)", before: "104,3", after: "162,8", change: "+56,1%", positive: false, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Aprovação do governo (Quaest MG, 2024)", before: "58% ótimo/bom (2019)", after: "39% ótimo/bom", change: "-19 p.p.", positive: false, sources: [{ label: "Quaest — Pesquisa MG 2024", url: "https://quaest.com.br/" }] },
+          { label: "Greves de servidores estaduais", before: "0", after: "5", change: "+5", positive: false, sources: [{ label: "Sind-UTE/MG", url: "https://sindutemg.org.br/" }] },
+          { label: "Vítimas de Brumadinho reparadas integralmente", before: "—", after: "Parcial", change: "Acordo em atraso", positive: false, sources: [{ label: "MPMG — Acordo Brumadinho", url: "https://www.mpmg.mp.br/" }] },
+          { label: "Matrículas no Ensino Médio em tempo integral (MG)", before: "Meta PNE: 50%", after: "23,4%", change: "-26,6 p.p. da meta", positive: false, sources: [{ label: "INEP — Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
+          { label: "Alertas de desmatamento no Cerrado (MG, km²)", before: "238", after: "412", change: "+73,1%", positive: false, sources: [{ label: "INPE — DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }] },
         ],
       },
     ],

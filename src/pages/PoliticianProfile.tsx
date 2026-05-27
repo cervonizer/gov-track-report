@@ -202,13 +202,17 @@ export default function PoliticianProfile() {
         </Card>
 
         {/* Tabs for detailed information */}
-        <Tabs defaultValue="votes" className="w-full">
+        <Tabs defaultValue="legacy" className="w-full">
           <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="legacy">Legado</TabsTrigger>
             <TabsTrigger value="votes">Histórico de Votos</TabsTrigger>
             <TabsTrigger value="promises">Promessas de Campanha</TabsTrigger>
             <TabsTrigger value="proposals">Propostas</TabsTrigger>
-            <TabsTrigger value="legacy">Legado</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="legacy" className="mt-6">
+            <LegacySection politicianId={politician.id} politicianName={politician.name} />
+          </TabsContent>
 
           <TabsContent value="votes" className="mt-6">
             <Card>
@@ -348,9 +352,6 @@ export default function PoliticianProfile() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="legacy" className="mt-6">
-            <LegacySection politicianId={politician.id} politicianName={politician.name} />
-          </TabsContent>
         </Tabs>
       </main>
 
