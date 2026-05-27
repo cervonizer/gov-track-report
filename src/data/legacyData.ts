@@ -404,6 +404,17 @@ export const legacyDataMap: Record<string, LegacyData> = {
           { label: "Escolas em tempo integral", before: "85", after: "295", change: "+247%", positive: true, sources: [{ label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }] },
         ],
       },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Alertas de desmatamento no Cerrado (GO, km²)", before: "612", after: "1.034", change: "+68,9%", positive: false, sources: [{ label: "INPE — DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }, { label: "MapBiomas Alerta", url: "https://alerta.mapbiomas.org/" }] },
+          { label: "Estoque da dívida consolidada (R$ bi)", before: "16,4", after: "22,1", change: "+34,8%", positive: false, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Fila por cirurgia eletiva no SUS-GO", before: "28 mil", after: "41 mil", change: "+46,4%", positive: false, sources: [{ label: "SES-GO — Painel Saúde", url: "https://www.saude.go.gov.br/" }] },
+          { label: "Mortes por intervenção policial", before: "112", after: "168", change: "+50,0%", positive: false, sources: [{ label: "FBSP — Anuário 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
+          { label: "Feminicídios consumados", before: "38", after: "57", change: "+50,0%", positive: false, sources: [{ label: "SSP-GO", url: "https://www.ssp.go.gov.br/estatistica" }] },
+        ],
+      },
     ],
     chart1: {
       title: "Evolução do PIB Estadual (%)",
