@@ -225,6 +225,9 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Redução de impostos", icon: Landmark, status: "Em Andamento", progress: 30, detail: "Votos contrários a aumentos tributários" },
       { id: 3, title: "Combate à corrupção", icon: ShieldCheck, status: "Em Andamento", progress: 25, detail: "Apoio a projetos de transparência" },
       { id: 4, title: "Segurança pública", icon: ShieldCheck, status: "Em Andamento", progress: 45, detail: "Defesa do excludente de ilicitude" },
+      { id: 5, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "PEC 333/2017 e correlatas seguem sem votação; senador não apresentou proposta própria sobre o tema" },
+      { id: 6, title: "Aprovar lei de proteção a agentes de segurança", icon: ShieldCheck, status: "Não Cumprida", progress: 15, detail: "Projetos arquivados ao fim das legislaturas sem aprovação no plenário" },
+      { id: 7, title: "Esclarecer caso das 'rachadinhas' do gabinete na ALERJ", icon: ShieldCheck, status: "Não Cumprida", progress: 0, detail: "Investigação do MP-RJ ainda em curso; STJ rejeitou suspensão em 2023" },
     ],
     performance: [
       {
@@ -242,6 +245,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
         metrics: [
           { label: "Presença em votações", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true, sources: [{ label: "Senado — Votações Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
           { label: "Audiências públicas em comissões", before: "12", after: "21", change: "+75,0%", positive: true, sources: [{ label: "Senado — Comissões", url: "https://www25.senado.leg.br/web/atividade/comissoes" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Projetos aprovados pelo plenário (sancionados)", before: "4", after: "2", change: "-50,0%", positive: false, sources: [{ label: "Senado — Matérias do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
+          { label: "Faltas em votações secretas", before: "6", after: "11", change: "+83,3%", positive: false, sources: [{ label: "Senado — Votações", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
+          { label: "Processos em investigação (MP-RJ — 'rachadinhas')", before: "1", after: "1 (ativo)", change: "Sem desfecho", positive: false, sources: [{ label: "MP-RJ — Notas Oficiais", url: "https://www.mprj.mp.br/" }, { label: "STJ — APn 989", url: "https://www.stj.jus.br/" }] },
+          { label: "Alinhamento com pauta do governo eleito (2023–2024)", before: "—", after: "18%", change: "Oposição sistemática", positive: false, sources: [{ label: "DIAP — Radiografia do Congresso", url: "https://www.diap.org.br/" }] },
         ],
       },
     ],
