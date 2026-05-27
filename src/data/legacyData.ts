@@ -574,6 +574,18 @@ export const legacyDataMap: Record<string, LegacyData> = {
           { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true, sources: [{ label: "Invest Minas", url: "https://www.investminas.mg.gov.br/" }] },
         ],
       },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Dívida consolidada do estado (R$ bi)", before: "104,3", after: "162,8", change: "+56,1%", positive: false, sources: [{ label: "Tesouro Nacional — Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
+          { label: "Aprovação do governo (Quaest MG, 2024)", before: "58% ótimo/bom (2019)", after: "39% ótimo/bom", change: "-19 p.p.", positive: false, sources: [{ label: "Quaest — Pesquisa MG 2024", url: "https://quaest.com.br/" }] },
+          { label: "Greves de servidores estaduais", before: "0", after: "5", change: "+5", positive: false, sources: [{ label: "Sind-UTE/MG", url: "https://sindutemg.org.br/" }] },
+          { label: "Vítimas de Brumadinho reparadas integralmente", before: "—", after: "Parcial", change: "Acordo em atraso", positive: false, sources: [{ label: "MPMG — Acordo Brumadinho", url: "https://www.mpmg.mp.br/" }] },
+          { label: "Matrículas no Ensino Médio em tempo integral (MG)", before: "Meta PNE: 50%", after: "23,4%", change: "-26,6 p.p. da meta", positive: false, sources: [{ label: "INEP — Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
+          { label: "Alertas de desmatamento no Cerrado (MG, km²)", before: "238", after: "412", change: "+73,1%", positive: false, sources: [{ label: "INPE — DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }] },
+        ],
+      },
     ],
     chart1: {
       title: "Resultado Fiscal Primário (R$ bilhões)",
