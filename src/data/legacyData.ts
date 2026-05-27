@@ -372,6 +372,9 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 4, title: "Programa Goiás Social", icon: Stethoscope, status: "Em Andamento", progress: 78, detail: "Cobertura ampliada em 70% dos municípios" },
       { id: 5, title: "Construção de escolas em tempo integral", icon: GraduationCap, status: "Parcialmente Cumprida", progress: 65, detail: "210 de 320 unidades entregues" },
       { id: 6, title: "Saneamento básico universal", icon: Droplets, status: "Em Andamento", progress: 55, detail: "Cobertura passou de 38% para 58%" },
+      { id: 7, title: "Zerar desmatamento ilegal no Cerrado goiano", icon: ShieldCheck, status: "Não Cumprida", progress: 10, detail: "GO segue entre os estados com maior alerta de desmatamento do Cerrado (MapBiomas/INPE 2024)" },
+      { id: 8, title: "Universalizar atendimento básico de saúde", icon: Stethoscope, status: "Parcialmente Cumprida", progress: 50, detail: "Fila por consultas e cirurgias eletivas cresceu em 2023" },
+      { id: 9, title: "Renegociar dívida do estado com a União", icon: Landmark, status: "Não Cumprida", progress: 20, detail: "GO ainda não aderiu ao RRF; estoque da dívida segue elevado" },
     ],
     performance: [
       {
