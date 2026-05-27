@@ -352,9 +352,6 @@ export default function PoliticianProfile() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="legacy" className="mt-6">
-            <LegacySection politicianId={politician.id} politicianName={politician.name} />
-          </TabsContent>
         </Tabs>
       </main>
 
