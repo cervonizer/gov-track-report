@@ -542,6 +542,10 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 4, title: "Minas Livre para Crescer", icon: TrendingUp, status: "Cumprida", progress: 100, detail: "Lei sancionada em 2023" },
       { id: 5, title: "Reforma Administrativa", icon: Landmark, status: "Cumprida", progress: 100, detail: "Secretarias reduzidas e fundidas" },
       { id: 6, title: "Segurança hídrica", icon: Droplets, status: "Em Andamento", progress: 50, detail: "Recuperação de bacias em curso" },
+      { id: 7, title: "Resolver a dívida de MG com a União", icon: Landmark, status: "Não Cumprida", progress: 25, detail: "MG segue fora do Regime de Recuperação Fiscal; estoque da dívida passou de R$ 120 bi" },
+      { id: 8, title: "Reajuste e plano de carreira para servidores", icon: BriefcaseBusiness, status: "Não Cumprida", progress: 20, detail: "Categorias da educação e segurança realizaram greves em 2023–2024 por reajuste linear" },
+      { id: 9, title: "Reparação integral das vítimas de Brumadinho", icon: ShieldCheck, status: "Parcialmente Cumprida", progress: 55, detail: "Acordo de R$ 37,7 bi assinado, mas MPMG aponta atrasos e atendimento incompleto a atingidos" },
+      { id: 10, title: "Universalizar o ensino em tempo integral", icon: GraduationCap, status: "Não Cumprida", progress: 18, detail: "MG está abaixo da meta do PNE para ensino médio em tempo integral (INEP)" },
     ],
     performance: [
       {
