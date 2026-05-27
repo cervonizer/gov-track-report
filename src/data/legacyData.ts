@@ -465,6 +465,10 @@ export const legacyDataMap: Record<string, LegacyData> = {
       { id: 2, title: "Combate a privilégios", icon: ShieldCheck, status: "Em Andamento", progress: 55, detail: "Projetos contra penduricalhos" },
       { id: 3, title: "Desburocratização digital", icon: TrendingUp, status: "Em Andamento", progress: 35, detail: "Marco Legal das Startups apoiado" },
       { id: 4, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "Em Andamento", progress: 30, detail: "Proposta em tramitação" },
+      { id: 5, title: "Aprovar Reforma Administrativa (PEC 32)", icon: Landmark, status: "Não Cumprida", progress: 5, detail: "PEC sequer foi pautada no plenário da Câmara em 2023–2024" },
+      { id: 6, title: "Acabar com o fundão eleitoral", icon: ShieldCheck, status: "Não Cumprida", progress: 0, detail: "Fundo eleitoral atingiu R$ 4,9 bi em 2024, recorde histórico" },
+      { id: 7, title: "Reduzir o número de ministérios", icon: Landmark, status: "Não Cumprida", progress: 0, detail: "Número de ministérios passou de 23 para 38 na atual gestão" },
+      { id: 8, title: "Aprovar projetos de autoria própria", icon: FileText, status: "Não Cumprida", progress: 8, detail: "Nenhum PL de autoria do deputado foi sancionado até 2024" },
     ],
     performance: [
       {
@@ -483,6 +487,16 @@ export const legacyDataMap: Record<string, LegacyData> = {
           { label: "Presença em votações nominais", before: "—", after: "92%", change: "92%", positive: true, sources: [{ label: "Câmara — Votações", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
           { label: "Audiências públicas", before: "0", after: "11", change: "+11", positive: true, sources: [{ label: "Câmara — Comissões", url: "https://www.camara.leg.br/comissoes" }] },
           { label: "Comissões integradas", before: "0", after: "3", change: "+3", positive: true, sources: [{ label: "Câmara — Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }] },
+        ],
+      },
+      {
+        title: "Indicadores Críticos",
+        icon: ShieldCheck,
+        metrics: [
+          { label: "Projetos de autoria aprovados pelo plenário", before: "0", after: "0", change: "Sem aprovação", positive: false, sources: [{ label: "Câmara — Proposições", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
+          { label: "Alinhamento com pautas do governo (2023–2024)", before: "—", after: "12%", change: "Oposição quase total", positive: false, sources: [{ label: "DIAP — Radiografia do Congresso", url: "https://www.diap.org.br/" }] },
+          { label: "Faltas em sessões deliberativas", before: "—", after: "34", change: "+34", positive: false, sources: [{ label: "Câmara — Presença", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
+          { label: "Pautas do NOVO aprovadas em plenário (Reforma Adm.)", before: "—", after: "0", change: "Sem avanço", positive: false, sources: [{ label: "Câmara — Tramitação PEC 32/2020", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" }] },
         ],
       },
     ],
