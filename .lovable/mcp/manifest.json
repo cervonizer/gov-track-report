@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "sdk_version": "0.25.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "polis",
+      "version": "0.1.0",
+      "title": "Polis"
+    },
+    "tools": [
+      {
+        "name": "list_politicians",
+        "title": "Listar políticos",
+        "description": "Lista todos os políticos monitorados na plataforma Polis, com partido, cargo, estado, mandato e contagem de votos, promessas e propostas.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "party": {
+              "type": "string",
+              "description": "Filtrar por sigla do partido (ex.: PT, PL)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_politician",
+        "title": "Perfil do político",
+        "description": "Retorna o perfil completo de um político da Polis: biografia, mandatos, votações, promessas e propostas, sempre com as fontes oficiais.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "politician": {
+              "type": "string",
+              "description": "ID ou nome (parcial) do político, ex.: 'Lula' ou '1'."
+            }
+          },
+          "required": [
+            "politician"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_politician_legacy",
+        "title": "Legado do político",
+        "description": "Retorna o legado de um político: compromissos (cumpridos, parciais e não cumpridos) e indicadores de desempenho positivos e negativos, com fontes oficiais.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "politician": {
+              "type": "string",
+              "description": "ID ou nome (parcial) do político."
+            }
+          },
+          "required": [
+            "politician"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_platform_stats",
+        "title": "Estatísticas da plataforma",
+        "description": "Retorna os números atuais da Polis: políticos monitorados, votações registradas, promessas e propostas acompanhadas.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
