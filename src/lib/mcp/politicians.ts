@@ -1,5 +1,5 @@
-import { mockPoliticians } from "@/data/mockData";
-import { legacyDataMap } from "@/data/legacyData";
+import { mockPoliticians } from "../../data/mockData";
+import { legacyDataMap } from "../../data/legacyData";
 
 export type PoliticianSummary = {
   id: string;
