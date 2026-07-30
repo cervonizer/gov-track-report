@@ -9,599 +9,1505 @@ import { defineMcp } from "npm:@lovable.dev/mcp-js@0.25.0";
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.25.0";
 import { z } from "npm:zod@^3.25.76";
 
-// src/data/mockData.ts
-import { politiciansData } from "npm:@/data/politiciansData";
-import lulaImg from "npm:@/assets/politicians/lula.jpg";
-import flavioImg from "npm:@/assets/politicians/flavio-bolsonaro.jpg";
-import caiadoImg from "npm:@/assets/politicians/ronaldo-caiado.jpg";
-import renanImg from "npm:@/assets/politicians/renan-santos.jpg";
-import zemaImg from "npm:@/assets/politicians/romeu-zema.jpg";
-var politicianImages = {
-  "1": lulaImg,
-  "2": flavioImg,
-  "4": caiadoImg,
-  "5": renanImg,
-  "6": zemaImg
-};
-var mockPoliticians = politiciansData.map((p) => ({
-  ...p,
-  imageUrl: politicianImages[p.id] ?? p.imageUrl
-}));
-
-// src/data/legacyData.ts
-import {
-  GraduationCap,
-  Stethoscope,
-  ShieldCheck,
-  Landmark,
-  Droplets,
-  BriefcaseBusiness,
-  TrendingUp,
-  FileText,
-  Vote,
-  Users,
-  Leaf,
-  Building2
-} from "npm:lucide-react@^0.462.0";
-var splitSeries = (values) => values.map((v) => ({
-  ano: v.ano,
-  Anterior: v.current ? null : v.value,
-  Atual: v.current ? v.value : null
-}));
-var legacyDataMap = {
-  // Lula - Presidente
-  "1": {
-    subtitle: "Indicadores nacionais consolidados ao longo dos tr\xEAs mandatos presidenciais de Lula (2003\u20132010 e 2023\u2013presente). Inclui avan\xE7os e retrocessos com fontes oficiais.",
-    commitments: [
-      // 1º e 2º mandatos (2003–2010) — promessas históricas cumpridas
-      { id: 101, title: "Bolsa Fam\xEDlia (1\xBA mandato)", icon: Users, status: "Cumprida", progress: 100, detail: "Programa criado em 2003, unificou benef\xEDcios sociais e atendeu ~12 mi de fam\xEDlias at\xE9 2010.", sources: [{ label: "MDS \u2014 Hist\xF3rico do Bolsa Fam\xEDlia", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" }] },
-      { id: 102, title: "Pr\xE9-sal e explora\xE7\xE3o nacional (2\xBA mandato)", icon: Droplets, status: "Cumprida", progress: 100, detail: "Modelo de partilha aprovado (Lei 12.351/2010); cria\xE7\xE3o da PPSA.", sources: [{ label: "Planalto \u2014 Lei 12.351/2010", url: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12351.htm" }] },
-      { id: 103, title: "ProUni e expans\xE3o das universidades federais", icon: GraduationCap, status: "Cumprida", progress: 100, detail: "ProUni criado em 2004 (Lei 11.096/2005); REUNI ampliou vagas em IFES a partir de 2007.", sources: [{ label: "Planalto \u2014 Lei 11.096/2005 (ProUni)", url: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11096.htm" }] },
-      { id: 104, title: "Minha Casa Minha Vida \u2014 vers\xE3o original (2\xBA mandato)", icon: Building2, status: "Cumprida", progress: 100, detail: "Programa lan\xE7ado em 2009; mais de 1 mi de unidades contratadas at\xE9 2010.", sources: [{ label: "Caixa \u2014 Hist\xF3rico MCMV", url: "https://www.caixa.gov.br/voce/habitacao/minha-casa-minha-vida/Paginas/default.aspx" }] },
-      // 3º mandato (2023–) — em andamento / cumpridas
-      { id: 1, title: "Brasil Sem Fome (3\xBA mandato)", icon: Stethoscope, status: "Em Andamento", progress: 55, detail: "Sa\xEDda do Mapa da Fome da FAO em curso; inseguran\xE7a alimentar grave caiu para 8,7%.", sources: [{ label: "FAO \u2014 SOFI 2024", url: "https://www.fao.org/publications/sofi/2024/en/" }] },
-      { id: 2, title: "Desmatamento Zero \u2014 Amaz\xF4nia (3\xBA mandato)", icon: Leaf, status: "Em Andamento", progress: 50, detail: "Queda de ~50% no desmatamento da Amaz\xF4nia entre 2022 e 2024.", sources: [{ label: "INPE \u2014 PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }] },
-      { id: 3, title: "Reajuste real do sal\xE1rio m\xEDnimo (3\xBA mandato)", icon: BriefcaseBusiness, status: "Cumprida", progress: 100, detail: "Pol\xEDtica de valoriza\xE7\xE3o restabelecida (Lei 14.663/2023). M\xEDnimo: R$ 1.212 \u2192 R$ 1.518.", sources: [{ label: "Planalto \u2014 Lei 14.663/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm" }] },
-      { id: 5, title: "Reforma Tribut\xE1ria (3\xBA mandato)", icon: Landmark, status: "Cumprida", progress: 100, detail: "Emenda Constitucional 132/2023 promulgada \u2014 unifica tributos sobre consumo.", sources: [{ label: "Planalto \u2014 EC 132/2023", url: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" }] },
-      { id: 6, title: "Novo PAC (3\xBA mandato)", icon: BriefcaseBusiness, status: "Em Andamento", progress: 35, detail: "R$ 1,7 trilh\xE3o em investimentos previstos at\xE9 2026.", sources: [{ label: "Gov.br \u2014 Novo PAC", url: "https://www.gov.br/casacivil/pt-br/novopac" }] },
-      // 3º mandato — promessas descumpridas / parciais
-      { id: 201, title: "Isen\xE7\xE3o de IR at\xE9 R$ 5.000 (3\xBA mandato)", icon: Landmark, status: "N\xE3o Cumprida", progress: 40, detail: "Faixa de isen\xE7\xE3o subiu para ~R$ 2.824 (2 SM) em 2024 com ajustes graduais, mas R$ 5.000 ainda n\xE3o foi atingido at\xE9 maio/2026 devido ao alto custo fiscal.", sources: [{ label: "Receita Federal \u2014 IRPF", url: "https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda" }, { label: "MP 1.171/2023 \u2014 reajuste IRPF", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1171.htm" }] },
-      { id: 202, title: "Picanha e cervejinha na mesa (3\xBA mandato)", icon: Users, status: "Parcialmente Cumprida", progress: 50, detail: "Pre\xE7o da carne caiu 9\u201311% no IPCA de 2023 e o poder de compra subiu com infla\xE7\xE3o controlada, mas a 'fartura' prometida ficou no campo simb\xF3lico \u2014 sem distribui\xE7\xE3o direta nem queda generalizada sustentada.", sources: [{ label: "IBGE \u2014 IPCA", url: "https://www.ibge.gov.br/explica/inflacao.php" }] },
-      { id: 203, title: "Zerar a fila do SUS (3\xBA mandato)", icon: Stethoscope, status: "N\xE3o Cumprida", progress: 25, detail: "Programa Agora Tem Especialistas lan\xE7ado em 2024, mas filas para cirurgias eletivas e exames seguem em milh\xF5es de procedimentos.", sources: [{ label: "Minist\xE9rio da Sa\xFAde", url: "https://www.gov.br/saude/pt-br" }, { label: "CONASS", url: "https://www.conass.org.br/" }] },
-      { id: 204, title: "D\xE9ficit zero em 2024 (3\xBA mandato)", icon: TrendingUp, status: "N\xE3o Cumprida", progress: 10, detail: "Meta fiscal revisada de zero para -0,25% PIB; resultado prim\xE1rio fechou 2024 em d\xE9ficit de ~R$ 230 bi.", sources: [{ label: "Tesouro Nacional \u2014 RTN", url: "https://www.gov.br/tesouronacional/pt-br/estatisticas-fiscais-e-planejamento/resultado-do-tesouro-nacional" }] },
-      { id: 205, title: "Reverter privatiza\xE7\xF5es (Eletrobras/Petrobras/Correios)", icon: Landmark, status: "Parcialmente Cumprida", progress: 35, detail: "Revers\xE3o da privatiza\xE7\xE3o da Eletrobras n\xE3o concretizada; Correios mantidos estatais; Petrobras com mudan\xE7a de governan\xE7a mas sem estatiza\xE7\xE3o adicional.", sources: [{ label: "BNDES \u2014 Desestatiza\xE7\xE3o", url: "https://www.bndes.gov.br/wps/portal/site/home/transparencia/desestatizacao" }] }
+// src/data/politiciansData.ts
+var politiciansData = [
+  {
+    id: "1",
+    name: "Luiz In\xE1cio Lula da Silva",
+    party: "PT",
+    position: "Presidente da Rep\xFAblica",
+    state: "S\xE3o Paulo",
+    district: void 0,
+    birthPlace: "Caet\xE9s, PE",
+    mandates: [
+      { position: "Deputado Federal (SP)", start: "1987", end: "1991" },
+      { position: "Presidente da Rep\xFAblica", start: "2003", end: "2006" },
+      { position: "Presidente da Rep\xFAblica", start: "2007", end: "2010" },
+      { position: "Presidente da Rep\xFAblica", start: "2023", end: "2027", current: true }
     ],
-    performance: [
+    termStart: "2023-01-01",
+    termEnd: "2027-01-01",
+    imageUrl: "",
+    biography: "Luiz In\xE1cio Lula da Silva, nascido em 27 de outubro de 1945 em Caet\xE9s, Pernambuco, \xE9 o 39\xBA presidente do Brasil, exercendo seu terceiro mandato desde 1\xBA de janeiro de 2023. Metal\xFArgico e sindicalista, foi presidente do Sindicato dos Metal\xFArgicos do ABC e cofundador do Partido dos Trabalhadores (PT) em 1980. Governou o Brasil de 2003 a 2010, per\xEDodo marcado por programas sociais como o Bolsa Fam\xEDlia e o Fome Zero, que retiraram milh\xF5es de brasileiros da pobreza. Em seu atual mandato, retomou pol\xEDticas de combate \xE0 fome, prote\xE7\xE3o ambiental na Amaz\xF4nia e reinser\xE7\xE3o do Brasil na diplomacia internacional.",
+    website: "https://www.gov.br/planalto",
+    email: "contato@planalto.gov.br",
+    phone: "@lulaoficial",
+    committeeMemberships: ["BRICS", "G20", "MERCOSUL", "CELAC"],
+    voteRecords: [
       {
-        title: "Economia \u2014 1\xBA e 2\xBA mandatos (2003\u20132010)",
-        icon: TrendingUp,
-        metrics: [
-          { label: "Crescimento m\xE9dio do PIB (a.a.)", before: "2,3%", after: "4,0%", change: "+1,7 p.p.", positive: true, sources: [{ label: "IBGE \u2014 Contas Nacionais", url: "https://www.ibge.gov.br/explica/pib.php" }, { label: "IPEADATA", url: "http://www.ipeadata.gov.br/" }] },
-          { label: "Taxa de desemprego (PME)", before: "12,3%", after: "6,7%", change: "-5,6 p.p.", positive: true, sources: [{ label: "IBGE \u2014 Pesquisa Mensal de Emprego", url: "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9180-pesquisa-mensal-de-emprego.html" }] },
-          { label: "Empregos formais criados (CAGED, acumulado)", before: "\u2014", after: "~15 milh\xF5es", change: "Recorde hist\xF3rico", positive: true, sources: [{ label: "MTE \u2014 CAGED", url: "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/caged" }] },
-          { label: "Reservas internacionais (US$ bi)", before: "37,8", after: "288,6", change: "+663%", positive: true, sources: [{ label: "BCB \u2014 Reservas Internacionais", url: "https://www.bcb.gov.br/estatisticas/reservas" }] },
-          { label: "Sal\xE1rio m\xEDnimo real (ganho acumulado)", before: "\u2014", after: "+53,7%", change: "+53,7%", positive: true, sources: [{ label: "DIEESE \u2014 Sal\xE1rio M\xEDnimo", url: "https://www.dieese.org.br/analisecestabasica/salarioMinimo.html" }] },
-          { label: "Carga tribut\xE1ria bruta (% PIB)", before: "32,0%", after: "33,5%", change: "+1,5 p.p.", positive: false, sources: [{ label: "Receita Federal \u2014 Carga Tribut\xE1ria", url: "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/carga-tributaria-no-brasil" }] },
-          { label: "Infla\xE7\xE3o (IPCA, fim de 2010)", before: "5,69% (2002)", after: "5,91% (2010)", change: "Acima do centro da meta", positive: false, sources: [{ label: "IBGE \u2014 IPCA", url: "https://www.ibge.gov.br/explica/inflacao.php" }] },
-          { label: "D\xEDvida L\xEDquida do Setor P\xFAblico (% PIB)", before: "60,4%", after: "38,0%", change: "-22,4 p.p.", positive: true, sources: [{ label: "BCB \u2014 Estat\xEDsticas Fiscais", url: "https://www.bcb.gov.br/estatisticas/estatisticasfiscais" }] }
+        id: "v1",
+        title: "Novo Arcabou\xE7o Fiscal",
+        description: "San\xE7\xE3o da Lei Complementar que substituiu o Teto de Gastos por uma nova regra fiscal.",
+        date: "2023-08-30",
+        vote: "Yes",
+        billNumber: "LC 200/2023",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 LC 200/2023", url: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" }
         ]
       },
       {
-        title: "Social \u2014 1\xBA e 2\xBA mandatos (2003\u20132010)",
-        icon: Users,
-        metrics: [
-          { label: "Pobreza extrema (% pop.)", before: "12,0%", after: "5,2%", change: "-6,8 p.p.", positive: true, sources: [{ label: "IPEA \u2014 Pobreza e Desigualdade", url: "https://www.ipea.gov.br/portal/" }] },
-          { label: "Fam\xEDlias atendidas pelo Bolsa Fam\xEDlia (mi)", before: "3,6", after: "12,8", change: "+255%", positive: true, sources: [{ label: "MDS \u2014 Bolsa Fam\xEDlia", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" }] },
-          { label: "IDH (Brasil)", before: "0,710", after: "0,727", change: "+0,017", positive: true, sources: [{ label: "PNUD \u2014 IDH", url: "https://www.undp.org/pt/brazil" }] },
-          { label: "Mortalidade infantil (por mil nasc.)", before: "27,4", after: "16,2", change: "-40,9%", positive: true, sources: [{ label: "DATASUS", url: "https://datasus.saude.gov.br/" }] },
-          { label: "\xCDndice de Gini", before: "0,583", after: "0,533", change: "-0,050", positive: true, sources: [{ label: "IBGE \u2014 PNAD", url: "https://www.ibge.gov.br/" }] },
-          { label: "Taxa de homic\xEDdios (por 100 mil)", before: "28,5", after: "27,4", change: "-1,1", positive: false, sources: [{ label: "IPEA \u2014 Atlas da Viol\xEAncia", url: "https://www.ipea.gov.br/atlasviolencia/" }] }
+        id: "v2",
+        title: "Reforma Tribut\xE1ria",
+        description: "Promulga\xE7\xE3o da Emenda Constitucional que unifica impostos sobre o consumo (CBS, IBS e IS).",
+        date: "2023-12-20",
+        vote: "Yes",
+        billNumber: "EC 132/2023",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 EC 132/2023", url: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" }
         ]
       },
       {
-        title: "Economia \u2014 3\xBA mandato (2023\u2013presente)",
-        icon: TrendingUp,
-        metrics: [
-          { label: "Crescimento do PIB", before: "2,9%", after: "3,2%", change: "+0,3 p.p.", positive: true, sources: [{ label: "IBGE \u2014 Contas Nacionais", url: "https://www.ibge.gov.br/explica/pib.php" }] },
-          { label: "Taxa de desemprego", before: "8,5%", after: "6,2%", change: "-2,3 p.p.", positive: true, sources: [{ label: "IBGE \u2014 PNAD Cont\xEDnua", url: "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html" }] },
-          { label: "Infla\xE7\xE3o (IPCA acumulado)", before: "5,79%", after: "4,83%", change: "-0,96 p.p.", positive: true, sources: [{ label: "IBGE \u2014 IPCA", url: "https://www.ibge.gov.br/explica/inflacao.php" }] },
-          { label: "Sal\xE1rio M\xEDnimo (R$)", before: "R$ 1.212", after: "R$ 1.518", change: "+25,2%", positive: true, sources: [{ label: "Planalto \u2014 Lei 14.663/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm" }] },
-          { label: "D\xEDvida P\xFAblica Bruta (% PIB)", before: "71,7%", after: "76,5%", change: "+4,8 p.p.", positive: false, sources: [{ label: "BCB \u2014 Estat\xEDsticas Fiscais", url: "https://www.bcb.gov.br/estatisticas/estatisticasfiscais" }] },
-          { label: "Taxa Selic (a.a.)", before: "13,75%", after: "15,00%", change: "+1,25 p.p.", positive: false, sources: [{ label: "BCB \u2014 Hist\xF3rico Selic / Copom", url: "https://www.bcb.gov.br/controleinflacao/historicotaxasjuros" }] },
-          { label: "Resultado Prim\xE1rio (R$ bi)", before: "+54,1", after: "-230,5", change: "Revers\xE3o de super\xE1vit para d\xE9ficit", positive: false, sources: [{ label: "Tesouro Nacional \u2014 RTN", url: "https://www.gov.br/tesouronacional/pt-br/estatisticas-fiscais-e-planejamento/resultado-do-tesouro-nacional" }] },
-          { label: "C\xE2mbio R$/US$ (m\xE9dia anual)", before: "R$ 5,16", after: "R$ 5,39", change: "+4,5%", positive: false, sources: [{ label: "BCB \u2014 PTAX", url: "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes" }] }
+        id: "v3",
+        title: "Marco Temporal de Terras Ind\xEDgenas",
+        description: "Veto parcial ao projeto que estabelecia marco temporal para demarca\xE7\xE3o de terras ind\xEDgenas.",
+        date: "2023-10-20",
+        vote: "No",
+        billNumber: "Lei 14.701/2023",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.701/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14701.htm" }
         ]
       },
       {
-        title: "Social \u2014 3\xBA mandato (2023\u2013presente)",
-        icon: Users,
-        metrics: [
-          { label: "Pobreza extrema", before: "5,9%", after: "4,4%", change: "-1,5 p.p.", positive: true, sources: [{ label: "IBGE \u2014 S\xEDntese de Indicadores Sociais", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
-          { label: "Inseguran\xE7a alimentar grave", before: "15,5%", after: "8,7%", change: "-6,8 p.p.", positive: true, sources: [{ label: "FAO \u2014 SOFI 2024", url: "https://www.fao.org/publications/sofi/2024/en/" }] },
-          { label: "Fam\xEDlias no Bolsa Fam\xEDlia (mi)", before: "21,1", after: "20,5", change: "-0,6", positive: true, sources: [{ label: "MDS \u2014 Bolsa Fam\xEDlia", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia" }] },
-          { label: "Aprova\xE7\xE3o do governo (\xF3timo/bom)", before: "38%", after: "24%", change: "-14 p.p.", positive: false, sources: [{ label: "Datafolha \u2014 Avalia\xE7\xE3o do Governo Lula", url: "https://datafolha.folha.uol.com.br/" }] },
-          { label: "Homic\xEDdios (por 100 mil hab.)", before: "22,8", after: "23,4", change: "+0,6", positive: false, sources: [{ label: "FBSP \u2014 Anu\xE1rio 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] }
+        id: "v16",
+        title: "Igualdade Salarial entre Mulheres e Homens",
+        description: "San\xE7\xE3o da lei que assegura igualdade de remunera\xE7\xE3o para o mesmo trabalho ou fun\xE7\xE3o.",
+        date: "2023-07-03",
+        vote: "Yes",
+        billNumber: "Lei 14.611/2023",
+        category: "Trabalho",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.611/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14611.htm" }
         ]
       },
       {
-        title: "Meio Ambiente \u2014 compara\xE7\xE3o hist\xF3rica (1\xBA/2\xBA vs 3\xBA mandato)",
-        icon: Leaf,
-        metrics: [
-          { label: "Desmatamento Amaz\xF4nia \u2014 2\xBA mandato (2004 \u2192 2010)", before: "27.772 km\xB2", after: "7.000 km\xB2", change: "-74,8%", positive: true, sources: [{ label: "INPE \u2014 PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }] },
-          { label: "Desmatamento Amaz\xF4nia \u2014 3\xBA mandato (2022 \u2192 2024)", before: "11.594 km\xB2", after: "5.816 km\xB2", change: "-49,8%", positive: true, sources: [{ label: "INPE \u2014 PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }] },
-          { label: "Desmatamento Cerrado \u2014 3\xBA mandato", before: "10.689 km\xB2", after: "8.174 km\xB2", change: "-23,5%", positive: true, sources: [{ label: "INPE \u2014 PRODES Cerrado", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/cerrado/rates" }] },
-          { label: "Focos de queimada no Pantanal \u2014 3\xBA mandato", before: "8.182", after: "12.581", change: "+53,8%", positive: false, sources: [{ label: "INPE \u2014 Programa Queimadas", url: "https://terrabrasilis.dpi.inpe.br/queimadas/situacao-atual/" }] },
-          { label: "\xC1rea queimada no Brasil \u2014 3\xBA mandato (mi ha)", before: "16,3", after: "30,8", change: "+89%", positive: false, sources: [{ label: "MapBiomas Fogo", url: "https://brasil.mapbiomas.org/" }] }
+        id: "v17",
+        title: "Programa Desenrola Brasil",
+        description: "San\xE7\xE3o do programa de renegocia\xE7\xE3o de d\xEDvidas de pessoas f\xEDsicas com institui\xE7\xF5es financeiras.",
+        date: "2023-10-04",
+        vote: "Yes",
+        billNumber: "Lei 14.690/2023",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.690/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14690.htm" }
+        ]
+      },
+      {
+        id: "v18",
+        title: "Programa P\xE9-de-Meia",
+        description: "San\xE7\xE3o da poupan\xE7a para estudantes do ensino m\xE9dio p\xFAblico como incentivo \xE0 perman\xEAncia escolar.",
+        date: "2024-01-16",
+        vote: "Yes",
+        billNumber: "Lei 14.818/2024",
+        category: "Educa\xE7\xE3o",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.818/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14818.htm" }
+        ]
+      },
+      {
+        id: "v19",
+        title: "Taxa\xE7\xE3o de Fundos Exclusivos e Offshores",
+        description: "San\xE7\xE3o da lei que tributa rendimentos de fundos exclusivos no Brasil e investimentos no exterior.",
+        date: "2023-12-12",
+        vote: "Yes",
+        billNumber: "Lei 14.754/2023",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.754/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14754.htm" }
+        ]
+      },
+      {
+        id: "v20",
+        title: "Mobilidade El\xE9trica e Sustent\xE1vel (Mover)",
+        description: "San\xE7\xE3o do programa de incentivo \xE0 ind\xFAstria automotiva verde e descarboniza\xE7\xE3o.",
+        date: "2024-08-13",
+        vote: "Yes",
+        billNumber: "Lei 14.902/2024",
+        category: "Ind\xFAstria",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.902/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14902.htm" }
+        ]
+      },
+      {
+        id: "v21",
+        title: "Combust\xEDvel do Futuro",
+        description: "San\xE7\xE3o da lei que amplia a mistura de etanol na gasolina e cria mercado de combust\xEDveis sustent\xE1veis.",
+        date: "2024-10-08",
+        vote: "Yes",
+        billNumber: "Lei 14.993/2024",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.993/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14993.htm" }
+        ]
+      },
+      {
+        id: "v22",
+        title: "Derrubada do Veto ao Marco Temporal",
+        description: "Congresso Nacional derrubou o veto presidencial ao marco temporal de terras ind\xEDgenas; governo foi derrotado.",
+        date: "2023-12-14",
+        vote: "No",
+        billNumber: "Lei 14.701/2023 (veto)",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "Congresso Nacional \u2014 Sess\xE3o Conjunta 14/12/2023", url: "https://www.congressonacional.leg.br/materias/vetos/-/veto/detalhe/15375" }
+        ]
+      },
+      {
+        id: "v23",
+        title: "Reonera\xE7\xE3o da Folha de Pagamento",
+        description: "Governo tentou reonerar a folha de 17 setores via MP; derrotado, recuou e sancionou desonera\xE7\xE3o at\xE9 2027.",
+        date: "2024-09-16",
+        vote: "No",
+        billNumber: "Lei 14.973/2024",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.973/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14973.htm" }
+        ]
+      },
+      {
+        id: "v24",
+        title: "MP 1.227/2024 \u2014 Limite a cr\xE9ditos de PIS/Cofins",
+        description: "Medida Provis\xF3ria editada pelo governo para limitar compensa\xE7\xE3o de cr\xE9ditos tribut\xE1rios; teve trechos devolvidos pelo Congresso ap\xF3s forte rejei\xE7\xE3o do setor produtivo.",
+        date: "2024-06-04",
+        vote: "Yes",
+        billNumber: "MP 1.227/2024",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 MP 1.227/2024", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/164093" }
         ]
       }
     ],
-    chart1: {
-      title: "Crescimento do PIB Nacional ao longo dos 3 mandatos (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2002", value: 3.1, current: false },
-        { ano: "2003", value: 1.1, current: true },
-        { ano: "2004", value: 5.8, current: true },
-        { ano: "2006", value: 4, current: true },
-        { ano: "2008", value: 5.1, current: true },
-        { ano: "2010", value: 7.5, current: true },
-        { ano: "2014", value: 0.5, current: false },
-        { ano: "2019", value: 1.2, current: false },
-        { ano: "2022", value: 3, current: false },
-        { ano: "2023", value: 2.9, current: true },
-        { ano: "2024", value: 3.2, current: true }
-      ]),
-      sources: [{ label: "IBGE \u2014 Contas Nacionais Trimestrais", url: "https://www.ibge.gov.br/explica/pib.php" }, { label: "IPEADATA", url: "http://www.ipeadata.gov.br/" }]
-    },
-    chart2: {
-      title: "Desmatamento na Amaz\xF4nia ao longo dos 3 mandatos (km\xB2/ano)",
-      unit: "km\xB2",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2002", value: 21651, current: false },
-        { ano: "2004", value: 27772, current: true },
-        { ano: "2006", value: 14286, current: true },
-        { ano: "2008", value: 12911, current: true },
-        { ano: "2010", value: 7e3, current: true },
-        { ano: "2014", value: 5012, current: false },
-        { ano: "2019", value: 10129, current: false },
-        { ano: "2022", value: 11594, current: false },
-        { ano: "2023", value: 9001, current: true },
-        { ano: "2024", value: 5816, current: true }
-      ]),
-      sources: [{ label: "INPE \u2014 PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }]
-    },
-    comparisonLabel: "Antecessores (FHC II e Bolsonaro)",
-    footnote: "Dados consolidados ao longo dos tr\xEAs mandatos presidenciais de Lula (2003\u20132010 e 2023\u2013presente). Para o 1\xBA/2\xBA mandatos, a refer\xEAncia 'antes' \xE9 o final do governo FHC II (2002); para o 3\xBA, o final do governo Bolsonaro (2022). Indicadores apresentados de forma equilibrada \u2014 incluem avan\xE7os e retrocessos. Atualizado at\xE9 dezembro de 2024.",
-    dataSources: [
-      { label: "IBGE", url: "https://www.ibge.gov.br/" },
-      { label: "IPEA / IPEADATA", url: "http://www.ipeadata.gov.br/" },
-      { label: "INPE \u2014 PRODES e Queimadas", url: "http://terrabrasilis.dpi.inpe.br/" },
-      { label: "FAO \u2014 SOFI", url: "https://www.fao.org/publications/sofi/" },
-      { label: "MDS \u2014 Bolsa Fam\xEDlia", url: "https://www.gov.br/mds/pt-br/" },
-      { label: "Banco Central do Brasil", url: "https://www.bcb.gov.br/" },
-      { label: "Tesouro Nacional", url: "https://www.gov.br/tesouronacional/" },
-      { label: "Receita Federal", url: "https://www.gov.br/receitafederal/" },
-      { label: "Minist\xE9rio da Sa\xFAde / DATASUS", url: "https://datasus.saude.gov.br/" },
-      { label: "Datafolha", url: "https://datafolha.folha.uol.com.br/" },
-      { label: "FBSP \u2014 Anu\xE1rio de Seguran\xE7a P\xFAblica", url: "https://forumseguranca.org.br/" },
-      { label: "MapBiomas", url: "https://brasil.mapbiomas.org/" },
-      { label: "PNUD \u2014 IDH", url: "https://www.undp.org/pt/brazil" },
-      { label: "DIEESE", url: "https://www.dieese.org.br/" }
+    promises: [
+      {
+        id: "p1",
+        title: "Acabar com a Fome no Brasil",
+        description: "Retomar e ampliar o programa Brasil Sem Fome para tirar o pa\xEDs do Mapa da Fome da ONU/FAO.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Social",
+        sources: [
+          { label: "Plano Brasil Sem Fome \u2014 gov.br", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/brasil-sem-fome" },
+          { label: "FAO \u2014 SOFI 2024", url: "https://www.fao.org/publications/sofi/2024/en/" }
+        ]
+      },
+      {
+        id: "p2",
+        title: "Desmatamento Zero na Amaz\xF4nia",
+        description: "Combater o desmatamento ilegal e alcan\xE7ar desmatamento zero na Amaz\xF4nia at\xE9 2030.",
+        datePromised: "2022-10-30",
+        deadline: "2030-12-31",
+        status: "In Progress",
+        progress: 50,
+        category: "Meio Ambiente",
+        sources: [
+          { label: "INPE \u2014 PRODES", url: "http://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates" }
+        ]
+      },
+      {
+        id: "p3",
+        title: "Reajuste Real do Sal\xE1rio M\xEDnimo",
+        description: "Pol\xEDtica de valoriza\xE7\xE3o que garante reajuste do sal\xE1rio m\xEDnimo acima da infla\xE7\xE3o (INPC + PIB).",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.663/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm" }
+        ]
+      },
+      {
+        id: "p16",
+        title: "Retomar o Minha Casa Minha Vida",
+        description: "Relan\xE7ar o programa habitacional com meta de 2 milh\xF5es de moradias at\xE9 2026.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 45,
+        category: "Habita\xE7\xE3o",
+        sources: [
+          { label: "gov.br \u2014 Minha Casa Minha Vida", url: "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/habitacao/minha-casa-minha-vida" }
+        ]
+      },
+      {
+        id: "p17",
+        title: "Reforma Tribut\xE1ria sobre o Consumo",
+        description: "Aprovar reforma tribut\xE1ria simplificando impostos sobre consumo (PIS/Cofins/ICMS/ISS).",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 EC 132/2023", url: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" }
+        ]
+      },
+      {
+        id: "p18",
+        title: "Retomada de Obras Paradas (Novo PAC)",
+        description: "Lan\xE7ar Novo PAC com R$ 1,7 trilh\xE3o em investimentos em infraestrutura at\xE9 2026.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 40,
+        category: "Infraestrutura",
+        sources: [
+          { label: "gov.br \u2014 Novo PAC", url: "https://www.gov.br/casacivil/pt-br/novopac" }
+        ]
+      },
+      {
+        id: "p19",
+        title: "Reinser\xE7\xE3o do Brasil na Diplomacia",
+        description: "Recolocar o Brasil em f\xF3runs internacionais (BRICS, G20, COP, ONU) com protagonismo.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Pol\xEDtica Externa",
+        sources: [
+          { label: "Itamaraty \u2014 Presid\xEAncia G20 2024", url: "https://www.gov.br/mre/pt-br/g20" }
+        ]
+      },
+      {
+        id: "p20",
+        title: "Cumprir meta fiscal de d\xE9ficit zero em 2024",
+        description: "Compromisso p\xFAblico de zerar o d\xE9ficit prim\xE1rio do Governo Central em 2024, conforme arcabou\xE7o fiscal.",
+        datePromised: "2023-04-18",
+        deadline: "2024-12-31",
+        status: "Broken",
+        progress: 10,
+        category: "Economia",
+        sources: [
+          { label: "Tesouro Nacional \u2014 Resultado do Tesouro", url: "https://www.gov.br/tesouronacional/pt-br/estatisticas-fiscais-e-planejamento/resultado-do-tesouro-nacional" },
+          { label: "Min. Fazenda \u2014 Mudan\xE7a da meta (LDO)", url: "https://www.gov.br/fazenda/pt-br" }
+        ]
+      },
+      {
+        id: "p21",
+        title: "Reonerar a folha de pagamento de 17 setores",
+        description: "Promessa de reonerar gradualmente setores beneficiados pela desonera\xE7\xE3o da folha para sustentar a Previd\xEAncia.",
+        datePromised: "2023-08-30",
+        deadline: "2024-12-31",
+        status: "Broken",
+        progress: 20,
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.973/2024 (manteve desonera\xE7\xE3o at\xE9 2027)", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14973.htm" }
+        ]
+      },
+      {
+        id: "p22",
+        title: "Zerar a fila do SUS para cirurgias eletivas",
+        description: "Compromisso de zerar a fila de procedimentos eletivos do SUS por meio do Programa Nacional de Redu\xE7\xE3o de Filas.",
+        datePromised: "2023-05-30",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 25,
+        category: "Sa\xFAde",
+        sources: [
+          { label: "Minist\xE9rio da Sa\xFAde \u2014 Redu\xE7\xE3o de Filas", url: "https://www.gov.br/saude/pt-br/assuntos/noticias/2023/maio/ministerio-da-saude-lanca-programa-de-reducao-de-filas-no-sus" },
+          { label: "CONASS", url: "https://www.conass.org.br/" }
+        ]
+      },
+      {
+        id: "p23",
+        title: "N\xE3o privatizar Petrobras e reverter privatiza\xE7\xE3o da Eletrobras",
+        description: "Compromisso de campanha de barrar privatiza\xE7\xF5es de estatais estrat\xE9gicas e rever a venda da Eletrobras.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "Broken",
+        progress: 30,
+        category: "Energia",
+        sources: [
+          { label: "Ag\xEAncia C\xE2mara \u2014 Eletrobras", url: "https://www.camara.leg.br/noticias/873912-camara-aprova-mp-da-privatizacao-da-eletrobras" }
+        ]
+      },
+      {
+        id: "p24",
+        title: "Revogar o Teto de Gastos sem aumentar a d\xEDvida",
+        description: "Substituir o Teto de Gastos por novo arcabou\xE7o fiscal mantendo a d\xEDvida p\xFAblica em trajet\xF3ria sustent\xE1vel.",
+        datePromised: "2022-12-15",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 35,
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 LC 200/2023", url: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" },
+          { label: "BCB \u2014 Estat\xEDsticas Fiscais", url: "https://www.bcb.gov.br/estatisticas/estatisticasfiscais" }
+        ]
+      }
+    ],
+    proposals: [
+      {
+        id: "pr1",
+        title: "Nova Ind\xFAstria Brasil (NIB)",
+        description: "Plano de neoindustrializa\xE7\xE3o com R$ 300 bilh\xF5es at\xE9 2026 em transi\xE7\xE3o energ\xE9tica, sa\xFAde, agro sustent\xE1vel e defesa.",
+        dateProposed: "2024-01-22",
+        status: "Active",
+        category: "Economia",
+        supportLevel: 65,
+        sources: [
+          { label: "gov.br \u2014 Nova Ind\xFAstria Brasil", url: "https://www.gov.br/mdic/pt-br/composicao/se/cndi/plano-de-acao" }
+        ]
+      },
+      {
+        id: "pr2",
+        title: "Programa P\xE9-de-Meia",
+        description: "Poupan\xE7a de at\xE9 R$ 9.200 para estudantes do ensino m\xE9dio p\xFAblico como incentivo \xE0 perman\xEAncia escolar.",
+        dateProposed: "2024-01-16",
+        status: "Passed",
+        category: "Educa\xE7\xE3o",
+        supportLevel: 82,
+        sources: [
+          { label: "Planalto \u2014 Lei 14.818/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14818.htm" }
+        ]
+      },
+      {
+        id: "pr11",
+        title: "Programa Acredita",
+        description: "Programa de cr\xE9dito e microcr\xE9dito para fam\xEDlias de baixa renda e MPEs.",
+        dateProposed: "2024-04-22",
+        status: "Passed",
+        category: "Economia",
+        supportLevel: 70,
+        sources: [
+          { label: "Planalto \u2014 Lei 14.995/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14995.htm" }
+        ]
+      },
+      {
+        id: "pr12",
+        title: "Reforma do Imposto de Renda",
+        description: "Proposta de isen\xE7\xE3o do IR para quem recebe at\xE9 R$ 5 mil mensais, com compensa\xE7\xE3o via tributa\xE7\xE3o dos super-ricos.",
+        dateProposed: "2025-03-18",
+        status: "Active",
+        category: "Economia",
+        supportLevel: 75,
+        sources: [
+          { label: "C\xE2mara \u2014 PL 1087/2025", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2495334" }
+        ]
+      },
+      {
+        id: "pr13",
+        title: "Plano de Transforma\xE7\xE3o Ecol\xF3gica",
+        description: "Estrat\xE9gia nacional para transi\xE7\xE3o verde, finan\xE7as sustent\xE1veis e descarboniza\xE7\xE3o da economia.",
+        dateProposed: "2023-08-09",
+        status: "Active",
+        category: "Meio Ambiente",
+        supportLevel: 68,
+        sources: [
+          { label: "Minist\xE9rio da Fazenda \u2014 PTE", url: "https://www.gov.br/fazenda/pt-br/orgaos/spe/transformacao-ecologica" }
+        ]
+      },
+      {
+        id: "pr14",
+        title: "MP 1.227/2024 \u2014 Compensa\xE7\xE3o de PIS/Cofins",
+        description: "Medida Provis\xF3ria que limitava a compensa\xE7\xE3o de cr\xE9ditos tribut\xE1rios para conter o d\xE9ficit; trechos centrais foram devolvidos pelo presidente do Congresso ap\xF3s rea\xE7\xE3o do setor produtivo.",
+        dateProposed: "2024-06-04",
+        status: "Withdrawn",
+        category: "Economia",
+        supportLevel: 25,
+        sources: [
+          { label: "Senado \u2014 MP 1.227/2024", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/164093" }
+        ]
+      },
+      {
+        id: "pr15",
+        title: "PEC da Seguran\xE7a P\xFAblica",
+        description: "Proposta enviada ao Congresso para constitucionalizar o SUSP e ampliar compet\xEAncia da Uni\xE3o em seguran\xE7a; tramita\xE7\xE3o travada e baixa ades\xE3o de governadores.",
+        dateProposed: "2024-10-31",
+        status: "Active",
+        category: "Seguran\xE7a",
+        supportLevel: 35,
+        sources: [
+          { label: "C\xE2mara \u2014 PEC da Seguran\xE7a P\xFAblica", url: "https://www.camara.leg.br/noticias/1110050-governo-envia-pec-da-seguranca-publica-ao-congresso/" }
+        ]
+      },
+      {
+        id: "pr16",
+        title: "Vetos derrubados pelo Congresso",
+        description: "Conjunto de vetos presidenciais derrubados pelo Congresso em 2023\u20132024, incluindo Marco Temporal de Terras Ind\xEDgenas e trechos da desonera\xE7\xE3o da folha \u2014 sinal de derrotas pol\xEDticas relevantes para o Executivo.",
+        dateProposed: "2023-12-14",
+        status: "Failed",
+        category: "Pol\xEDtica",
+        supportLevel: 30,
+        sources: [
+          { label: "Congresso Nacional \u2014 Vetos", url: "https://www.congressonacional.leg.br/materias/vetos" }
+        ]
+      }
     ]
   },
-  // Flávio Bolsonaro - Senador
-  "2": {
-    subtitle: "Indicadores parlamentares do mandato como Senador da Rep\xFAblica pelo Rio de Janeiro.",
-    commitments: [
-      { id: 1, title: "Defesa de pautas conservadoras", icon: ShieldCheck, status: "Em Andamento", progress: 70, detail: "Atua\xE7\xE3o ativa na CCJ" },
-      { id: 2, title: "Redu\xE7\xE3o de impostos", icon: Landmark, status: "Em Andamento", progress: 30, detail: "Votos contr\xE1rios a aumentos tribut\xE1rios" },
-      { id: 3, title: "Combate \xE0 corrup\xE7\xE3o", icon: ShieldCheck, status: "Em Andamento", progress: 25, detail: "Apoio a projetos de transpar\xEAncia" },
-      { id: 4, title: "Seguran\xE7a p\xFAblica", icon: ShieldCheck, status: "Em Andamento", progress: 45, detail: "Defesa do excludente de ilicitude" },
-      { id: 5, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 10, detail: "PEC 333/2017 e correlatas seguem sem vota\xE7\xE3o; senador n\xE3o apresentou proposta pr\xF3pria sobre o tema" },
-      { id: 6, title: "Aprovar lei de prote\xE7\xE3o a agentes de seguran\xE7a", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 15, detail: "Projetos arquivados ao fim das legislaturas sem aprova\xE7\xE3o no plen\xE1rio" },
-      { id: 7, title: "Esclarecer caso das 'rachadinhas' do gabinete na ALERJ", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 0, detail: "Investiga\xE7\xE3o do MP-RJ ainda em curso; STJ rejeitou suspens\xE3o em 2023" }
+  {
+    id: "2",
+    name: "Fl\xE1vio Bolsonaro",
+    party: "PL",
+    position: "Senador",
+    state: "Rio de Janeiro",
+    district: void 0,
+    birthPlace: "Rio de Janeiro, RJ",
+    mandates: [
+      { position: "Deputado Estadual (RJ)", start: "2003", end: "2007" },
+      { position: "Deputado Estadual (RJ)", start: "2007", end: "2011" },
+      { position: "Deputado Estadual (RJ)", start: "2011", end: "2015" },
+      { position: "Deputado Estadual (RJ)", start: "2015", end: "2019" },
+      { position: "Senador (RJ)", start: "2019", end: "2027", current: true }
     ],
-    performance: [
+    termStart: "2019-02-01",
+    termEnd: "2027-02-01",
+    imageUrl: "",
+    biography: "Fl\xE1vio Nantes Bolsonaro \xE9 um pol\xEDtico brasileiro, senador pelo estado do Rio de Janeiro desde 2019. Filho mais velho do ex-presidente Jair Bolsonaro, iniciou sua carreira pol\xEDtica como deputado estadual pelo Rio de Janeiro, cargo que exerceu por quatro mandatos consecutivos (2003-2019) na ALERJ. Como senador, tem atuado em pautas conservadoras, defesa da fam\xEDlia tradicional, seguran\xE7a p\xFAblica e liberalismo econ\xF4mico. \xC9 formado em Direito.",
+    website: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988",
+    email: "sen.flaviobolsonaro@senado.leg.br",
+    phone: "@flaviobolsonaro",
+    committeeMemberships: ["Comiss\xE3o de Assuntos Econ\xF4micos (CAE)", "Comiss\xE3o de Constitui\xE7\xE3o, Justi\xE7a e Cidadania (CCJ)", "Comiss\xE3o de Seguran\xE7a P\xFAblica (CSP)"],
+    voteRecords: [
       {
-        title: "Atividade Legislativa",
-        icon: FileText,
-        metrics: [
-          { label: "Projetos apresentados", before: "32", after: "58", change: "+81,3%", positive: true, sources: [{ label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
-          { label: "Discursos em plen\xE1rio", before: "45", after: "72", change: "+60,0%", positive: true, sources: [{ label: "Senado \u2014 Discursos", url: "https://www25.senado.leg.br/web/atividade/pronunciamentos" }] },
-          { label: "Relatorias assumidas", before: "8", after: "14", change: "+75,0%", positive: true, sources: [{ label: "Senado \u2014 Relatorias", url: "https://www25.senado.leg.br/web/atividade/materias" }] }
+        id: "v4",
+        title: "Reforma Tribut\xE1ria (PEC 45)",
+        description: "Vota\xE7\xE3o em segundo turno no Senado da PEC da Reforma Tribut\xE1ria sobre o consumo.",
+        date: "2023-11-08",
+        vote: "No",
+        billNumber: "PEC 45/2019",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 Tramita\xE7\xE3o PEC 45/2019", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/137699" }
         ]
       },
       {
-        title: "Participa\xE7\xE3o",
-        icon: Vote,
-        metrics: [
-          { label: "Presen\xE7a em vota\xE7\xF5es", before: "82%", after: "89%", change: "+7,0 p.p.", positive: true, sources: [{ label: "Senado \u2014 Vota\xE7\xF5es Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
-          { label: "Audi\xEAncias p\xFAblicas em comiss\xF5es", before: "12", after: "21", change: "+75,0%", positive: true, sources: [{ label: "Senado \u2014 Comiss\xF5es", url: "https://www25.senado.leg.br/web/atividade/comissoes" }] }
+        id: "v5",
+        title: "Marco Legal das Armas",
+        description: "Projeto que flexibiliza regras para posse e porte de armas de fogo.",
+        date: "2023-06-15",
+        vote: "Yes",
+        billNumber: "PL 3723/2019",
+        category: "Seguran\xE7a P\xFAblica",
+        sources: [
+          { label: "Senado \u2014 PL 3723/2019", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/137357" }
         ]
       },
       {
-        title: "Indicadores Cr\xEDticos",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "Projetos aprovados pelo plen\xE1rio (sancionados)", before: "4", after: "2", change: "-50,0%", positive: false, sources: [{ label: "Senado \u2014 Mat\xE9rias do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }] },
-          { label: "Faltas em vota\xE7\xF5es secretas", before: "6", after: "11", change: "+83,3%", positive: false, sources: [{ label: "Senado \u2014 Vota\xE7\xF5es", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }] },
-          { label: "Processos em investiga\xE7\xE3o (MP-RJ \u2014 'rachadinhas')", before: "1", after: "1 (ativo)", change: "Sem desfecho", positive: false, sources: [{ label: "MP-RJ \u2014 Notas Oficiais", url: "https://www.mprj.mp.br/" }, { label: "STJ \u2014 APn 989", url: "https://www.stj.jus.br/" }] },
-          { label: "Alinhamento com pauta do governo eleito (2023\u20132024)", before: "\u2014", after: "18%", change: "Oposi\xE7\xE3o sistem\xE1tica", positive: false, sources: [{ label: "DIAP \u2014 Radiografia do Congresso", url: "https://www.diap.org.br/" }] }
+        id: "v5b",
+        title: "Novo Arcabou\xE7o Fiscal",
+        description: "Vota\xE7\xE3o no Senado do novo marco fiscal proposto pelo governo Lula.",
+        date: "2023-08-22",
+        vote: "No",
+        billNumber: "PLP 93/2023",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 PLP 93/2023", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/158040" }
+        ]
+      },
+      {
+        id: "v22",
+        title: "PEC do Estouro Fiscal de Transi\xE7\xE3o",
+        description: "PEC que abriu espa\xE7o fiscal de R$ 145 bi fora do teto de gastos para o in\xEDcio do governo Lula.",
+        date: "2022-12-21",
+        vote: "No",
+        billNumber: "PEC 32/2022",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 PEC 32/2022", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/156003" }
+        ]
+      },
+      {
+        id: "v23",
+        title: "Marco Temporal Ind\xEDgena",
+        description: "Vota\xE7\xE3o do projeto que estabelece marco temporal para demarca\xE7\xE3o de terras ind\xEDgenas.",
+        date: "2023-09-27",
+        vote: "Yes",
+        billNumber: "PL 2903/2023",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "Senado \u2014 PL 2903/2023", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/158738" }
+        ]
+      },
+      {
+        id: "v24",
+        title: "Taxa\xE7\xE3o de Fundos Exclusivos e Offshores",
+        description: "Vota\xE7\xE3o da lei que tributa rendimentos de fundos exclusivos e investimentos no exterior.",
+        date: "2023-11-29",
+        vote: "No",
+        billNumber: "PL 4173/2023",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 PL 4173/2023", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/160250" }
+        ]
+      },
+      {
+        id: "v25",
+        title: "Saidinhas de Presos",
+        description: "Vota\xE7\xE3o que restringe as sa\xEDdas tempor\xE1rias de presos do regime semiaberto.",
+        date: "2024-04-09",
+        vote: "Yes",
+        billNumber: "PL 2253/2022",
+        category: "Seguran\xE7a P\xFAblica",
+        sources: [
+          { label: "Senado \u2014 PL 2253/2022", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/154886" }
+        ]
+      },
+      {
+        id: "v26",
+        title: "Regulamenta\xE7\xE3o da Reforma Tribut\xE1ria",
+        description: "Vota\xE7\xE3o do PLP que regulamenta a Reforma Tribut\xE1ria (CBS/IBS).",
+        date: "2024-12-12",
+        vote: "No",
+        billNumber: "PLP 68/2024",
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 PLP 68/2024", url: "https://www25.senado.leg.br/web/atividade/materias/-/materia/164914" }
         ]
       }
     ],
-    chart1: {
-      title: "Projetos de Lei Apresentados",
-      unit: "projetos",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2019", value: 12, current: false },
-        { ano: "2020", value: 14, current: false },
-        { ano: "2021", value: 18, current: false },
-        { ano: "2022", value: 16, current: false },
-        { ano: "2023", value: 28, current: true },
-        { ano: "2024", value: 30, current: true }
-      ]),
-      sources: [{ label: "Senado \u2014 Atividade Legislativa", url: "https://www25.senado.leg.br/web/atividade/materias" }]
-    },
-    chart2: {
-      title: "Presen\xE7a em Vota\xE7\xF5es Nominais (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2019", value: 78, current: false },
-        { ano: "2020", value: 80, current: false },
-        { ano: "2021", value: 83, current: false },
-        { ano: "2022", value: 82, current: false },
-        { ano: "2023", value: 87, current: true },
-        { ano: "2024", value: 89, current: true }
-      ]),
-      sources: [{ label: "Senado \u2014 Vota\xE7\xF5es Nominais", url: "https://www25.senado.leg.br/web/atividade/plenario/votacoes" }]
-    },
-    comparisonLabel: "1\xBA Mandato (2019\u20132022)",
-    footnote: "Compara\xE7\xE3o entre o 1\xBA mandato (2019\u20132022) e o 2\xBA mandato em curso de Fl\xE1vio Bolsonaro como Senador. Dados consolidados at\xE9 dezembro de 2024.",
-    dataSources: [
-      { label: "Senado Federal", url: "https://www25.senado.leg.br/" },
-      { label: "Portal da Transpar\xEAncia", url: "https://portaldatransparencia.gov.br/" }
+    promises: [
+      {
+        id: "p4",
+        title: "Redu\xE7\xE3o de Impostos",
+        description: "Lutar pela redu\xE7\xE3o da carga tribut\xE1ria sobre empresas e cidad\xE3os brasileiros.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 30,
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }
+        ]
+      },
+      {
+        id: "p5",
+        title: "Endurecimento de Penas",
+        description: "Defender o endurecimento de penas para crimes violentos e o direito \xE0 leg\xEDtima defesa armada.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 50,
+        category: "Seguran\xE7a P\xFAblica",
+        sources: [
+          { label: "Senado \u2014 Projetos do Senador", url: "https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988" }
+        ]
+      },
+      {
+        id: "p5b",
+        title: "Combate \xE0 Corrup\xE7\xE3o",
+        description: "Apoiar projetos que fortale\xE7am o combate \xE0 corrup\xE7\xE3o e a transpar\xEAncia p\xFAblica.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 25,
+        category: "Governan\xE7a",
+        sources: [
+          { label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }
+        ]
+      },
+      {
+        id: "p20",
+        title: "Defesa da Fam\xEDlia Tradicional",
+        description: "Defender em plen\xE1rio e nas comiss\xF5es pautas conservadoras ligadas \xE0 fam\xEDlia.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 65,
+        category: "Costumes",
+        sources: [
+          { label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }
+        ]
+      },
+      {
+        id: "p21",
+        title: "Privatiza\xE7\xF5es Estrat\xE9gicas",
+        description: "Apoiar a privatiza\xE7\xE3o de estatais n\xE3o estrat\xE9gicas e desestatiza\xE7\xE3o da economia.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 35,
+        category: "Economia",
+        sources: [
+          { label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }
+        ]
+      },
+      {
+        id: "p22",
+        title: "Excludente de Ilicitude para Pol\xEDcias",
+        description: "Aprovar o excludente de ilicitude para agentes de seguran\xE7a em opera\xE7\xF5es.",
+        datePromised: "2018-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 30,
+        category: "Seguran\xE7a P\xFAblica",
+        sources: [
+          { label: "Senado \u2014 Atividade do Senador", url: "https://www25.senado.leg.br/web/senadores/senador/-/perfil/4988" }
+        ]
+      }
+    ],
+    proposals: [
+      {
+        id: "pr3",
+        title: "Escola sem Partido",
+        description: "Projeto que visa garantir a neutralidade pol\xEDtico-ideol\xF3gica nas escolas.",
+        dateProposed: "2023-03-20",
+        status: "Active",
+        category: "Educa\xE7\xE3o",
+        supportLevel: 48,
+        sources: [
+          { label: "Senado \u2014 Atividade Legislativa", url: "https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988" }
+        ]
+      },
+      {
+        id: "pr3b",
+        title: "Excludente de Ilicitude para Policiais",
+        description: "Projeto que amplia a excludente de ilicitude para agentes de seguran\xE7a em opera\xE7\xF5es.",
+        dateProposed: "2023-05-10",
+        status: "Active",
+        category: "Seguran\xE7a P\xFAblica",
+        supportLevel: 42,
+        sources: [
+          { label: "Senado \u2014 Atividade Legislativa", url: "https://www25.senado.leg.br/web/atividade/materias/-/materias/pesquisa/lista?p_autor=4988" }
+        ]
+      },
+      {
+        id: "pr14",
+        title: "CPI dos Atos de 8 de Janeiro \u2014 Voto Vencido",
+        description: "Atua\xE7\xE3o na CPMI do 8 de Janeiro com posicionamento contr\xE1rio ao relat\xF3rio final.",
+        dateProposed: "2023-10-17",
+        status: "Failed",
+        category: "Pol\xEDtica",
+        supportLevel: 30,
+        sources: [
+          { label: "Senado \u2014 CPMI 8 de Janeiro", url: "https://legis.senado.leg.br/comissoes/comissao?codcol=2606" }
+        ]
+      },
+      {
+        id: "pr15",
+        title: "Suspens\xE3o da Cobran\xE7a de Saidinhas",
+        description: "Projeto para restringir sa\xEDdas tempor\xE1rias de presos condenados por crimes hediondos.",
+        dateProposed: "2024-04-09",
+        status: "Passed",
+        category: "Seguran\xE7a P\xFAblica",
+        supportLevel: 72,
+        sources: [
+          { label: "Planalto \u2014 Lei 14.843/2024", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14843.htm" }
+        ]
+      }
     ]
   },
-  "3": {
-    subtitle: "Indicadores parlamentares do mandato na Assembleia Legislativa do Rio de Janeiro.",
-    commitments: [
-      { id: 1, title: "Investimento em educa\xE7\xE3o", icon: GraduationCap, status: "Em Andamento", progress: 68, detail: "Aumento real no or\xE7amento da educa\xE7\xE3o" },
-      { id: 2, title: "Habita\xE7\xE3o popular", icon: Building2, status: "Em Andamento", progress: 55, detail: "2.700 de 5.000 unidades em obras" },
-      { id: 3, title: "Valoriza\xE7\xE3o do professor", icon: GraduationCap, status: "Em Andamento", progress: 60, detail: "Reajuste salarial em discuss\xE3o" },
-      { id: 4, title: "Infraestrutura estadual", icon: Building2, status: "Parcialmente Cumprida", progress: 72, detail: "Projetos aprovados em 2023-2024" },
-      { id: 5, title: "Reduzir letalidade policial no RJ", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 10, detail: "RJ segue como estado com maior n\xFAmero absoluto de mortes por interven\xE7\xE3o policial (Anu\xE1rio FBSP 2024)" },
-      { id: 6, title: "Zerar fila da sa\xFAde estadual", icon: Stethoscope, status: "N\xE3o Cumprida", progress: 15, detail: "Fila por cirurgias eletivas e consultas especializadas cresceu em 2023\u20132024" },
-      { id: 7, title: "Concluir obras paradas do estado", icon: Building2, status: "Parcialmente Cumprida", progress: 35, detail: "TCE-RJ aponta dezenas de obras com atraso superior a 24 meses" }
+  {
+    id: "3",
+    name: "Ana Beatriz Costa",
+    party: "MDB",
+    position: "Deputada Estadual",
+    state: "Rio de Janeiro",
+    district: void 0,
+    birthPlace: "Niter\xF3i, RJ",
+    mandates: [
+      { position: "Vereadora (Niter\xF3i)", start: "2017", end: "2021" },
+      { position: "Deputada Estadual (RJ)", start: "2023", end: "2027", current: true }
     ],
-    performance: [
+    termStart: "2023-02-01",
+    termEnd: "2027-02-01",
+    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    biography: "Ana Beatriz Costa \xE9 Deputada Estadual pelo Rio de Janeiro, com forte atua\xE7\xE3o em educa\xE7\xE3o, sa\xFAde p\xFAblica e habita\xE7\xE3o popular. Iniciou sua trajet\xF3ria pol\xEDtica como vereadora em Niter\xF3i (2017-2021) antes de se eleger para a Assembleia Legislativa (ALERJ). Defende pol\xEDticas p\xFAblicas baseadas em dados e participa\xE7\xE3o cidad\xE3.",
+    website: "https://www.alerj.rj.gov.br",
+    email: "anabeatriz@alerj.rj.gov.br",
+    phone: "@anabeatrizcosta",
+    committeeMemberships: ["Comiss\xE3o de Educa\xE7\xE3o", "Comiss\xE3o de Sa\xFAde", "Comiss\xE3o de Habita\xE7\xE3o"],
+    voteRecords: [
       {
-        title: "Atividade Legislativa",
-        icon: FileText,
-        metrics: [
-          { label: "Projetos apresentados", before: "18", after: "34", change: "+88,9%", positive: true },
-          { label: "Emendas ao or\xE7amento", before: "12", after: "21", change: "+75,0%", positive: true }
-        ]
+        id: "v6",
+        title: "Lei do Transporte P\xFAblico",
+        description: "Reforma do sistema de transporte p\xFAblico no estado do RJ.",
+        date: "2023-08-15",
+        vote: "Yes",
+        billNumber: "PL 1234/2023",
+        category: "Transporte"
       },
       {
-        title: "Participa\xE7\xE3o",
-        icon: Vote,
-        metrics: [
-          { label: "Presen\xE7a em sess\xF5es", before: "85%", after: "94%", change: "+9,0 p.p.", positive: true },
-          { label: "Audi\xEAncias p\xFAblicas realizadas", before: "6", after: "13", change: "+116,7%", positive: true }
-        ]
+        id: "v7",
+        title: "Programa Estadual de Habita\xE7\xE3o",
+        description: "Cria\xE7\xE3o de programa para habita\xE7\xE3o popular no estado.",
+        date: "2023-09-22",
+        vote: "Yes",
+        billNumber: "PL 2345/2023",
+        category: "Habita\xE7\xE3o"
       },
       {
-        title: "Indicadores Cr\xEDticos do Estado",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "Mortes por interven\xE7\xE3o policial (RJ)", before: "1.245", after: "1.330", change: "+6,8%", positive: false, sources: [{ label: "ISP-RJ \u2014 Estat\xEDsticas", url: "http://www.ispdados.rj.gov.br/" }, { label: "FBSP \u2014 Anu\xE1rio 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
-          { label: "Fila por cirurgia eletiva no SUS-RJ", before: "62 mil", after: "84 mil", change: "+35,5%", positive: false, sources: [{ label: "SES-RJ \u2014 Painel SUS", url: "https://www.saude.rj.gov.br/" }] },
-          { label: "Evas\xE3o no Ensino M\xE9dio (RJ)", before: "6,8%", after: "7,9%", change: "+1,1 p.p.", positive: false, sources: [{ label: "INEP \u2014 Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
-          { label: "Obras estaduais com atraso > 24 meses", before: "\u2014", after: "47", change: "Cr\xEDtico", positive: false, sources: [{ label: "TCE-RJ \u2014 Relat\xF3rios", url: "https://www.tce.rj.gov.br/" }] }
-        ]
+        id: "v8",
+        title: "Aumento Salarial dos Professores",
+        description: "Reajuste salarial para professores da rede estadual.",
+        date: "2023-11-10",
+        vote: "Yes",
+        billNumber: "PL 3456/2023",
+        category: "Educa\xE7\xE3o"
       }
     ],
-    chart1: {
-      title: "Projetos de Lei Apresentados",
-      unit: "projetos",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2019", value: 6, current: false },
-        { ano: "2020", value: 8, current: false },
-        { ano: "2021", value: 10, current: false },
-        { ano: "2022", value: 12, current: false },
-        { ano: "2023", value: 16, current: true },
-        { ano: "2024", value: 18, current: true }
-      ])
-    },
-    chart2: {
-      title: "Presen\xE7a em Sess\xF5es (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2019", value: 82, current: false },
-        { ano: "2020", value: 84, current: false },
-        { ano: "2021", value: 86, current: false },
-        { ano: "2022", value: 85, current: false },
-        { ano: "2023", value: 92, current: true },
-        { ano: "2024", value: 94, current: true }
-      ])
-    },
-    comparisonLabel: "Mandato Anterior",
-    footnote: "Fontes: ALERJ, Portal da Transpar\xEAncia do RJ. Dados consolidados at\xE9 dezembro de 2024."
-  },
-  // Ronaldo Caiado - Governador de Goiás
-  "4": {
-    subtitle: "Resultados concretos e compromissos assumidos durante o mandato de Ronaldo Caiado como Governador de Goi\xE1s.",
-    commitments: [
-      { id: 1, title: "Pacto pela Seguran\xE7a", icon: ShieldCheck, status: "Cumprida", progress: 100, detail: "Goi\xE1s entre os estados mais seguros" },
-      { id: 2, title: "Goi\xE1s na Frente (10 mil km de estradas)", icon: BriefcaseBusiness, status: "Em Andamento", progress: 60, detail: "6 mil km j\xE1 asfaltados" },
-      { id: 3, title: "Equil\xEDbrio fiscal do estado", icon: Landmark, status: "Cumprida", progress: 100, detail: "Contas equilibradas, sem aumento de impostos" },
-      { id: 4, title: "Programa Goi\xE1s Social", icon: Stethoscope, status: "Em Andamento", progress: 78, detail: "Cobertura ampliada em 70% dos munic\xEDpios" },
-      { id: 5, title: "Constru\xE7\xE3o de escolas em tempo integral", icon: GraduationCap, status: "Parcialmente Cumprida", progress: 65, detail: "210 de 320 unidades entregues" },
-      { id: 6, title: "Saneamento b\xE1sico universal", icon: Droplets, status: "Em Andamento", progress: 55, detail: "Cobertura passou de 38% para 58%" },
-      { id: 7, title: "Zerar desmatamento ilegal no Cerrado goiano", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 10, detail: "GO segue entre os estados com maior alerta de desmatamento do Cerrado (MapBiomas/INPE 2024)" },
-      { id: 8, title: "Universalizar atendimento b\xE1sico de sa\xFAde", icon: Stethoscope, status: "Parcialmente Cumprida", progress: 50, detail: "Fila por consultas e cirurgias eletivas cresceu em 2023" },
-      { id: 9, title: "Renegociar d\xEDvida do estado com a Uni\xE3o", icon: Landmark, status: "N\xE3o Cumprida", progress: 20, detail: "GO ainda n\xE3o aderiu ao RRF; estoque da d\xEDvida segue elevado" }
-    ],
-    performance: [
+    promises: [
       {
-        title: "Seguran\xE7a P\xFAblica",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "Taxa de homic\xEDdios (por 100 mil hab.)", before: "33,8", after: "11,1", change: "-67,2%", positive: true, sources: [{ label: "FBSP \u2014 Anu\xE1rio Brasileiro de Seguran\xE7a P\xFAblica", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
-          { label: "Roubos de ve\xEDculos", before: "12.450", after: "5.890", change: "-52,7%", positive: true, sources: [{ label: "SSP-GO \u2014 Estat\xEDsticas", url: "https://www.ssp.go.gov.br/estatistica" }] },
-          { label: "Mortes violentas intencionais", before: "2.231", after: "740", change: "-66,8%", positive: true, sources: [{ label: "SSP-GO \u2014 Estat\xEDsticas", url: "https://www.ssp.go.gov.br/estatistica" }] }
-        ]
+        id: "p6",
+        title: "Investimento em Educa\xE7\xE3o P\xFAblica",
+        description: "Aumentar em 30% o investimento em educa\xE7\xE3o p\xFAblica estadual.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 65,
+        category: "Educa\xE7\xE3o"
       },
       {
-        title: "Economia",
-        icon: TrendingUp,
-        metrics: [
-          { label: "Crescimento do PIB estadual", before: "1,4%", after: "4,1%", change: "+2,7 p.p.", positive: true, sources: [{ label: "IBGE \u2014 Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }] },
-          { label: "Empregos formais (saldo CAGED)", before: "62 mil", after: "138 mil", change: "+122,6%", positive: true, sources: [{ label: "MTE \u2014 Novo CAGED", url: "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/novo-caged" }] },
-          { label: "Capacidade de pagamento (CAPAG)", before: "C", after: "B", change: "Melhora", positive: true, sources: [{ label: "Tesouro Nacional \u2014 CAPAG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }] }
-        ]
-      },
-      {
-        title: "Social e Educa\xE7\xE3o",
-        icon: Users,
-        metrics: [
-          { label: "Pobreza extrema", before: "8,2%", after: "4,9%", change: "-3,3 p.p.", positive: true, sources: [{ label: "IBGE \u2014 PNAD Cont\xEDnua", url: "https://www.ibge.gov.br/estatisticas/sociais/populacao/9221-sintese-de-indicadores-sociais.html" }] },
-          { label: "Cobertura do Goi\xE1s Social", before: "0%", after: "70%", change: "+70 p.p.", positive: true, sources: [{ label: "OVG \u2014 Goi\xE1s Social", url: "https://www.social.go.gov.br/goias-social" }] },
-          { label: "Escolas em tempo integral", before: "85", after: "295", change: "+247%", positive: true, sources: [{ label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }] }
-        ]
-      },
-      {
-        title: "Indicadores Cr\xEDticos",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "Alertas de desmatamento no Cerrado (GO, km\xB2)", before: "612", after: "1.034", change: "+68,9%", positive: false, sources: [{ label: "INPE \u2014 DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }, { label: "MapBiomas Alerta", url: "https://alerta.mapbiomas.org/" }] },
-          { label: "Estoque da d\xEDvida consolidada (R$ bi)", before: "16,4", after: "22,1", change: "+34,8%", positive: false, sources: [{ label: "Tesouro Nacional \u2014 Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
-          { label: "Fila por cirurgia eletiva no SUS-GO", before: "28 mil", after: "41 mil", change: "+46,4%", positive: false, sources: [{ label: "SES-GO \u2014 Painel Sa\xFAde", url: "https://www.saude.go.gov.br/" }] },
-          { label: "Mortes por interven\xE7\xE3o policial", before: "112", after: "168", change: "+50,0%", positive: false, sources: [{ label: "FBSP \u2014 Anu\xE1rio 2024", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }] },
-          { label: "Feminic\xEDdios consumados", before: "38", after: "57", change: "+50,0%", positive: false, sources: [{ label: "SSP-GO", url: "https://www.ssp.go.gov.br/estatistica" }] }
-        ]
+        id: "p7",
+        title: "Programa Habitacional",
+        description: "Construir 5.000 unidades habitacionais para fam\xEDlias de baixa renda.",
+        datePromised: "2022-10-30",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 55,
+        category: "Habita\xE7\xE3o"
       }
     ],
-    chart1: {
-      title: "Evolu\xE7\xE3o do PIB Estadual (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2017", value: 0.9, current: false },
-        { ano: "2018", value: 1.4, current: false },
-        { ano: "2019", value: 2.1, current: true },
-        { ano: "2020", value: -2, current: true },
-        { ano: "2021", value: 3.5, current: true },
-        { ano: "2022", value: 3.8, current: true },
-        { ano: "2023", value: 4.1, current: true }
-      ]),
-      sources: [{ label: "IBGE \u2014 Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }]
-    },
-    chart2: {
-      title: "Taxa de Homic\xEDdios (por 100 mil hab.)",
-      unit: "por 100 mil",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2017", value: 35.4, current: false },
-        { ano: "2018", value: 33.8, current: false },
-        { ano: "2019", value: 28.5, current: true },
-        { ano: "2020", value: 24.1, current: true },
-        { ano: "2021", value: 21.6, current: true },
-        { ano: "2022", value: 19.4, current: true },
-        { ano: "2023", value: 11.1, current: true }
-      ]),
-      sources: [{ label: "FBSP \u2014 Anu\xE1rio Brasileiro de Seguran\xE7a P\xFAblica", url: "https://forumseguranca.org.br/anuario-brasileiro-seguranca-publica/" }]
-    },
-    comparisonLabel: "Gov. Marconi Perillo (2011\u20132014)",
-    footnote: "Compara\xE7\xE3o entre o \xFAltimo mandato completo do governo anterior (Marconi Perillo, PSDB) e o governo Caiado. Dados consolidados at\xE9 dezembro de 2024.",
-    dataSources: [
-      { label: "IBGE", url: "https://www.ibge.gov.br/" },
-      { label: "SSP-GO", url: "https://www.ssp.go.gov.br/" },
-      { label: "FBSP", url: "https://forumseguranca.org.br/" },
-      { label: "Tesouro Nacional", url: "https://www.tesourotransparente.gov.br/" },
-      { label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }
+    proposals: [
+      {
+        id: "pr4",
+        title: "Valoriza\xE7\xE3o do Professor",
+        description: "Projeto para aumentar sal\xE1rios e benef\xEDcios dos professores.",
+        dateProposed: "2023-09-12",
+        status: "Active",
+        category: "Educa\xE7\xE3o",
+        supportLevel: 71
+      }
     ]
   },
-  // Renan Santos - Deputado Federal NOVO/SP
-  "5": {
-    subtitle: "Indicadores parlamentares do mandato como Deputado Federal por S\xE3o Paulo.",
-    commitments: [
-      { id: 1, title: "Redu\xE7\xE3o da m\xE1quina p\xFAblica", icon: Landmark, status: "Em Andamento", progress: 40, detail: "Apoio \xE0 Reforma Administrativa" },
-      { id: 2, title: "Combate a privil\xE9gios", icon: ShieldCheck, status: "Em Andamento", progress: 55, detail: "Projetos contra penduricalhos" },
-      { id: 3, title: "Desburocratiza\xE7\xE3o digital", icon: TrendingUp, status: "Em Andamento", progress: 35, detail: "Marco Legal das Startups apoiado" },
-      { id: 4, title: "Fim do foro privilegiado", icon: ShieldCheck, status: "Em Andamento", progress: 30, detail: "Proposta em tramita\xE7\xE3o" },
-      { id: 5, title: "Aprovar Reforma Administrativa (PEC 32)", icon: Landmark, status: "N\xE3o Cumprida", progress: 5, detail: "PEC sequer foi pautada no plen\xE1rio da C\xE2mara em 2023\u20132024" },
-      { id: 6, title: "Acabar com o fund\xE3o eleitoral", icon: ShieldCheck, status: "N\xE3o Cumprida", progress: 0, detail: "Fundo eleitoral atingiu R$ 4,9 bi em 2024, recorde hist\xF3rico" },
-      { id: 7, title: "Reduzir o n\xFAmero de minist\xE9rios", icon: Landmark, status: "N\xE3o Cumprida", progress: 0, detail: "N\xFAmero de minist\xE9rios passou de 23 para 38 na atual gest\xE3o" },
-      { id: 8, title: "Aprovar projetos de autoria pr\xF3pria", icon: FileText, status: "N\xE3o Cumprida", progress: 8, detail: "Nenhum PL de autoria do deputado foi sancionado at\xE9 2024" }
+  {
+    id: "4",
+    name: "Ronaldo Caiado",
+    party: "Uni\xE3o Brasil",
+    position: "Governador",
+    state: "Goi\xE1s",
+    district: void 0,
+    birthPlace: "An\xE1polis, GO",
+    mandates: [
+      { position: "Senador (GO)", start: "1991", end: "1995" },
+      { position: "Deputado Federal (GO)", start: "1999", end: "2003" },
+      { position: "Deputado Federal (GO)", start: "2003", end: "2007" },
+      { position: "Deputado Federal (GO)", start: "2007", end: "2011" },
+      { position: "Deputado Federal (GO)", start: "2011", end: "2015" },
+      { position: "Senador (GO)", start: "2015", end: "2019" },
+      { position: "Governador de Goi\xE1s", start: "2019", end: "2023" },
+      { position: "Governador de Goi\xE1s", start: "2023", end: "2027", current: true }
     ],
-    performance: [
+    termStart: "2023-01-01",
+    termEnd: "2027-01-01",
+    imageUrl: "",
+    biography: "Ronaldo Ramos Caiado \xE9 m\xE9dico e pol\xEDtico brasileiro, atual Governador de Goi\xE1s em seu segundo mandato (2023-2027). Nascido em An\xE1polis (GO) em 1949, formou-se em Medicina pela UFG. Foi presidente da UDR nos anos 1980. Elegeu-se senador por Goi\xE1s em 1990 e deputado federal em 1998, 2002, 2006 e 2010. Foi novamente senador entre 2015 e 2018, quando se elegeu governador. \xC9 considerado uma lideran\xE7a do agroneg\xF3cio. Seu governo prioriza seguran\xE7a p\xFAblica, infraestrutura e desenvolvimento econ\xF4mico do estado.",
+    website: "https://www.goias.gov.br",
+    email: "governador@goias.gov.br",
+    phone: "@ronaldocaiado",
+    committeeMemberships: ["Cons\xF3rcio Brasil Central", "F\xF3rum de Governadores"],
+    voteRecords: [
       {
-        title: "Atividade Legislativa",
-        icon: FileText,
-        metrics: [
-          { label: "Projetos apresentados", before: "0", after: "26", change: "+26", positive: true, sources: [{ label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
-          { label: "Discursos em plen\xE1rio", before: "0", after: "48", change: "+48", positive: true, sources: [{ label: "C\xE2mara \u2014 Discursos", url: "https://www.camara.leg.br/deputados/220552/discursos" }] },
-          { label: "Requerimentos de informa\xE7\xE3o", before: "0", after: "62", change: "+62", positive: true, sources: [{ label: "C\xE2mara \u2014 Proposi\xE7\xF5es", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] }
+        id: "v9",
+        title: "Reforma Administrativa do Estado",
+        description: "Reestrutura\xE7\xE3o das secretarias e \xF3rg\xE3os do governo estadual para maior efici\xEAncia.",
+        date: "2023-03-15",
+        vote: "Yes",
+        billNumber: "Lei 21.792/2023",
+        category: "Administra\xE7\xE3o",
+        sources: [
+          { label: "ALEGO \u2014 Leis Sancionadas", url: "https://portal.al.go.leg.br/leis" }
         ]
       },
       {
-        title: "Participa\xE7\xE3o",
-        icon: Vote,
-        metrics: [
-          { label: "Presen\xE7a em vota\xE7\xF5es nominais", before: "\u2014", after: "92%", change: "92%", positive: true, sources: [{ label: "C\xE2mara \u2014 Vota\xE7\xF5es", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
-          { label: "Audi\xEAncias p\xFAblicas", before: "0", after: "11", change: "+11", positive: true, sources: [{ label: "C\xE2mara \u2014 Comiss\xF5es", url: "https://www.camara.leg.br/comissoes" }] },
-          { label: "Comiss\xF5es integradas", before: "0", after: "3", change: "+3", positive: true, sources: [{ label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }] }
+        id: "v10",
+        title: "Programa Goi\xE1s Social",
+        description: "Amplia\xE7\xE3o de programas de transfer\xEAncia de renda e assist\xEAncia social.",
+        date: "2023-06-20",
+        vote: "Yes",
+        billNumber: "Lei 21.850/2023",
+        category: "Social",
+        sources: [
+          { label: "Goi\xE1s Social \u2014 gov.br", url: "https://www.social.go.gov.br/goias-social" }
         ]
       },
       {
-        title: "Indicadores Cr\xEDticos",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "Projetos de autoria aprovados pelo plen\xE1rio", before: "0", after: "0", change: "Sem aprova\xE7\xE3o", positive: false, sources: [{ label: "C\xE2mara \u2014 Proposi\xE7\xF5es", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }] },
-          { label: "Alinhamento com pautas do governo (2023\u20132024)", before: "\u2014", after: "12%", change: "Oposi\xE7\xE3o quase total", positive: false, sources: [{ label: "DIAP \u2014 Radiografia do Congresso", url: "https://www.diap.org.br/" }] },
-          { label: "Faltas em sess\xF5es deliberativas", before: "\u2014", after: "34", change: "+34", positive: false, sources: [{ label: "C\xE2mara \u2014 Presen\xE7a", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }] },
-          { label: "Pautas do NOVO aprovadas em plen\xE1rio (Reforma Adm.)", before: "\u2014", after: "0", change: "Sem avan\xE7o", positive: false, sources: [{ label: "C\xE2mara \u2014 Tramita\xE7\xE3o PEC 32/2020", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" }] }
+        id: "v11",
+        title: "Incentivos ao Agroneg\xF3cio",
+        description: "Pacote de incentivos fiscais para o setor agropecu\xE1rio goiano.",
+        date: "2023-09-10",
+        vote: "Yes",
+        billNumber: "Decreto 10.234/2023",
+        category: "Agroneg\xF3cio",
+        sources: [
+          { label: "SEFAZ-GO \u2014 Legisla\xE7\xE3o", url: "https://appasp.economia.go.gov.br/legislacao/arquivos/Superintendencia/SGAF/DECRETO/D_10234_023.htm" }
+        ]
+      },
+      {
+        id: "v27",
+        title: "Universaliza\xE7\xE3o do Saneamento",
+        description: "Marco regulat\xF3rio do saneamento b\xE1sico no estado de Goi\xE1s.",
+        date: "2023-11-28",
+        vote: "Yes",
+        billNumber: "Lei 22.193/2023",
+        category: "Saneamento",
+        sources: [
+          { label: "Goi\xE1s \u2014 Saneamento", url: "https://www.goias.gov.br/category/governo/saneamento/" }
+        ]
+      },
+      {
+        id: "v28",
+        title: "Programa CRAS Bem Perto",
+        description: "Amplia\xE7\xE3o da rede de Centros de Refer\xEAncia da Assist\xEAncia Social no estado.",
+        date: "2024-02-14",
+        vote: "Yes",
+        billNumber: "Decreto 10.418/2024",
+        category: "Social",
+        sources: [
+          { label: "Casa Civil GO \u2014 Decretos", url: "https://legisla.casacivil.go.gov.br/" }
+        ]
+      },
+      {
+        id: "v29",
+        title: "Bolsa Estudo Universit\xE1ria",
+        description: "Programa estadual de bolsas para estudantes do ensino superior.",
+        date: "2024-05-22",
+        vote: "Yes",
+        billNumber: "Lei 22.554/2024",
+        category: "Educa\xE7\xE3o",
+        sources: [
+          { label: "ALEGO \u2014 Leis", url: "https://portal.al.go.leg.br/leis" }
+        ]
+      },
+      {
+        id: "v30",
+        title: "Opera\xE7\xE3o Tiradentes (Seguran\xE7a)",
+        description: "Decreto que refor\xE7a opera\xE7\xF5es integradas de seguran\xE7a p\xFAblica em Goi\xE1s.",
+        date: "2023-04-21",
+        vote: "Yes",
+        billNumber: "Decreto 10.156/2023",
+        category: "Seguran\xE7a",
+        sources: [
+          { label: "SSP-GO", url: "https://www.policiacivil.go.gov.br/" }
         ]
       }
     ],
-    chart1: {
-      title: "Projetos de Lei Apresentados",
-      unit: "projetos",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2019", value: 0, current: false },
-        { ano: "2020", value: 0, current: false },
-        { ano: "2021", value: 0, current: false },
-        { ano: "2022", value: 0, current: false },
-        { ano: "2023", value: 14, current: true },
-        { ano: "2024", value: 12, current: true }
-      ]),
-      sources: [{ label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }]
-    },
-    chart2: {
-      title: "Presen\xE7a em Vota\xE7\xF5es Nominais (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2023", value: 90, current: true },
-        { ano: "2024", value: 92, current: true }
-      ]),
-      sources: [{ label: "C\xE2mara \u2014 Presen\xE7a em Vota\xE7\xF5es", url: "https://www.camara.leg.br/presenca-comissoes/presenca-plenario" }]
-    },
-    comparisonLabel: "Antes do Mandato",
-    footnote: "Compara\xE7\xE3o com o per\xEDodo anterior ao primeiro mandato (sem atividade parlamentar). Dados consolidados at\xE9 dezembro de 2024.",
-    dataSources: [
-      { label: "C\xE2mara dos Deputados", url: "https://www.camara.leg.br/" },
-      { label: "Portal da Transpar\xEAncia", url: "https://portaldatransparencia.gov.br/" }
+    promises: [
+      {
+        id: "p8",
+        title: "Seguran\xE7a P\xFAblica Refor\xE7ada",
+        description: "Reduzir a criminalidade em Goi\xE1s com investimento em pol\xEDcia e intelig\xEAncia.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Seguran\xE7a",
+        sources: [
+          { label: "SSP-GO \u2014 Estat\xEDsticas", url: "https://www.ssp.go.gov.br/estatistica" }
+        ]
+      },
+      {
+        id: "p9",
+        title: "Goi\xE1s na Frente em Infraestrutura",
+        description: "Asfaltar 10 mil km de estradas estaduais e municipais.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 65,
+        category: "Infraestrutura",
+        sources: [
+          { label: "AGETOP \u2014 Goi\xE1s Estradeiro", url: "https://www.goinfra.go.gov.br/" }
+        ]
+      },
+      {
+        id: "p9b",
+        title: "Equil\xEDbrio Fiscal do Estado",
+        description: "Manter as contas do estado equilibradas sem aumento de impostos.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Economia",
+        sources: [
+          { label: "Tesouro Nacional \u2014 Capag GO", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }
+        ]
+      },
+      {
+        id: "p23",
+        title: "Saneamento Universal",
+        description: "Levar saneamento b\xE1sico a todos os munic\xEDpios goianos at\xE9 2026.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 55,
+        category: "Saneamento",
+        sources: [
+          { label: "SNIS \u2014 Saneamento", url: "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/snis" }
+        ]
+      },
+      {
+        id: "p24",
+        title: "Escolas em Tempo Integral",
+        description: "Construir/converter 320 escolas em tempo integral at\xE9 o fim do mandato.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 65,
+        category: "Educa\xE7\xE3o",
+        sources: [
+          { label: "Seduc-GO", url: "https://site.educacao.go.gov.br/" }
+        ]
+      },
+      {
+        id: "p25",
+        title: "Cr\xE9dito Social (Aluguel Social)",
+        description: "Conceder benef\xEDcio mensal de aluguel social para 100 mil fam\xEDlias.",
+        datePromised: "2022-08-15",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 78,
+        category: "Social",
+        sources: [
+          { label: "OVG \u2014 Aluguel Social", url: "https://www.social.go.gov.br/aluguel-social" }
+        ]
+      }
+    ],
+    proposals: [
+      {
+        id: "pr5",
+        title: "Programa Servidor do Futuro",
+        description: "Moderniza\xE7\xE3o e valoriza\xE7\xE3o do funcionalismo p\xFAblico estadual com capacita\xE7\xE3o e revis\xE3o salarial.",
+        dateProposed: "2023-04-10",
+        status: "Active",
+        category: "Administra\xE7\xE3o",
+        supportLevel: 68,
+        sources: [
+          { label: "SEAD-GO", url: "https://www.administracao.go.gov.br/" }
+        ]
+      },
+      {
+        id: "pr6",
+        title: "Corredor Log\xEDstico Centro-Oeste",
+        description: "Desenvolvimento de infraestrutura log\xEDstica para escoamento da produ\xE7\xE3o agr\xEDcola goiana.",
+        dateProposed: "2023-07-22",
+        status: "Passed",
+        category: "Infraestrutura",
+        supportLevel: 85,
+        sources: [
+          { label: "Goinfra", url: "https://www.goinfra.go.gov.br/" }
+        ]
+      },
+      {
+        id: "pr16",
+        title: "Goi\xE1s Sem Fome",
+        description: "Programa estadual de combate \xE0 inseguran\xE7a alimentar e nutricional.",
+        dateProposed: "2024-03-18",
+        status: "Passed",
+        category: "Social",
+        supportLevel: 88,
+        sources: [
+          { label: "OVG \u2014 Goi\xE1s Sem Fome", url: "https://www.ovg.org.br/post/goias-sem-fome" }
+        ]
+      },
+      {
+        id: "pr17",
+        title: "Bolsa Pesquisa Goi\xE1s",
+        description: "Concess\xE3o de bolsas para pesquisadores e mestrandos de institui\xE7\xF5es goianas.",
+        dateProposed: "2024-06-12",
+        status: "Active",
+        category: "Educa\xE7\xE3o",
+        supportLevel: 74,
+        sources: [
+          { label: "FAPEG", url: "https://www.fapeg.go.gov.br/" }
+        ]
+      }
     ]
   },
-  // Romeu Zema - Governador de MG
-  "6": {
-    subtitle: "Resultados concretos e compromissos assumidos durante o mandato de Romeu Zema como Governador de Minas Gerais.",
-    commitments: [
-      { id: 1, title: "Equil\xEDbrio fiscal de Minas", icon: Landmark, status: "Cumprida", progress: 100, detail: "D\xE9ficit recorrente eliminado" },
-      { id: 2, title: "Pagar servidores em dia", icon: BriefcaseBusiness, status: "Cumprida", progress: 100, detail: "Folha regularizada desde 2019" },
-      { id: 3, title: "Concess\xF5es e PPPs", icon: Building2, status: "Em Andamento", progress: 70, detail: "12 projetos contratados" },
-      { id: 4, title: "Minas Livre para Crescer", icon: TrendingUp, status: "Cumprida", progress: 100, detail: "Lei sancionada em 2023" },
-      { id: 5, title: "Reforma Administrativa", icon: Landmark, status: "Cumprida", progress: 100, detail: "Secretarias reduzidas e fundidas" },
-      { id: 6, title: "Seguran\xE7a h\xEDdrica", icon: Droplets, status: "Em Andamento", progress: 50, detail: "Recupera\xE7\xE3o de bacias em curso" },
-      { id: 7, title: "Resolver a d\xEDvida de MG com a Uni\xE3o", icon: Landmark, status: "N\xE3o Cumprida", progress: 25, detail: "MG segue fora do Regime de Recupera\xE7\xE3o Fiscal; estoque da d\xEDvida passou de R$ 120 bi" },
-      { id: 8, title: "Reajuste e plano de carreira para servidores", icon: BriefcaseBusiness, status: "N\xE3o Cumprida", progress: 20, detail: "Categorias da educa\xE7\xE3o e seguran\xE7a realizaram greves em 2023\u20132024 por reajuste linear" },
-      { id: 9, title: "Repara\xE7\xE3o integral das v\xEDtimas de Brumadinho", icon: ShieldCheck, status: "Parcialmente Cumprida", progress: 55, detail: "Acordo de R$ 37,7 bi assinado, mas MPMG aponta atrasos e atendimento incompleto a atingidos" },
-      { id: 10, title: "Universalizar o ensino em tempo integral", icon: GraduationCap, status: "N\xE3o Cumprida", progress: 18, detail: "MG est\xE1 abaixo da meta do PNE para ensino m\xE9dio em tempo integral (INEP)" }
+  {
+    id: "5",
+    name: "Renan Santos",
+    party: "NOVO",
+    position: "Deputado Federal",
+    state: "S\xE3o Paulo",
+    district: "S\xE3o Paulo",
+    birthPlace: "S\xE3o Paulo, SP",
+    mandates: [
+      { position: "Deputado Federal (SP)", start: "2023", end: "2027", current: true }
     ],
-    performance: [
+    termStart: "2023-02-01",
+    termEnd: "2027-01-31",
+    imageUrl: "",
+    biography: "Renan Haas Santos \xE9 empres\xE1rio, ativista pol\xEDtico e cofundador do Movimento Brasil Livre (MBL), uma das organiza\xE7\xF5es pol\xEDticas mais influentes do Brasil desde 2014. Tornou-se figura central nos protestos contra a corrup\xE7\xE3o e pelo impeachment de Dilma Rousseff em 2015-2016. Eleito Deputado Federal por S\xE3o Paulo em 2022, com foco em liberalismo econ\xF4mico, desburocratiza\xE7\xE3o do Estado e combate a privil\xE9gios no setor p\xFAblico.",
+    website: "https://www.camara.leg.br/deputados/220552",
+    email: "dep.renansantos@camara.leg.br",
+    phone: "@renan_santos_mbl",
+    committeeMemberships: ["Comiss\xE3o de Administra\xE7\xE3o e Servi\xE7o P\xFAblico", "Comiss\xE3o de Fiscaliza\xE7\xE3o Financeira e Controle", "Comiss\xE3o de Ci\xEAncia e Tecnologia"],
+    voteRecords: [
       {
-        title: "Economia",
-        icon: TrendingUp,
-        metrics: [
-          { label: "Crescimento do PIB estadual", before: "0,8%", after: "3,1%", change: "+2,3 p.p.", positive: true, sources: [{ label: "IBGE \u2014 Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }] },
-          { label: "Resultado fiscal prim\xE1rio (R$ bi)", before: "-9,8", after: "+5,2", change: "Super\xE1vit", positive: true, sources: [{ label: "Tesouro Nacional \u2014 Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
-          { label: "Capacidade de pagamento (CAPAG)", before: "D", after: "C", change: "Melhora", positive: true, sources: [{ label: "Tesouro Nacional \u2014 CAPAG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }] }
+        id: "v12",
+        title: "Reforma Tribut\xE1ria (PEC 45)",
+        description: "Vota\xE7\xE3o na C\xE2mara da PEC da Reforma Tribut\xE1ria sobre o consumo.",
+        date: "2023-07-07",
+        vote: "Yes",
+        billNumber: "PEC 45/2019",
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 PEC 45/2019", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2192459" }
         ]
       },
       {
-        title: "Administra\xE7\xE3o",
-        icon: Landmark,
-        metrics: [
-          { label: "N\xFAmero de secretarias", before: "21", after: "14", change: "-33,3%", positive: true, sources: [{ label: "ALMG \u2014 Lei 24.313/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/" }] },
-          { label: "Atrasos no pagamento de servidores", before: "Sim", after: "N\xE3o", change: "Regularizado", positive: true, sources: [{ label: "Portal da Transpar\xEAncia MG", url: "https://www.transparencia.mg.gov.br/" }] },
-          { label: "Cargos comissionados", before: "8.230", after: "5.940", change: "-27,8%", positive: true, sources: [{ label: "Portal da Transpar\xEAncia MG", url: "https://www.transparencia.mg.gov.br/" }] }
+        id: "v13",
+        title: "Marco Legal das Garantias",
+        description: "Lei que moderniza o sistema de garantias de cr\xE9dito no Brasil.",
+        date: "2023-10-04",
+        vote: "Yes",
+        billNumber: "Lei 14.711/2023",
+        category: "Economia",
+        sources: [
+          { label: "Planalto \u2014 Lei 14.711/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14711.htm" }
         ]
       },
       {
-        title: "Investimentos",
-        icon: Building2,
-        metrics: [
-          { label: "Concess\xF5es e PPPs assinadas", before: "2", after: "12", change: "+500%", positive: true, sources: [{ label: "SEINFRA-MG", url: "https://www.infraestrutura.mg.gov.br/" }] },
-          { label: "Investimento privado captado (R$ bi)", before: "4,1", after: "18,7", change: "+356,1%", positive: true, sources: [{ label: "Invest Minas", url: "https://www.investminas.mg.gov.br/" }] }
+        id: "v14",
+        title: "Novo Arcabou\xE7o Fiscal",
+        description: "Vota\xE7\xE3o na C\xE2mara do novo marco fiscal do governo federal.",
+        date: "2023-08-22",
+        vote: "No",
+        billNumber: "PLP 93/2023",
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 PLP 93/2023", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2356392" }
         ]
       },
       {
-        title: "Indicadores Cr\xEDticos",
-        icon: ShieldCheck,
-        metrics: [
-          { label: "D\xEDvida consolidada do estado (R$ bi)", before: "104,3", after: "162,8", change: "+56,1%", positive: false, sources: [{ label: "Tesouro Nacional \u2014 Estados", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }] },
-          { label: "Aprova\xE7\xE3o do governo (Quaest MG, 2024)", before: "58% \xF3timo/bom (2019)", after: "39% \xF3timo/bom", change: "-19 p.p.", positive: false, sources: [{ label: "Quaest \u2014 Pesquisa MG 2024", url: "https://quaest.com.br/" }] },
-          { label: "Greves de servidores estaduais", before: "0", after: "5", change: "+5", positive: false, sources: [{ label: "Sind-UTE/MG", url: "https://sindutemg.org.br/" }] },
-          { label: "V\xEDtimas de Brumadinho reparadas integralmente", before: "\u2014", after: "Parcial", change: "Acordo em atraso", positive: false, sources: [{ label: "MPMG \u2014 Acordo Brumadinho", url: "https://www.mpmg.mp.br/" }] },
-          { label: "Matr\xEDculas no Ensino M\xE9dio em tempo integral (MG)", before: "Meta PNE: 50%", after: "23,4%", change: "-26,6 p.p. da meta", positive: false, sources: [{ label: "INEP \u2014 Censo Escolar", url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar" }] },
-          { label: "Alertas de desmatamento no Cerrado (MG, km\xB2)", before: "238", after: "412", change: "+73,1%", positive: false, sources: [{ label: "INPE \u2014 DETER Cerrado", url: "http://terrabrasilis.dpi.inpe.br/" }] }
+        id: "v31",
+        title: "PEC do Estouro Fiscal de Transi\xE7\xE3o",
+        description: "PEC que abriu R$ 145 bi fora do teto de gastos para o in\xEDcio do governo Lula.",
+        date: "2022-12-22",
+        vote: "No",
+        billNumber: "PEC 32/2022",
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 PEC 32/2022", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2347043" }
+        ]
+      },
+      {
+        id: "v32",
+        title: "Marco Temporal Ind\xEDgena (Derrubada do Veto)",
+        description: "Vota\xE7\xE3o para derrubar o veto presidencial ao marco temporal ind\xEDgena.",
+        date: "2023-12-14",
+        vote: "Yes",
+        billNumber: "PL 2903/2023",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "C\xE2mara \u2014 PL 2903/2023", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2370216" }
+        ]
+      },
+      {
+        id: "v33",
+        title: "Taxa\xE7\xE3o de Fundos Exclusivos",
+        description: "Lei que tributa rendimentos de fundos exclusivos e investimentos no exterior (offshores).",
+        date: "2023-10-25",
+        vote: "No",
+        billNumber: "PL 4173/2023",
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 PL 4173/2023", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2386067" }
+        ]
+      },
+      {
+        id: "v34",
+        title: "Regulamenta\xE7\xE3o da Reforma Tribut\xE1ria",
+        description: "Vota\xE7\xE3o do PLP que regulamenta a Reforma Tribut\xE1ria (CBS/IBS).",
+        date: "2024-07-10",
+        vote: "Yes",
+        billNumber: "PLP 68/2024",
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 PLP 68/2024", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2434742" }
+        ]
+      },
+      {
+        id: "v35",
+        title: "PL das Fake News",
+        description: "Projeto de regula\xE7\xE3o de plataformas digitais e modera\xE7\xE3o de conte\xFAdo.",
+        date: "2023-04-25",
+        vote: "No",
+        billNumber: "PL 2630/2020",
+        category: "Direitos Digitais",
+        sources: [
+          { label: "C\xE2mara \u2014 PL 2630/2020", url: "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2256735" }
         ]
       }
     ],
-    chart1: {
-      title: "Resultado Fiscal Prim\xE1rio (R$ bilh\xF5es)",
-      unit: "R$ bi",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2017", value: -7.4, current: false },
-        { ano: "2018", value: -9.8, current: false },
-        { ano: "2019", value: -3.2, current: true },
-        { ano: "2020", value: 1.5, current: true },
-        { ano: "2021", value: 3.8, current: true },
-        { ano: "2022", value: 4.6, current: true },
-        { ano: "2023", value: 5.2, current: true }
-      ]),
-      sources: [{ label: "Tesouro Nacional \u2014 Estados e Munic\xEDpios", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios" }]
-    },
-    chart2: {
-      title: "Crescimento do PIB Estadual (%)",
-      unit: "%",
-      positiveTrend: true,
-      data: splitSeries([
-        { ano: "2017", value: 0.5, current: false },
-        { ano: "2018", value: 0.8, current: false },
-        { ano: "2019", value: 1.2, current: true },
-        { ano: "2020", value: -3.8, current: true },
-        { ano: "2021", value: 4.1, current: true },
-        { ano: "2022", value: 2.8, current: true },
-        { ano: "2023", value: 3.1, current: true }
-      ]),
-      sources: [{ label: "IBGE \u2014 Contas Regionais", url: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html" }]
-    },
-    comparisonLabel: "Gov. Fernando Pimentel (2015\u20132018)",
-    footnote: "Compara\xE7\xE3o entre o governo Pimentel (PT, 2015\u20132018) e o governo Zema (NOVO, 2019\u2013). Dados consolidados at\xE9 dezembro de 2024.",
-    dataSources: [
-      { label: "IBGE", url: "https://www.ibge.gov.br/" },
-      { label: "Tesouro Nacional", url: "https://www.tesourotransparente.gov.br/" },
-      { label: "Portal da Transpar\xEAncia MG", url: "https://www.transparencia.mg.gov.br/" },
-      { label: "ALMG", url: "https://www.almg.gov.br/" }
+    promises: [
+      {
+        id: "p10",
+        title: "Redu\xE7\xE3o da M\xE1quina P\xFAblica",
+        description: "Propor cortes em cargos comissionados e fun\xE7\xF5es de confian\xE7a no governo federal.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 40,
+        category: "Administra\xE7\xE3o P\xFAblica",
+        sources: [
+          { label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }
+        ]
+      },
+      {
+        id: "p11",
+        title: "Combate a Privil\xE9gios",
+        description: "Projetos para acabar com penduricalhos salariais e privil\xE9gios no setor p\xFAblico.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 55,
+        category: "Transpar\xEAncia",
+        sources: [
+          { label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }
+        ]
+      },
+      {
+        id: "p12",
+        title: "Desburocratiza\xE7\xE3o Digital",
+        description: "Digitalizar e simplificar processos burocr\xE1ticos para cidad\xE3os e empresas.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 35,
+        category: "Tecnologia",
+        sources: [
+          { label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }
+        ]
+      },
+      {
+        id: "p26",
+        title: "Fim do Foro Privilegiado",
+        description: "Apresentar e apoiar PEC para extin\xE7\xE3o do foro privilegiado para pol\xEDticos.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 30,
+        category: "Justi\xE7a",
+        sources: [
+          { label: "C\xE2mara \u2014 PECs em tramita\xE7\xE3o", url: "https://www.camara.leg.br/buscaProposicoesWeb/" }
+        ]
+      },
+      {
+        id: "p27",
+        title: "Redu\xE7\xE3o de Impostos",
+        description: "Defender redu\xE7\xE3o da carga tribut\xE1ria e simplifica\xE7\xE3o para PMEs.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 35,
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }
+        ]
+      },
+      {
+        id: "p28",
+        title: "Privatiza\xE7\xF5es Estrat\xE9gicas",
+        description: "Apoiar privatiza\xE7\xE3o de estatais n\xE3o estrat\xE9gicas e desestatiza\xE7\xE3o.",
+        datePromised: "2022-08-15",
+        deadline: "2027-01-31",
+        status: "In Progress",
+        progress: 25,
+        category: "Economia",
+        sources: [
+          { label: "C\xE2mara \u2014 Atividade do Deputado", url: "https://www.camara.leg.br/deputados/220552" }
+        ]
+      }
+    ],
+    proposals: [
+      {
+        id: "pr7",
+        title: "Fim do Foro Privilegiado",
+        description: "Proposta para extinguir o foro privilegiado para pol\xEDticos em exerc\xEDcio de mandato.",
+        dateProposed: "2024-03-01",
+        status: "Active",
+        category: "Justi\xE7a",
+        supportLevel: 78,
+        sources: [
+          { label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }
+        ]
+      },
+      {
+        id: "pr8",
+        title: "Transpar\xEAncia Total nos Gastos P\xFAblicos",
+        description: "Obrigatoriedade de publica\xE7\xE3o detalhada e em tempo real de todos os gastos com cart\xE3o corporativo e verbas parlamentares.",
+        dateProposed: "2024-05-10",
+        status: "Active",
+        category: "Transpar\xEAncia",
+        supportLevel: 85,
+        sources: [
+          { label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }
+        ]
+      },
+      {
+        id: "pr18",
+        title: "Fim do Fundo Eleitoral",
+        description: "Proposta para extinguir o financiamento p\xFAblico de campanhas eleitorais.",
+        dateProposed: "2023-08-15",
+        status: "Active",
+        category: "Pol\xEDtica",
+        supportLevel: 72,
+        sources: [
+          { label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552" }
+        ]
+      },
+      {
+        id: "pr19",
+        title: "Limite a Sal\xE1rios no Servi\xE7o P\xFAblico",
+        description: "Proposta para fixa\xE7\xE3o real do teto constitucional, eliminando penduricalhos.",
+        dateProposed: "2024-09-04",
+        status: "Active",
+        category: "Administra\xE7\xE3o P\xFAblica",
+        supportLevel: 68,
+        sources: [
+          { label: "C\xE2mara \u2014 Proposi\xE7\xF5es do Deputado", url: "https://www.camara.leg.br/deputados/220552?ano=2024" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "6",
+    name: "Romeu Zema",
+    party: "NOVO",
+    position: "Governador",
+    state: "Minas Gerais",
+    district: void 0,
+    birthPlace: "Arax\xE1, MG",
+    mandates: [
+      { position: "Governador de Minas Gerais", start: "2019", end: "2023" },
+      { position: "Governador de Minas Gerais", start: "2023", end: "2027", current: true }
+    ],
+    termStart: "2023-01-01",
+    termEnd: "2027-01-01",
+    imageUrl: "",
+    biography: "Romeu Zema Neto \xE9 empres\xE1rio e pol\xEDtico brasileiro, atual Governador de Minas Gerais em seu segundo mandato (2023-2027). Nascido em Arax\xE1 (MG) em 1964, \xE9 formado em Engenharia Mec\xE2nica pela UFMG e administrou o Grupo Zema. Filiado ao partido NOVO, foi eleito governador em 2018 como outsider da pol\xEDtica. Reeleito em 2022 no primeiro turno com mais de 56% dos votos. Seu governo \xE9 marcado pelo foco em equil\xEDbrio fiscal, desburocratiza\xE7\xE3o, concess\xF5es e parcerias p\xFAblico-privadas.",
+    website: "https://www.mg.gov.br",
+    email: "governador@governo.mg.gov.br",
+    phone: "@romeuzema",
+    committeeMemberships: ["Cons\xF3rcio de Integra\xE7\xE3o Sul e Sudeste (COSUD)", "F\xF3rum de Governadores"],
+    voteRecords: [
+      {
+        id: "v14b",
+        title: "Reforma Administrativa de MG",
+        description: "Reestrutura\xE7\xE3o do governo estadual com extin\xE7\xE3o e fus\xE3o de secretarias para redu\xE7\xE3o de gastos.",
+        date: "2023-02-15",
+        vote: "Yes",
+        billNumber: "Lei 24.313/2023",
+        category: "Administra\xE7\xE3o",
+        sources: [
+          { label: "ALMG \u2014 Lei 24.313/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/" }
+        ]
+      },
+      {
+        id: "v15",
+        title: "Programa Minas Livre para Crescer",
+        description: "Pacote de desburocratiza\xE7\xE3o e simplifica\xE7\xE3o tribut\xE1ria para empresas mineiras.",
+        date: "2023-07-10",
+        vote: "Yes",
+        billNumber: "Lei 24.468/2023",
+        category: "Economia",
+        sources: [
+          { label: "ALMG \u2014 Lei 24.468/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24468/2023/" }
+        ]
+      },
+      {
+        id: "v15b",
+        title: "Concess\xE3o de Rodovias Estaduais",
+        description: "Aprova\xE7\xE3o de concess\xF5es rodovi\xE1rias para melhoria da malha vi\xE1ria de MG.",
+        date: "2023-10-05",
+        vote: "Yes",
+        billNumber: "Decreto 48.765/2023",
+        category: "Infraestrutura",
+        sources: [
+          { label: "IMA-MG \u2014 Concess\xF5es", url: "https://www.mg.gov.br/" }
+        ]
+      },
+      {
+        id: "v36",
+        title: "Ades\xE3o ao Regime de Recupera\xE7\xE3o Fiscal",
+        description: "Ades\xE3o de Minas Gerais ao RRF, com proposta de recupera\xE7\xE3o fiscal aprovada pela Uni\xE3o.",
+        date: "2024-09-13",
+        vote: "Yes",
+        billNumber: "Lei 25.061/2024",
+        category: "Economia",
+        sources: [
+          { label: "ALMG \u2014 Lei 25.061/2024", url: "https://www.almg.gov.br/legislacao-mineira/lei/25061/2024/" }
+        ]
+      },
+      {
+        id: "v37",
+        title: "Privatiza\xE7\xE3o da Codemig",
+        description: "Reestrutura\xE7\xE3o societ\xE1ria da Codemig com previs\xE3o de desestatiza\xE7\xE3o parcial.",
+        date: "2023-08-30",
+        vote: "Yes",
+        billNumber: "Lei 24.491/2023",
+        category: "Administra\xE7\xE3o",
+        sources: [
+          { label: "ALMG \u2014 Lei 24.491/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24491/2023/" }
+        ]
+      },
+      {
+        id: "v38",
+        title: "Programa Bolsa Merenda",
+        description: "San\xE7\xE3o da lei que cria o Bolsa Merenda durante o recesso escolar.",
+        date: "2023-12-14",
+        vote: "Yes",
+        billNumber: "Lei 24.683/2023",
+        category: "Educa\xE7\xE3o",
+        sources: [
+          { label: "ALMG \u2014 Lei 24.683/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24683/2023/" }
+        ]
+      },
+      {
+        id: "v39",
+        title: "Acordo da Vale (Brumadinho)",
+        description: "San\xE7\xE3o de acordo de repara\xE7\xE3o integral por danos do rompimento da barragem de Brumadinho.",
+        date: "2021-02-04",
+        vote: "Yes",
+        billNumber: "Acordo Judicial Brumadinho",
+        category: "Meio Ambiente",
+        sources: [
+          { label: "AGE-MG \u2014 Acordo Brumadinho", url: "https://www.agenciaminas.mg.gov.br/governador/biografia" }
+        ]
+      }
+    ],
+    promises: [
+      {
+        id: "p13",
+        title: "Equil\xEDbrio Fiscal de Minas",
+        description: "Recuperar as finan\xE7as do estado e eliminar o d\xE9ficit fiscal herdado.",
+        datePromised: "2018-08-01",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Economia",
+        sources: [
+          { label: "Tesouro Nacional \u2014 Capag MG", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/capacidade-de-pagamento-capag" }
+        ]
+      },
+      {
+        id: "p14",
+        title: "Pagar Servidores em Dia",
+        description: "Regularizar o pagamento dos servidores p\xFAblicos estaduais sem atrasos.",
+        datePromised: "2018-08-01",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Administra\xE7\xE3o",
+        sources: [
+          { label: "Portal da Transpar\xEAncia MG", url: "https://www.transparencia.mg.gov.br/" }
+        ]
+      },
+      {
+        id: "p15",
+        title: "Concess\xF5es e PPPs",
+        description: "Ampliar parcerias p\xFAblico-privadas para melhorar infraestrutura e servi\xE7os p\xFAblicos.",
+        datePromised: "2018-08-01",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 70,
+        category: "Infraestrutura",
+        sources: [
+          { label: "SEINFRA-MG", url: "https://www.infraestrutura.mg.gov.br/" }
+        ]
+      },
+      {
+        id: "p29",
+        title: "Reforma Administrativa Estadual",
+        description: "Reduzir o n\xFAmero de secretarias e cargos comissionados.",
+        datePromised: "2018-08-01",
+        deadline: "2023-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Administra\xE7\xE3o",
+        sources: [
+          { label: "ALMG \u2014 Lei 24.313/2023", url: "https://www.almg.gov.br/legislacao-mineira/lei/24313/2023/" }
+        ]
+      },
+      {
+        id: "p30",
+        title: "Ades\xE3o ao Regime de Recupera\xE7\xE3o Fiscal",
+        description: "Aderir ao RRF para resolver a d\xEDvida do estado com a Uni\xE3o.",
+        datePromised: "2022-08-01",
+        deadline: "2026-12-31",
+        status: "Fulfilled",
+        progress: 100,
+        category: "Economia",
+        sources: [
+          { label: "STN \u2014 Regime de Recupera\xE7\xE3o Fiscal", url: "https://www.tesourotransparente.gov.br/temas/estados-e-municipios/regime-de-recuperacao-fiscal-rrf" }
+        ]
+      },
+      {
+        id: "p31",
+        title: "Minas Digital",
+        description: "Digitalizar 100% dos servi\xE7os p\xFAblicos estaduais at\xE9 2026.",
+        datePromised: "2022-08-01",
+        deadline: "2026-12-31",
+        status: "In Progress",
+        progress: 75,
+        category: "Tecnologia",
+        sources: [
+          { label: "PRODEMGE \u2014 MG App", url: "https://www.prodemge.gov.br/" }
+        ]
+      }
+    ],
+    proposals: [
+      {
+        id: "pr9",
+        title: "Minas Digital",
+        description: "Digitaliza\xE7\xE3o completa dos servi\xE7os p\xFAblicos estaduais com atendimento 100% online via MG App.",
+        dateProposed: "2023-05-20",
+        status: "Active",
+        category: "Tecnologia",
+        supportLevel: 79,
+        sources: [
+          { label: "PRODEMGE", url: "https://www.prodemge.gov.br/" }
+        ]
+      },
+      {
+        id: "pr10",
+        title: "Seguran\xE7a H\xEDdrica de MG",
+        description: "Programa de recupera\xE7\xE3o de bacias hidrogr\xE1ficas e garantia de abastecimento de \xE1gua.",
+        dateProposed: "2023-08-12",
+        status: "Active",
+        category: "Meio Ambiente",
+        supportLevel: 76,
+        sources: [
+          { label: "IGAM \u2014 Recursos H\xEDdricos", url: "http://www.igam.mg.gov.br/" }
+        ]
+      },
+      {
+        id: "pr20",
+        title: "Concess\xE3o das Rodovias do Sul/Sudoeste",
+        description: "Concess\xE3o de pacotes rodovi\xE1rios para empresas privadas, com obriga\xE7\xE3o de duplica\xE7\xE3o e melhoria.",
+        dateProposed: "2024-04-08",
+        status: "Passed",
+        category: "Infraestrutura",
+        supportLevel: 80,
+        sources: [
+          { label: "SEINFRA \u2014 Concess\xF5es Rodovi\xE1rias", url: "https://www.infraestrutura.mg.gov.br/" }
+        ]
+      },
+      {
+        id: "pr21",
+        title: "Privatiza\xE7\xE3o da Cemig",
+        description: "Proposta de desestatiza\xE7\xE3o parcial da Cemig (energia el\xE9trica) para captar recursos e reduzir d\xEDvida.",
+        dateProposed: "2024-10-15",
+        status: "Active",
+        category: "Energia",
+        supportLevel: 52,
+        sources: [
+          { label: "Cemig \u2014 Rela\xE7\xF5es com Investidores", url: "https://ri.cemig.com.br/" }
+        ]
+      }
     ]
   }
-};
+];
 
 // src/lib/mcp/politicians.ts
 function listPoliticians() {
-  return mockPoliticians.map((p) => ({
+  return politiciansData.map((p) => ({
     id: p.id,
     name: p.name,
     party: p.party,
@@ -620,7 +1526,7 @@ function listPoliticians() {
 }
 function findPolitician(query) {
   const q = query.trim().toLowerCase();
-  return mockPoliticians.find((p) => p.id === q) ?? mockPoliticians.find((p) => p.name.toLowerCase() === q) ?? mockPoliticians.find((p) => p.name.toLowerCase().includes(q)) ?? mockPoliticians.find((p) => p.party.toLowerCase() === q);
+  return politiciansData.find((p) => p.id === q) ?? politiciansData.find((p) => p.name.toLowerCase() === q) ?? politiciansData.find((p) => p.name.toLowerCase().includes(q)) ?? politiciansData.find((p) => p.party.toLowerCase() === q);
 }
 function politicianDetail(query) {
   const p = findPolitician(query);
@@ -628,27 +1534,33 @@ function politicianDetail(query) {
   const { imageUrl: _imageUrl, phone, ...rest } = p;
   return { ...rest, instagram: phone };
 }
-function politicianLegacy(query) {
-  const p = findPolitician(query);
-  if (!p) return void 0;
-  const legacy = legacyDataMap[p.id];
-  if (!legacy) return void 0;
-  return {
-    politician: { id: p.id, name: p.name, position: p.position, party: p.party },
-    subtitle: legacy.subtitle,
-    comparisonLabel: legacy.comparisonLabel,
-    footnote: legacy.footnote,
-    commitments: legacy.commitments.map(({ icon: _icon, ...c }) => c),
-    performance: legacy.performance.map(({ icon: _icon, ...cat }) => cat),
-    dataSources: legacy.dataSources ?? []
-  };
+function listCommitments(query, status) {
+  const people = query ? [findPolitician(query)].filter(Boolean) : politiciansData;
+  const items = people.flatMap(
+    (p) => [
+      ...p.promises.map((pr) => ({ kind: "promessa", ...pr })),
+      ...p.proposals.map((pp) => ({
+        kind: "proposta",
+        id: pp.id,
+        title: pp.title,
+        description: pp.description,
+        datePromised: pp.dateProposed,
+        deadline: "",
+        status: pp.status,
+        progress: pp.supportLevel,
+        category: pp.category,
+        sources: pp.sources
+      }))
+    ].map((item) => ({ politicianId: p.id, politicianName: p.name, ...item }))
+  );
+  return status ? items.filter((i) => i.status.toLowerCase() === status.trim().toLowerCase()) : items;
 }
 function platformStats() {
   return {
-    politicians: mockPoliticians.length,
-    votes: mockPoliticians.reduce((n, p) => n + p.voteRecords.length, 0),
-    promises: mockPoliticians.reduce((n, p) => n + p.promises.length, 0),
-    proposals: mockPoliticians.reduce((n, p) => n + p.proposals.length, 0)
+    politicians: politiciansData.length,
+    votes: politiciansData.reduce((n, p) => n + p.voteRecords.length, 0),
+    promises: politiciansData.reduce((n, p) => n + p.promises.length, 0),
+    proposals: politiciansData.reduce((n, p) => n + p.proposals.length, 0)
   };
 }
 
@@ -697,28 +1609,23 @@ var get_politician_default = defineTool2({
   }
 });
 
-// src/lib/mcp/tools/get-politician-legacy.ts
+// src/lib/mcp/tools/list-commitments.ts
 import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.25.0";
 import { z as z3 } from "npm:zod@^3.25.76";
-var get_politician_legacy_default = defineTool3({
-  name: "get_politician_legacy",
-  title: "Legado do pol\xEDtico",
-  description: "Retorna o legado de um pol\xEDtico: compromissos (cumpridos, parciais e n\xE3o cumpridos) e indicadores de desempenho positivos e negativos, com fontes oficiais.",
+var list_commitments_default = defineTool3({
+  name: "list_commitments",
+  title: "Promessas e propostas",
+  description: "Lista promessas e propostas monitoradas pela Polis, com status (cumprida, em andamento, quebrada, etc.), progresso, categoria e fontes oficiais.",
   inputSchema: {
-    politician: z3.string().describe("ID ou nome (parcial) do pol\xEDtico.")
+    politician: z3.string().optional().describe("ID ou nome (parcial) do pol\xEDtico. Sem valor, retorna de todos."),
+    status: z3.string().optional().describe("Filtrar por status exato: Fulfilled, In Progress, Broken, Expired, Active, Passed, Failed, Withdrawn.")
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ politician }) => {
-    const data = politicianLegacy(politician);
-    if (!data) {
-      return {
-        content: [{ type: "text", text: `Legado n\xE3o encontrado para "${politician}".` }],
-        isError: true
-      };
-    }
+  handler: ({ politician, status }) => {
+    const items = listCommitments(politician, status);
     return {
-      content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
-      structuredContent: { legacy: data }
+      content: [{ type: "text", text: JSON.stringify(items, null, 2) }],
+      structuredContent: { commitments: items }
     };
   }
 });
@@ -745,8 +1652,8 @@ var mcp_default = defineMcp({
   name: "polis",
   title: "Polis",
   version: "0.1.0",
-  instructions: "Ferramentas p\xFAblicas da Polis, plataforma brasileira de transpar\xEAncia pol\xEDtica. Use `list_politicians` para descobrir os pol\xEDticos monitorados, `get_politician` para o perfil completo (vota\xE7\xF5es, promessas e propostas com fontes), `get_politician_legacy` para o balan\xE7o de legado com indicadores positivos e negativos, e `get_platform_stats` para os n\xFAmeros agregados da plataforma. Todos os dados citam fontes oficiais brasileiras.",
-  tools: [list_politicians_default, get_politician_default, get_politician_legacy_default, get_platform_stats_default]
+  instructions: "Ferramentas p\xFAblicas da Polis, plataforma brasileira de transpar\xEAncia pol\xEDtica. Use `list_politicians` para descobrir os pol\xEDticos monitorados, `get_politician` para o perfil completo (vota\xE7\xF5es, promessas e propostas com fontes), `list_commitments` para promessas e propostas com status e progresso, e `get_platform_stats` para os n\xFAmeros agregados da plataforma. Todos os dados citam fontes oficiais brasileiras.",
+  tools: [list_politicians_default, get_politician_default, list_commitments_default, get_platform_stats_default]
 });
 
 // lovable-mcp-supabase-entry.ts

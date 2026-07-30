@@ -60,9 +60,9 @@
         "outputSchema": null
       },
       {
-        "name": "get_politician_legacy",
-        "title": "Legado do político",
-        "description": "Retorna o legado de um político: compromissos (cumpridos, parciais e não cumpridos) e indicadores de desempenho positivos e negativos, com fontes oficiais.",
+        "name": "list_commitments",
+        "title": "Promessas e propostas",
+        "description": "Lista promessas e propostas monitoradas pela Polis, com status (cumprida, em andamento, quebrada, etc.), progresso, categoria e fontes oficiais.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
@@ -73,12 +73,13 @@
           "properties": {
             "politician": {
               "type": "string",
-              "description": "ID ou nome (parcial) do político."
+              "description": "ID ou nome (parcial) do político. Sem valor, retorna de todos."
+            },
+            "status": {
+              "type": "string",
+              "description": "Filtrar por status exato: Fulfilled, In Progress, Broken, Expired, Active, Passed, Failed, Withdrawn."
             }
           },
-          "required": [
-            "politician"
-          ],
           "additionalProperties": false,
           "$schema": "http://json-schema.org/draft-07/schema#"
         },
