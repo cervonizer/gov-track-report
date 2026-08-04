@@ -16,7 +16,7 @@ export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4 cursor-pointer" onClick={() => navigate("/")}>
             <h1 className="text-2xl font-bold text-primary-foreground">λ Polis</h1>
-            <p className="text-primary-foreground/80 hidden md:block">Você administra a cidade</p>
+            
           </div>
           
           <div className="flex items-center space-x-4">
