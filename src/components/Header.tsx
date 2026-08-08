@@ -11,7 +11,7 @@ interface HeaderProps {
 export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
   const navigate = useNavigate();
   return (
-    <header className="bg-gradient-primary shadow-medium">
+    <header className="bg-primary shadow-medium">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-end space-x-4 cursor-pointer" onClick={() => navigate("/")}>
