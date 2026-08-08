@@ -14,7 +14,7 @@ export const Header = ({ searchQuery = "", onSearchChange }: HeaderProps) => {
     <header className="bg-gradient-primary shadow-medium">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-end space-x-4">
+          <div className="flex items-end space-x-4 cursor-pointer" onClick={() => navigate("/")}>
             <h1 className="text-2xl font-bold text-primary-foreground">λ Polis</h1>
             <span className="text-sm text-primary-foreground/80 font-medium mb-0.5">a decisão é sua</span>
           </div>
