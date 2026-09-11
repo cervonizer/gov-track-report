@@ -77,7 +77,7 @@ export const HeroSection = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-center">Entenda as votações</h3>
               <p className="text-muted-foreground text-center">
-                Confira como ele votou nos principais projetos e se costuma acompanhar o governo, a oposição ou suas promessas de campanha.
+                Confira como o candidato votou nos principais projetos e se costuma acompanhar o governo, a oposição ou suas promessas de campanha.
               </p>
             </div>
             
