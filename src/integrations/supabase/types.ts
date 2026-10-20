@@ -14,16 +14,325 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      evidence_reviews: {
+        Row: {
+          decision: Database["public"]["Enums"]["verification_state"]
+          evidence_id: string
+          id: string
+          rationale: string
+          reviewed_at: string
+          reviewer_id: string
+        }
+        Insert: {
+          decision: Database["public"]["Enums"]["verification_state"]
+          evidence_id: string
+          id?: string
+          rationale: string
+          reviewed_at?: string
+          reviewer_id: string
+        }
+        Update: {
+          decision?: Database["public"]["Enums"]["verification_state"]
+          evidence_id?: string
+          id?: string
+          rationale?: string
+          reviewed_at?: string
+          reviewer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evidence_reviews_evidence_id_fkey"
+            columns: ["evidence_id"]
+            isOneToOne: false
+            referencedRelation: "promise_evidence"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      political_promises: {
+        Row: {
+          category: string
+          created_at: string
+          created_by: string | null
+          date_uncertainty: string | null
+          deadline: string | null
+          description: string
+          id: string
+          legacy_assertion: Json | null
+          legacy_key: string | null
+          politician_id: string
+          promised_on: string | null
+          published: boolean
+          title: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          date_uncertainty?: string | null
+          deadline?: string | null
+          description?: string
+          id?: string
+          legacy_assertion?: Json | null
+          legacy_key?: string | null
+          politician_id: string
+          promised_on?: string | null
+          published?: boolean
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          date_uncertainty?: string | null
+          deadline?: string | null
+          description?: string
+          id?: string
+          legacy_assertion?: Json | null
+          legacy_key?: string | null
+          politician_id?: string
+          promised_on?: string | null
+          published?: boolean
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "political_promises_politician_id_fkey"
+            columns: ["politician_id"]
+            isOneToOne: false
+            referencedRelation: "politicians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      politicians: {
+        Row: {
+          id: string
+          name: string
+        }
+        Insert: {
+          id: string
+          name: string
+        }
+        Update: {
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      promise_assessments: {
+        Row: {
+          created_at: string
+          criteria: string
+          evidence_ids: string[]
+          fulfillment_percent: number | null
+          id: string
+          methodology: string
+          promise_id: string
+          rationale: string
+          reviewed_at: string | null
+          reviewer_id: string | null
+          status: Database["public"]["Enums"]["promise_status"]
+          submitted_by: string
+          supersedes: string | null
+          verification: Database["public"]["Enums"]["verification_state"]
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          criteria: string
+          evidence_ids?: string[]
+          fulfillment_percent?: number | null
+          id?: string
+          methodology: string
+          promise_id: string
+          rationale: string
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status: Database["public"]["Enums"]["promise_status"]
+          submitted_by: string
+          supersedes?: string | null
+          verification?: Database["public"]["Enums"]["verification_state"]
+          version: number
+        }
+        Update: {
+          created_at?: string
+          criteria?: string
+          evidence_ids?: string[]
+          fulfillment_percent?: number | null
+          id?: string
+          methodology?: string
+          promise_id?: string
+          rationale?: string
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: Database["public"]["Enums"]["promise_status"]
+          submitted_by?: string
+          supersedes?: string | null
+          verification?: Database["public"]["Enums"]["verification_state"]
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "promise_assessments_promise_id_fkey"
+            columns: ["promise_id"]
+            isOneToOne: false
+            referencedRelation: "political_promises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "promise_assessments_supersedes_fkey"
+            columns: ["supersedes"]
+            isOneToOne: false
+            referencedRelation: "promise_assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      promise_evidence: {
+        Row: {
+          accessed_on: string | null
+          description: string
+          id: string
+          promise_id: string
+          provenance: Database["public"]["Enums"]["source_provenance"]
+          published_on: string | null
+          publisher: string | null
+          quotation: string | null
+          submitted_at: string
+          submitted_by: string
+          timestamp_end: number | null
+          timestamp_start: number | null
+          url: string
+        }
+        Insert: {
+          accessed_on?: string | null
+          description: string
+          id?: string
+          promise_id: string
+          provenance?: Database["public"]["Enums"]["source_provenance"]
+          published_on?: string | null
+          publisher?: string | null
+          quotation?: string | null
+          submitted_at?: string
+          submitted_by: string
+          timestamp_end?: number | null
+          timestamp_start?: number | null
+          url: string
+        }
+        Update: {
+          accessed_on?: string | null
+          description?: string
+          id?: string
+          promise_id?: string
+          provenance?: Database["public"]["Enums"]["source_provenance"]
+          published_on?: string | null
+          publisher?: string | null
+          quotation?: string | null
+          submitted_at?: string
+          submitted_by?: string
+          timestamp_end?: number | null
+          timestamp_start?: number | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "promise_evidence_promise_id_fkey"
+            columns: ["promise_id"]
+            isOneToOne: false
+            referencedRelation: "political_promises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      promise_sources: {
+        Row: {
+          accessed_on: string | null
+          id: string
+          promise_id: string
+          provenance: Database["public"]["Enums"]["source_provenance"]
+          published: boolean
+          published_on: string | null
+          publisher: string | null
+          quotation: string | null
+          timestamp_end: number | null
+          timestamp_start: number | null
+          uncertainty: string | null
+          url: string
+        }
+        Insert: {
+          accessed_on?: string | null
+          id?: string
+          promise_id: string
+          provenance?: Database["public"]["Enums"]["source_provenance"]
+          published?: boolean
+          published_on?: string | null
+          publisher?: string | null
+          quotation?: string | null
+          timestamp_end?: number | null
+          timestamp_start?: number | null
+          uncertainty?: string | null
+          url: string
+        }
+        Update: {
+          accessed_on?: string | null
+          id?: string
+          promise_id?: string
+          provenance?: Database["public"]["Enums"]["source_provenance"]
+          published?: boolean
+          published_on?: string | null
+          publisher?: string | null
+          quotation?: string | null
+          timestamp_end?: number | null
+          timestamp_start?: number | null
+          uncertainty?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "promise_sources_promise_id_fkey"
+            columns: ["promise_id"]
+            isOneToOne: false
+            referencedRelation: "political_promises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      evidence_is_public: { Args: { _id: string }; Returns: boolean }
+      is_promise_reviewer: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      promise_status:
+        | "ainda não avaliável"
+        | "em andamento"
+        | "cumprida"
+        | "parcialmente cumprida"
+        | "não cumprida"
+      source_provenance: "official" | "non_official" | "unknown"
+      verification_state: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +459,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      promise_status: [
+        "ainda não avaliável",
+        "em andamento",
+        "cumprida",
+        "parcialmente cumprida",
+        "não cumprida",
+      ],
+      source_provenance: ["official", "non_official", "unknown"],
+      verification_state: ["pending", "approved", "rejected"],
+    },
   },
 } as const
