@@ -22,6 +22,7 @@ export type Database = {
           rationale: string
           reviewed_at: string
           reviewer_id: string
+          sequence: number
         }
         Insert: {
           decision: Database["public"]["Enums"]["verification_state"]
@@ -30,6 +31,7 @@ export type Database = {
           rationale: string
           reviewed_at?: string
           reviewer_id: string
+          sequence?: never
         }
         Update: {
           decision?: Database["public"]["Enums"]["verification_state"]
@@ -38,6 +40,7 @@ export type Database = {
           rationale?: string
           reviewed_at?: string
           reviewer_id?: string
+          sequence?: never
         }
         Relationships: [
           {
@@ -203,6 +206,7 @@ export type Database = {
           submitted_by: string
           timestamp_end: number | null
           timestamp_start: number | null
+          title: string | null
           url: string
         }
         Insert: {
@@ -218,6 +222,7 @@ export type Database = {
           submitted_by: string
           timestamp_end?: number | null
           timestamp_start?: number | null
+          title?: string | null
           url: string
         }
         Update: {
@@ -233,6 +238,7 @@ export type Database = {
           submitted_by?: string
           timestamp_end?: number | null
           timestamp_start?: number | null
+          title?: string | null
           url?: string
         }
         Relationships: [
@@ -257,6 +263,7 @@ export type Database = {
           quotation: string | null
           timestamp_end: number | null
           timestamp_start: number | null
+          title: string | null
           uncertainty: string | null
           url: string
         }
@@ -271,6 +278,7 @@ export type Database = {
           quotation?: string | null
           timestamp_end?: number | null
           timestamp_start?: number | null
+          title?: string | null
           uncertainty?: string | null
           url: string
         }
@@ -285,6 +293,7 @@ export type Database = {
           quotation?: string | null
           timestamp_end?: number | null
           timestamp_start?: number | null
+          title?: string | null
           uncertainty?: string | null
           url?: string
         }
@@ -321,8 +330,39 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assessment_supported: { Args: { _id: string }; Returns: boolean }
+      create_promise: { Args: { payload: Json }; Returns: string }
       evidence_is_public: { Args: { _id: string }; Returns: boolean }
       is_promise_reviewer: { Args: never; Returns: boolean }
+      promise_catalog: { Args: never; Returns: Json }
+      require_contributor: { Args: { reviewer?: boolean }; Returns: string }
+      review_assessment: {
+        Args: {
+          assessment: string
+          decision: Database["public"]["Enums"]["verification_state"]
+          rationale: string
+        }
+        Returns: string
+      }
+      review_evidence: {
+        Args: {
+          decision: Database["public"]["Enums"]["verification_state"]
+          evidence: string
+          rationale: string
+        }
+        Returns: string
+      }
+      submit_assessment: { Args: { payload: Json }; Returns: string }
+      submit_evidence: { Args: { payload: Json }; Returns: string }
+      validate_assessment: {
+        Args: {
+          ids: string[]
+          p: number
+          pid: string
+          s: Database["public"]["Enums"]["promise_status"]
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       promise_status:
