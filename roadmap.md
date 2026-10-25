@@ -4,4 +4,4 @@
 - [ ] Criar listagem, detalhe, filtros e revisão em português.
 - [ ] Substituir percentuais antigos nos perfis, legado e MCP.
 - [ ] Validar datas, filtros, permissões e navegação em celular.
-- [ ] Autenticação: aguardando resposta sobre necessidade de dados de perfil.
+- [ ] Autenticação por email sem perfil adicional; revisão atribuída por UUID, papéis vazios.
