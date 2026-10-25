@@ -2,7 +2,14 @@ import { z } from 'zod';
 import type { Tables } from '@/integrations/supabase/types';
 export const statuses = ['ainda não avaliável','em andamento','cumprida','parcialmente cumprida','não cumprida'] as const;
 export const provenanceLabels = {official:'Oficial',non_official:'Não oficial',unknown:'Origem desconhecida'};
-export type Catalog = {promises:Tables<'political_promises'>[];politicians:Tables<'politicians'>[];sources:Tables<'promise_sources'>[];assessments:Tables<'promise_assessments'>[];evidence:Tables<'promise_evidence'>[];reviews:Tables<'evidence_reviews'>[]};
+export type ResearchDraft = {
+ id:string; promise_id:string; research_key:string; title:string; scope:string; summary:string; methodology:string;
+ findings:{date:string;title:string;text:string;source_ids:string[]}[];
+ review_checklist:string[]; limitations:string[]; source_ids:string[];
+ recording_candidate:{url:string;title:string;origin:string;timestamp_start:number|null;timestamp_end:number|null}|null;
+ cutoff_on:string; prepared_by:string; prepared_at:string; state:'awaiting_review'; published:boolean;
+};
+export type Catalog = {promises:Tables<'political_promises'>[];politicians:Tables<'politicians'>[];sources:Tables<'promise_sources'>[];assessments:Tables<'promise_assessments'>[];evidence:Tables<'promise_evidence'>[];reviews:Tables<'evidence_reviews'>[];research?:ResearchDraft[]};
 export const emptyCatalog:Catalog={promises:[],politicians:[],sources:[],assessments:[],evidence:[],reviews:[]};
 export function dayOrdinal(value:string|null|undefined):number|null {
  if(!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;

@@ -7,3 +7,7 @@
 - [x] Implementar autenticação por email sem perfil adicional; revisão por UUID.
 - [ ] Administrador definir revisores reais e conferir redirecionamentos de email na hospedagem definitiva.
 - [ ] Implantar a função MCP atualizada pelo fluxo de funções do projeto.
+
+- [x] Publicar primeiro dossiê documental como pesquisa aguardando revisão, com fontes e pendências separadas de cumprimento.
+- [x] Configurar conta real do responsável como revisor (login confirmado pelo usuário).
+- [ ] Revisar a declaração original, os períodos de execução e o registro semelhante do salário mínimo antes de avaliar cumprimento.

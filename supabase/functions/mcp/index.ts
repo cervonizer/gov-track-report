@@ -1559,7 +1559,8 @@ function publishedPromises(c, politicianId) {
       fulfillment_percent: assessment?.fulfillment_percent ?? null,
       verification: assessment ? "approved" : "pending",
       calendar: calendar(p.promised_on, p.deadline),
-      sources: c.sources.filter((s) => s.promise_id === p.id),
+      sources: c.sources.filter((s) => s.promise_id === p.id && !(c.research ?? []).some((d) => d.source_ids.includes(s.id))),
+      research: (c.research ?? []).filter((d) => d.promise_id === p.id).map((d) => ({ ...d, verification: "pending", sources: c.sources.filter((s) => d.source_ids.includes(s.id)) })),
       assessment: assessment ?? null,
       legacy_notice: p.legacy_assertion ? "Registro antigo n\xE3o verificado; alega\xE7\xF5es originais apenas para auditoria." : null
     };

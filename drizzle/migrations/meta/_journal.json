@@ -29,6 +29,13 @@
       "when": 1792894007974,
       "tag": "0003_legacy_promises",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792898641571,
+      "tag": "0004_promise_research",
+      "breakpoints": true
     }
   ]
 }

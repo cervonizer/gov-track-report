@@ -44,3 +44,7 @@ As alterações do código precisam sincronizar pelo GitHub para aparecer na pr�
 O lint global ainda aponta erros anteriores nos componentes `ui/command`, `ui/textarea`, na configuração Tailwind e no bundle MCP gerado; a checagem TypeScript e o build passam.
 
 O build já tinha avisos sobre tamanho de bundle e Browserslist antigo; atualização de dependências fica fora desta alteração.
+
+## Pesquisa documental (25/10/2026)
+
+A migração 0004 foi autorizada e aplicada: um dossiê público aguardando revisão e cinco fontes, sem avaliação de cumprimento. O catálogo anônimo expõe o dossiê pela mesma RLS da página de detalhe. Pesquisa imutável; correções devem gerar outra revisão. O revisor usa o fluxo separado de evidências e avaliações, sem botão de aprovação automática do dossiê. A conta confirmada do responsável recebeu papel reviewer por administração privilegiada; login foi confirmado pelo usuário. A hospedagem definitiva e seus redirecionamentos ainda precisam de validação.
