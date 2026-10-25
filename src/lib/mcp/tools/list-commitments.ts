@@ -4,9 +4,9 @@ import { listCommitments } from "../politicians";
 
 export default defineTool({
   name: "list_commitments",
-  title: "Promessas e propostas",
+  title: "Promessas publicadas",
   description:
-    "Lista promessas e propostas monitoradas pela Polis, com status (cumprida, em andamento, quebrada, etc.), progresso, categoria e fontes oficiais.",
+    "Lista promessas publicadas, cumprimento baseado em avaliações aprovadas, calendário separado, fontes e material antigo identificado como não verificado.",
   inputSchema: {
     politician: z
       .string()
@@ -15,11 +15,11 @@ export default defineTool({
     status: z
       .string()
       .optional()
-      .describe("Filtrar por status exato: Fulfilled, In Progress, Broken, Expired, Active, Passed, Failed, Withdrawn."),
+      .describe("Filtrar por situação: ainda não avaliável, em andamento, cumprida, parcialmente cumprida, não cumprida. Sem prazo é independente do cumprimento."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ politician, status }) => {
-    const items = listCommitments(politician, status);
+  handler: async ({ politician, status }) => {
+    const items = await listCommitments(politician, status);
     return {
       content: [{ type: "text", text: JSON.stringify(items, null, 2) }],
       structuredContent: { commitments: items },

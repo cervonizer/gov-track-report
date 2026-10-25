@@ -6,13 +6,13 @@ export default defineTool({
   name: "get_politician",
   title: "Perfil do político",
   description:
-    "Retorna o perfil completo de um político da Polis: biografia, mandatos, votações, promessas e propostas, sempre com as fontes oficiais.",
+    "Retorna o perfil completo de um político da Polis: biografia, mandatos, votações, promessas e propostas, com fontes e proveniência explícitas.",
   inputSchema: {
     politician: z.string().describe("ID ou nome (parcial) do político, ex.: 'Lula' ou '1'."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ politician }) => {
-    const data = politicianDetail(politician);
+  handler: async ({ politician }) => {
+    const data = await politicianDetail(politician);
     if (!data) {
       return {
         content: [{ type: "text", text: `Nenhum político encontrado para "${politician}".` }],

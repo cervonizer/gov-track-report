@@ -3,11 +3,11 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.25.0";
+import { defineMcp } from "npm:@lovable.dev/mcp-js@0.25.1";
 
 // src/lib/mcp/tools/list-politicians.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.25.0";
-import { z } from "npm:zod@^3.25.76";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.25.1";
+import { z as z2 } from "npm:zod@^3.25.76";
 
 // src/data/politiciansData.ts
 var politiciansData = [
@@ -1505,8 +1505,74 @@ var politiciansData = [
   }
 ];
 
+// src/lib/promises.ts
+import { z } from "npm:zod@^3.25.76";
+var statuses = ["ainda n\xE3o avali\xE1vel", "em andamento", "cumprida", "parcialmente cumprida", "n\xE3o cumprida"];
+function dayOrdinal(value) {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const n = Date.parse(value + "T00:00:00Z");
+  return Number.isFinite(n) && new Date(n).toISOString().slice(0, 10) === value ? n / 864e5 : null;
+}
+function todayInBrazil(now = /* @__PURE__ */ new Date()) {
+  return new Intl.DateTimeFormat("sv-SE", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+}
+function calendar(start, end, today = todayInBrazil()) {
+  const a = dayOrdinal(start), b = dayOrdinal(end), n = dayOrdinal(today);
+  return { deadline: b === null ? "sem prazo" : n !== null && n > b ? "vencido" : a !== null && n !== null && n < a ? "futuro" : "no prazo", percent: a === null || b === null || n === null || b <= a ? null : Math.max(0, Math.min(100, (n - a) / (b - a) * 100)) };
+}
+function evidenceApproved(c, id) {
+  const r = c.reviews.filter((r2) => r2.evidence_id === id).sort((a, b) => b.sequence - a.sequence)[0];
+  return r?.decision === "approved";
+}
+function currentAssessment(c, id) {
+  const latest = c.assessments.filter((a) => a.promise_id === id && a.verification === "approved").sort((a, b) => b.version - a.version)[0];
+  if (!latest || !consistentPercent(latest.status, latest.fulfillment_percent)) return void 0;
+  return (latest.status === "ainda n\xE3o avali\xE1vel" || latest.evidence_ids.length > 0) && latest.evidence_ids.every((id2) => c.evidence.some((e) => e.id === id2 && e.promise_id === latest.promise_id) && evidenceApproved(c, id2)) ? latest : void 0;
+}
+function consistentPercent(status, percent) {
+  return statuses.some((s) => s === status) && (percent === null || Number.isFinite(percent) && percent >= 0 && percent <= 100 && status !== "ainda n\xE3o avali\xE1vel" && (status !== "cumprida" || percent === 100) && (status !== "n\xE3o cumprida" || percent === 0) && (status !== "parcialmente cumprida" || percent > 0 && percent < 100) && (status !== "em andamento" || percent < 100));
+}
+var sourceSchema = z.object({ url: z.string().url().max(4e3).refine((v) => /^https?:\/\//.test(v), "Use http ou https"), publisher: z.string().max(500), title: z.string().max(500), provenance: z.enum(["official", "non_official", "unknown"]), quotation: z.string().max(1e4), published_on: z.string(), accessed_on: z.string(), timestamp_start: z.string(), timestamp_end: z.string() });
+
+// src/lib/mcp/promise-catalog.ts
+async function publicCatalog() {
+  const runtime = globalThis;
+  const env = (name) => runtime.Deno?.env.get(name) ?? runtime.process?.env[name];
+  const url = env("SUPABASE_URL") ?? "https://grgztiffdllktozsiymv.supabase.co";
+  const key = env("SUPABASE_ANON_KEY") ?? env("SUPABASE_PUBLISHABLE_KEY") ?? "sb_publishable_hhGKICsAYQF1BomMeNslVA_czH2TJF1";
+  if (!url || !key) throw new Error("Cat\xE1logo indispon\xEDvel: configura\xE7\xE3o p\xFAblica do banco ausente.");
+  const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/rpc/promise_catalog`, {
+    method: "POST",
+    headers: { apikey: key, "Content-Type": "application/json" },
+    body: "{}"
+  });
+  if (!response.ok) throw new Error("N\xE3o foi poss\xEDvel consultar as promessas publicadas.");
+  return response.json();
+}
+function publishedPromises(c, politicianId) {
+  return c.promises.filter((p) => !politicianId || p.politician_id === politicianId).map((p) => {
+    const assessment = currentAssessment(c, p.id);
+    return {
+      ...p,
+      kind: "promessa",
+      status: assessment?.status ?? "ainda n\xE3o avali\xE1vel",
+      fulfillment_percent: assessment?.fulfillment_percent ?? null,
+      verification: assessment ? "approved" : "pending",
+      calendar: calendar(p.promised_on, p.deadline),
+      sources: c.sources.filter((s) => s.promise_id === p.id),
+      assessment: assessment ?? null,
+      legacy_notice: p.legacy_assertion ? "Registro antigo n\xE3o verificado; alega\xE7\xF5es originais apenas para auditoria." : null
+    };
+  });
+}
+
 // src/lib/mcp/politicians.ts
-function listPoliticians() {
+function findPolitician(query) {
+  const q = query.trim().toLowerCase();
+  return politiciansData.find((p) => p.id === q) ?? politiciansData.find((p) => p.name.toLowerCase() === q) ?? politiciansData.find((p) => p.name.toLowerCase().includes(q)) ?? politiciansData.find((p) => p.party.toLowerCase() === q);
+}
+async function listPoliticians() {
+  const catalog = await publicCatalog();
   return politiciansData.map((p) => ({
     id: p.id,
     name: p.name,
@@ -1517,49 +1583,32 @@ function listPoliticians() {
     termEnd: p.termEnd,
     instagram: p.phone,
     website: p.website,
-    counts: {
-      votes: p.voteRecords.length,
-      promises: p.promises.length,
-      proposals: p.proposals.length
-    }
+    counts: { votes: p.voteRecords.length, promises: catalog.promises.filter((x) => x.politician_id === p.id).length, proposals: p.proposals.length }
   }));
 }
-function findPolitician(query) {
-  const q = query.trim().toLowerCase();
-  return politiciansData.find((p) => p.id === q) ?? politiciansData.find((p) => p.name.toLowerCase() === q) ?? politiciansData.find((p) => p.name.toLowerCase().includes(q)) ?? politiciansData.find((p) => p.party.toLowerCase() === q);
-}
-function politicianDetail(query) {
+async function politicianDetail(query) {
   const p = findPolitician(query);
   if (!p) return void 0;
-  const { imageUrl: _imageUrl, phone, ...rest } = p;
-  return { ...rest, instagram: phone };
+  const { imageUrl: _imageUrl, phone, promises: _legacy, ...rest } = p;
+  return { ...rest, instagram: phone, promises: publishedPromises(await publicCatalog(), p.id) };
 }
-function listCommitments(query, status) {
-  const people = query ? [findPolitician(query)].filter(Boolean) : politiciansData;
-  const items = people.flatMap(
-    (p) => [
-      ...p.promises.map((pr) => ({ kind: "promessa", ...pr })),
-      ...p.proposals.map((pp) => ({
-        kind: "proposta",
-        id: pp.id,
-        title: pp.title,
-        description: pp.description,
-        datePromised: pp.dateProposed,
-        deadline: "",
-        status: pp.status,
-        progress: pp.supportLevel,
-        category: pp.category,
-        sources: pp.sources
-      }))
-    ].map((item) => ({ politicianId: p.id, politicianName: p.name, ...item }))
-  );
+async function listCommitments(query, status) {
+  const catalog = await publicCatalog();
+  const person = query ? findPolitician(query) : void 0;
+  if (query && !person) return [];
+  const items = publishedPromises(catalog, person?.id).map((p) => ({
+    ...p,
+    politicianId: p.politician_id,
+    politicianName: catalog.politicians.find((x) => x.id === p.politician_id)?.name
+  }));
   return status ? items.filter((i) => i.status.toLowerCase() === status.trim().toLowerCase()) : items;
 }
-function platformStats() {
+async function platformStats() {
+  const catalog = await publicCatalog();
   return {
     politicians: politiciansData.length,
     votes: politiciansData.reduce((n, p) => n + p.voteRecords.length, 0),
-    promises: politiciansData.reduce((n, p) => n + p.promises.length, 0),
+    promises: catalog.promises.length,
     proposals: politiciansData.reduce((n, p) => n + p.proposals.length, 0)
   };
 }
@@ -1570,11 +1619,11 @@ var list_politicians_default = defineTool({
   title: "Listar pol\xEDticos",
   description: "Lista todos os pol\xEDticos monitorados na plataforma Polis, com partido, cargo, estado, mandato e contagem de votos, promessas e propostas.",
   inputSchema: {
-    party: z.string().optional().describe("Filtrar por sigla do partido (ex.: PT, PL).")
+    party: z2.string().optional().describe("Filtrar por sigla do partido (ex.: PT, PL).")
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ party }) => {
-    const all = listPoliticians();
+  handler: async ({ party }) => {
+    const all = await listPoliticians();
     const items = party ? all.filter((p) => p.party.toLowerCase() === party.trim().toLowerCase()) : all;
     return {
       content: [{ type: "text", text: JSON.stringify(items, null, 2) }],
@@ -1584,18 +1633,18 @@ var list_politicians_default = defineTool({
 });
 
 // src/lib/mcp/tools/get-politician.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.25.0";
-import { z as z2 } from "npm:zod@^3.25.76";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.25.1";
+import { z as z3 } from "npm:zod@^3.25.76";
 var get_politician_default = defineTool2({
   name: "get_politician",
   title: "Perfil do pol\xEDtico",
-  description: "Retorna o perfil completo de um pol\xEDtico da Polis: biografia, mandatos, vota\xE7\xF5es, promessas e propostas, sempre com as fontes oficiais.",
+  description: "Retorna o perfil completo de um pol\xEDtico da Polis: biografia, mandatos, vota\xE7\xF5es, promessas e propostas, com fontes e proveni\xEAncia expl\xEDcitas.",
   inputSchema: {
-    politician: z2.string().describe("ID ou nome (parcial) do pol\xEDtico, ex.: 'Lula' ou '1'.")
+    politician: z3.string().describe("ID ou nome (parcial) do pol\xEDtico, ex.: 'Lula' ou '1'.")
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ politician }) => {
-    const data = politicianDetail(politician);
+  handler: async ({ politician }) => {
+    const data = await politicianDetail(politician);
     if (!data) {
       return {
         content: [{ type: "text", text: `Nenhum pol\xEDtico encontrado para "${politician}".` }],
@@ -1610,19 +1659,19 @@ var get_politician_default = defineTool2({
 });
 
 // src/lib/mcp/tools/list-commitments.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.25.0";
-import { z as z3 } from "npm:zod@^3.25.76";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.25.1";
+import { z as z4 } from "npm:zod@^3.25.76";
 var list_commitments_default = defineTool3({
   name: "list_commitments",
-  title: "Promessas e propostas",
-  description: "Lista promessas e propostas monitoradas pela Polis, com status (cumprida, em andamento, quebrada, etc.), progresso, categoria e fontes oficiais.",
+  title: "Promessas publicadas",
+  description: "Lista promessas publicadas, cumprimento baseado em avalia\xE7\xF5es aprovadas, calend\xE1rio separado, fontes e material antigo identificado como n\xE3o verificado.",
   inputSchema: {
-    politician: z3.string().optional().describe("ID ou nome (parcial) do pol\xEDtico. Sem valor, retorna de todos."),
-    status: z3.string().optional().describe("Filtrar por status exato: Fulfilled, In Progress, Broken, Expired, Active, Passed, Failed, Withdrawn.")
+    politician: z4.string().optional().describe("ID ou nome (parcial) do pol\xEDtico. Sem valor, retorna de todos."),
+    status: z4.string().optional().describe("Filtrar por situa\xE7\xE3o: ainda n\xE3o avali\xE1vel, em andamento, cumprida, parcialmente cumprida, n\xE3o cumprida. Sem prazo \xE9 independente do cumprimento.")
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ politician, status }) => {
-    const items = listCommitments(politician, status);
+  handler: async ({ politician, status }) => {
+    const items = await listCommitments(politician, status);
     return {
       content: [{ type: "text", text: JSON.stringify(items, null, 2) }],
       structuredContent: { commitments: items }
@@ -1631,15 +1680,15 @@ var list_commitments_default = defineTool3({
 });
 
 // src/lib/mcp/tools/get-platform-stats.ts
-import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.25.0";
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.25.1";
 var get_platform_stats_default = defineTool4({
   name: "get_platform_stats",
   title: "Estat\xEDsticas da plataforma",
   description: "Retorna os n\xFAmeros atuais da Polis: pol\xEDticos monitorados, vota\xE7\xF5es registradas, promessas e propostas acompanhadas.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: () => {
-    const stats = platformStats();
+  handler: async () => {
+    const stats = await platformStats();
     return {
       content: [{ type: "text", text: JSON.stringify(stats, null, 2) }],
       structuredContent: stats
@@ -1652,10 +1701,10 @@ var mcp_default = defineMcp({
   name: "polis",
   title: "Polis",
   version: "0.1.0",
-  instructions: "Ferramentas p\xFAblicas da Polis, plataforma brasileira de transpar\xEAncia pol\xEDtica. Use `list_politicians` para descobrir os pol\xEDticos monitorados, `get_politician` para o perfil completo (vota\xE7\xF5es, promessas e propostas com fontes), `list_commitments` para promessas e propostas com status e progresso, e `get_platform_stats` para os n\xFAmeros agregados da plataforma. Todos os dados citam fontes oficiais brasileiras.",
+  instructions: "Ferramentas p\xFAblicas da Polis, plataforma brasileira de transpar\xEAncia pol\xEDtica. Use `list_politicians` para descobrir os pol\xEDticos monitorados, `get_politician` para o perfil completo (vota\xE7\xF5es, promessas e propostas com fontes), `list_commitments` para promessas e propostas com status e progresso, e `get_platform_stats` para os n\xFAmeros agregados da plataforma. Fontes t\xEAm origem expl\xEDcita e n\xE3o equivalem a verifica\xE7\xE3o. Registros antigos n\xE3o verificados n\xE3o sustentam avalia\xE7\xF5es. Tempo decorrido n\xE3o mede cumprimento.",
   tools: [list_politicians_default, get_politician_default, list_commitments_default, get_platform_stats_default]
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.25.0/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.25.1/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));

@@ -11,8 +11,8 @@ export default defineTool({
     party: z.string().optional().describe("Filtrar por sigla do partido (ex.: PT, PL)."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: ({ party }) => {
-    const all = listPoliticians();
+  handler: async ({ party }) => {
+    const all = await listPoliticians();
     const items = party
       ? all.filter((p) => p.party.toLowerCase() === party.trim().toLowerCase())
       : all;

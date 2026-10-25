@@ -15,6 +15,20 @@
       "when": 1792893684337,
       "tag": "0001_promise_workflows",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792894007973,
+      "tag": "0002_promise_integrity",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1792894007974,
+      "tag": "0003_legacy_promises",
+      "breakpoints": true
     }
   ]
 }

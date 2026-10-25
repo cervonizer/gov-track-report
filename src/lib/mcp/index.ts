@@ -9,6 +9,6 @@ export default defineMcp({
   title: "Polis",
   version: "0.1.0",
   instructions:
-    "Ferramentas públicas da Polis, plataforma brasileira de transparência política. Use `list_politicians` para descobrir os políticos monitorados, `get_politician` para o perfil completo (votações, promessas e propostas com fontes), `list_commitments` para promessas e propostas com status e progresso, e `get_platform_stats` para os números agregados da plataforma. Todos os dados citam fontes oficiais brasileiras.",
+    "Ferramentas públicas da Polis, plataforma brasileira de transparência política. Use `list_politicians` para descobrir os políticos monitorados, `get_politician` para o perfil completo (votações, promessas e propostas com fontes), `list_commitments` para promessas e propostas com status e progresso, e `get_platform_stats` para os números agregados da plataforma. Fontes têm origem explícita e não equivalem a verificação. Registros antigos não verificados não sustentam avaliações. Tempo decorrido não mede cumprimento.",
   tools: [listPoliticiansTool, getPoliticianTool, listCommitmentsTool, getPlatformStatsTool],
 });

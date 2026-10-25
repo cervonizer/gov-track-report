@@ -8,8 +8,8 @@ export default defineTool({
     "Retorna os números atuais da Polis: políticos monitorados, votações registradas, promessas e propostas acompanhadas.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: () => {
-    const stats = platformStats();
+  handler: async () => {
+    const stats = await platformStats();
     return {
       content: [{ type: "text", text: JSON.stringify(stats, null, 2) }],
       structuredContent: stats,
