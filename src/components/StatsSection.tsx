@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Users, FileCheck } from "lucide-react";
+import {usePromises} from "@/hooks/use-promises";
 import { mockPoliticians } from "@/data/mockData";
 
 export const StatsSection = () => {
   const totalPoliticians = mockPoliticians.length;
-  const totalPromises = mockPoliticians.reduce((sum, p) => sum + p.promises.length, 0);
+  const q = usePromises();
+  const totalPromises = q.data?.promises.length;
   const totalVotes = mockPoliticians.reduce((sum, p) => sum + p.voteRecords.length, 0);
 
   const fmt = (n: number) => n.toLocaleString('pt-BR');
@@ -37,7 +39,7 @@ export const StatsSection = () => {
               <div className="bg-success/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <FileCheck className="w-8 h-8 text-success" />
               </div>
-              <div className="text-3xl font-bold text-success mb-2">{fmt(totalPromises)}</div>
+              <div className="text-3xl font-bold text-success mb-2">{totalPromises===undefined?"—":fmt(totalPromises)}</div>
               <div className="text-muted-foreground">Promessas Acompanhadas</div>
             </CardContent>
           </Card>
