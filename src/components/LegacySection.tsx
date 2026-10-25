@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { PromisePanel } from "@/components/PromiseCards";
 import {
   Table,
   TableBody,
@@ -66,59 +66,7 @@ export function LegacySection({ politicianId, politicianName }: LegacySectionPro
         <p className="text-muted-foreground mt-1">{subtitle}</p>
       </div>
 
-      {/* Dashboard de Compromissos */}
-      <div>
-        <h3 className="text-xl font-semibold mb-4" style={{ color: "hsl(210, 70%, 20%)" }}>
-          Dashboard de Compromissos
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {commitments.map((c) => {
-            const statusConfig = getStatusConfig(c.status);
-            const StatusIcon = statusConfig.icon;
-            const MainIcon = c.icon;
-            return (
-              <Card
-                key={c.id}
-                className="border hover:shadow-md transition-shadow duration-200"
-                style={{ borderColor: "hsl(210, 30%, 85%)" }}
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="p-2 rounded-lg"
-                        style={{ backgroundColor: "hsl(210, 70%, 95%)" }}
-                      >
-                        <MainIcon className="w-5 h-5" style={{ color: "hsl(210, 70%, 30%)" }} />
-                      </div>
-                      <CardTitle className="text-sm font-semibold leading-tight">
-                        {c.title}
-                      </CardTitle>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className={statusConfig.color}>
-                      <StatusIcon className="w-3 h-3 mr-1" />
-                      {c.status}
-                    </Badge>
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                      <span>Progresso</span>
-                      <span className="font-semibold">{c.progress}%</span>
-                    </div>
-                    <Progress value={c.progress} className="h-2" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">{c.detail}</p>
-                  <SourceCitation sources={c.sources} />
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
+      <div><h3 className="text-xl font-semibold mb-4">Promessas acompanhadas</h3><PromisePanel politicianId={politicianId} compact /></div>
 
       {/* Tabela Comparativa */}
       <div>

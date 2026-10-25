@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { PromisePanel } from "@/components/PromiseCards";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { mockPoliticians } from "@/data/mockData";
@@ -24,8 +25,8 @@ export default function PoliticianProfile() {
       <div className="min-h-screen bg-background">
         <Header />
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-3xl font-bold mb-4">Politician Not Found</h1>
-          <Button onClick={() => navigate("/")}>Return to Home</Button>
+          <h1 className="text-3xl font-bold mb-4">Político não encontrado</h1>
+          <Button onClick={() => navigate("/")}>Voltar ao início</Button>
         </div>
         <Footer />
       </div>
@@ -75,9 +76,6 @@ export default function PoliticianProfile() {
     }
   };
 
-  const fulfilledPromises = politician.promises.filter((p) => p.status === "Fulfilled").length;
-  const fulfillmentRate = ((fulfilledPromises / politician.promises.length) * 100).toFixed(0);
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -89,7 +87,7 @@ export default function PoliticianProfile() {
           className="mb-6"
         >
           <ArrowLeft className="mr-2 w-4 h-4" />
-          Back to All Representatives
+          Voltar aos políticos
         </Button>
 
         {/* Profile Header */}
@@ -161,22 +159,7 @@ export default function PoliticianProfile() {
                 </div>
               </div>
 
-              <div className="md:w-64">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Cumprimento de Promessas</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-center mb-2">
-                      <span className="text-4xl font-bold">{fulfillmentRate}%</span>
-                    </div>
-                    <Progress value={Number(fulfillmentRate)} className="mb-2" />
-                    <p className="text-sm text-muted-foreground text-center">
-                      {fulfilledPromises} de {politician.promises.length} promessas cumpridas
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
+              <div className="md:w-64"><PromisePanel politicianId={politician.id} compact /></div>
             </div>
           </CardContent>
         </Card>
@@ -203,10 +186,10 @@ export default function PoliticianProfile() {
 
         {/* Tabs for detailed information */}
         <Tabs defaultValue="legacy" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
             <TabsTrigger value="legacy">Legado</TabsTrigger>
             <TabsTrigger value="votes">Histórico de Votos</TabsTrigger>
-            <TabsTrigger value="promises">Promessas de Campanha</TabsTrigger>
+            <TabsTrigger value="promises">Promessas</TabsTrigger>
             <TabsTrigger value="proposals">Propostas</TabsTrigger>
           </TabsList>
 
@@ -261,50 +244,7 @@ export default function PoliticianProfile() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="promises" className="mt-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Promessas de Campanha</CardTitle>
-                <CardDescription>
-                  Acompanhe o status dos compromissos de campanha
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {politician.promises.map((promise) => (
-                    <Card key={promise.id}>
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <CardTitle className="text-lg">{promise.title}</CardTitle>
-                            <CardDescription>{promise.description}</CardDescription>
-                          </div>
-                          <Badge variant="outline" className={getStatusColor(promise.status)}>
-                            {translatePromiseStatus(promise.status)}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Progresso</span>
-                            <span className="font-medium">{promise.progress}%</span>
-                          </div>
-                          <Progress value={promise.progress} />
-                          <div className="flex justify-between text-sm text-muted-foreground">
-                            <span>Prometido em: {new Date(promise.datePromised).toLocaleDateString('pt-BR')}</span>
-                            <span>Prazo: {new Date(promise.deadline).toLocaleDateString('pt-BR')}</span>
-                          </div>
-                          <Badge variant="secondary">{promise.category}</Badge>
-                          <SourceCitation sources={promise.sources} />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+          <TabsContent value="promises" className="mt-6"><PromisePanel politicianId={politician.id}/></TabsContent>
 
           <TabsContent value="proposals" className="mt-6">
             <Card>

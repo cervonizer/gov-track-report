@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import { PromisePanel } from "@/components/PromiseCards";
+import {usePromises} from "@/hooks/use-promises";
 import { User, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { Politician } from "@/types/politician";
 
@@ -29,10 +30,8 @@ const getPartyInfo = (party: string): PartyTendency => {
 };
 
 export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProps) => {
-  const fulfilledPromises = politician.promises.filter(p => p.status === 'Fulfilled').length;
-  const totalPromises = politician.promises.length;
-  const promiseFulfillmentRate = totalPromises > 0 ? (fulfilledPromises / totalPromises) * 100 : 0;
-
+  const q = usePromises();
+  const totalPromises = q.data?.promises.filter(p=>p.politician_id===politician.id).length;
   const partyInfo = getPartyInfo(politician.party);
 
   return (
@@ -81,15 +80,7 @@ export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProp
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium">Cumprimento de Promessas</span>
-            <span className="text-sm text-muted-foreground">
-              {fulfilledPromises}/{totalPromises} cumpridas
-            </span>
-          </div>
-          <Progress value={promiseFulfillmentRate} className="h-2" />
-        </div>
+        <PromisePanel politicianId={politician.id} compact/>
 
         <div className="grid grid-cols-3 gap-4 text-center py-3 bg-muted/30 rounded-lg">
           <div>
@@ -97,7 +88,7 @@ export const PoliticianCard = ({ politician, onViewDetails }: PoliticianCardProp
             <div className="text-xs text-muted-foreground">Votações</div>
           </div>
           <div>
-            <div className="text-lg font-semibold text-primary">{politician.promises.length}</div>
+            <div className="text-lg font-semibold text-primary">{totalPromises??"—"}</div>
             <div className="text-xs text-muted-foreground">Promessas</div>
           </div>
           <div>
